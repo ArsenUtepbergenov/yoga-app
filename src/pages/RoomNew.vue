@@ -1,12 +1,18 @@
 <template>
   <section  class="room-new">
-    <form class="room-new-form" @submit.prevent="saveRoom">
-      <label>Title</label>
-      <input type="text" v-model="title" required>
-      <label>Number members</label>
-      <input type="number" v-model.number="number_members" required>
-      <button type="submit">Add</button>
-      <router-link to="/">Cancel</router-link>
+    <form class="form rooms-new" @submit.prevent="saveRoom">
+      <div class="form-field">
+        <label class="form-label">Title</label>
+        <input class="form-input" type="text" v-model="title" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Number members</label>
+        <input class="form-input" type="number" v-model.number="number_members" required>
+      </div>
+      <div>
+        <button class="form-button" type="submit">Add</button>
+        <router-link class="form-button" to="/">Cancel</router-link>
+      </div>
     </form>
   </section>
 </template>

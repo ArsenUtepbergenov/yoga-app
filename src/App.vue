@@ -1,22 +1,32 @@
 <template>
-  <div id="app">
-    <Navbar />
-    <Content />
+  <div class="app" id="app">
+    <app-header />
+    <app-content />
+    <app-footer />
   </div>
 </template>
 
 <script>
-import Navbar from './components/navbar'
-import Content from './components/content'
+import Header from './components/Header'
+import Content from './components/Content'
+import Footer from './components/Footer'
 
 export default {
   name: 'app',
   components: {
-    Navbar,
-    Content
+    'app-header': Header,
+    'app-content': Content,
+    'app-footer': Footer,
   }
 }
 </script>
 
 <style lang="scss">
+.app {
+  display: grid;
+  grid-template-areas: "header"
+                       "main"
+                       "footer";
+  grid-template: 50px 700px 150px / 1fr;
+}
 </style>

@@ -4,6 +4,7 @@ import store from './store/store'
 import router from './router/router'
 
 import 'normalize.css'
+import './scss/base.scss'
 
 import {mapMutations} from 'vuex'
 import {auth} from './firebase'

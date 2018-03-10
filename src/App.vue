@@ -27,6 +27,6 @@ export default {
   grid-template-areas: "header"
                        "main"
                        "footer";
-  grid-template: 50px 700px 150px / 1fr;
+  grid-template: 45px 700px 150px / 1fr;
 }
 </style>

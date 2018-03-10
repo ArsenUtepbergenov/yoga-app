@@ -13,7 +13,7 @@ const store = new Vuex.Store({
     currentRoom: {},
     currentUser: {},
     isLoggedIn: false,
-    errorMessage: ''
+    message: 'Join us!'
   },
   mutations: {
     setRooms: (state, data) => {
@@ -31,15 +31,15 @@ const store = new Vuex.Store({
     setStatusLogin: (state, status) => {
       state.isLoggedIn = status;
     },
-    setErrorMessage: (state, message) => {
-      state.errorMessage = message;
+    setMessage: (state, message) => {
+      state.message = message;
     },
     resetStateApp: state => {
       state.rooms = [];
       state.currentRoom = {},
       state.currentUser = {},
       state.isLoggedIn = false,
-      state.errorMessage = ''
+      state.message = 'Join us!'
     }
   },
   actions: {
@@ -47,11 +47,11 @@ const store = new Vuex.Store({
       const {email, password} = data;
       auth.login(email, password)
         .then(user => {
-          console.log(`You are logged in as ${user.email}`);
+          context.commit('setMessage', `You are logged in as ${user.email}`);
           router.push('/');
         })
         .catch(error => {
-          context.commit('setErrorMessage', error.message);
+          context.commit('setMessage', error.message);
         });
     },
 
@@ -59,11 +59,11 @@ const store = new Vuex.Store({
       const {email, password} = data;
       auth.register(email, password)
         .then(user => {
-          console.log(`Account created for ${user.email}`);
+          context.commit('setMessage', `Account created for ${user.email}`);
           router.push('/');
         })
         .catch(error => {
-          context.commit('setErrorMessage', error.message);
+          context.commit('setMessage', error.message);
         });
     },
 
@@ -74,7 +74,7 @@ const store = new Vuex.Store({
           router.push('/login');
         })
         .catch(error => {
-          commit('setErrorMessage', error.message);
+          commit('setMessage', error.message);
         });
     },
 
@@ -114,6 +114,7 @@ const store = new Vuex.Store({
       services.createRoom(data)
         .then(docRef => {
           console.log('Document written with ID: ', docRef.id);
+          context.commit('setMessage', 'The room successfully created');
           router.push('/');
         })
         .catch(error => {
@@ -124,7 +125,7 @@ const store = new Vuex.Store({
     deleteRoom(context, id) {
       services.deleteRoom(id)
         .then(() => {
-          console.log('Document successfully deleted!');
+          context.commit('setMessage', 'The room successfully deleted!');
           context.commit('setCurrentRoom', {});
           router.push('/');
         })
@@ -134,7 +135,7 @@ const store = new Vuex.Store({
     updateTitleRoom(context, data) {
       services.updateTitleRoom(data)
         .then(() => {
-          console.log('Document successfully updated!');
+          context.commit('setMessage', 'Title of the room successfully updated!');
           context.commit('setNewTitleRoom', data.title);
         })
         .catch(error => {
@@ -146,8 +147,8 @@ const store = new Vuex.Store({
     getRoomsCount: state => {
       return state.rooms.length;
     },
-    getErrorMessage: state => {
-      return state.errorMessage;
+    getMessage: state => {
+      return state.message;
     },
     getCurrentUser: state => {
       return state.currentUser;

@@ -19,4 +19,11 @@ export default {
 </script>
 
 <style lang="scss">
+.rooms-grid {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+}
 </style>

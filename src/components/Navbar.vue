@@ -45,12 +45,11 @@ export default {
     display: flex;
     align-items: center;
     padding: 0 1em;
-    color: white;
     font-weight: bold;
   }
 
   &-link:hover {
-    background-color: var(--color-navbar-link-hover);
+    color: var(--color-navbar-link-hover);
   }
 
   &-button {

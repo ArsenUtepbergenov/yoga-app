@@ -15,7 +15,7 @@ input, textarea, a, button {
   outline: 0;
 }
 
-a, button {
+a, button, span {
   color: white;
 }
 
@@ -29,7 +29,7 @@ a:focus {
 
 // global style for router links
 .router-link-active {
-  background-color: var(--color-router-link-active);
+  color: var(--color-router-link-active);
 }
 
 @import "./form";

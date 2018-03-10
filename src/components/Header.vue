@@ -16,6 +16,6 @@ export default {
 
 <style lang="scss">
 .header {
-  background-color: #2d2d2d;
+  background-color: var(--color-theme);
 }
 </style>

@@ -16,12 +16,11 @@
       </div>
       <button class="form-button" type="submit">Login</button>
     </form>
-    <p>{{getErrorMessage}}</p>
   </section>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions} from 'vuex'
 
 export default {
   name: 'login',
@@ -30,11 +29,6 @@ export default {
       email: null,
       password: null
     }
-  },
-  computed: {
-    ...mapGetters([
-      'getErrorMessage'
-    ])
   },
   methods: {
     ...mapActions([

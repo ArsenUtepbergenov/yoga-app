@@ -1,25 +1,58 @@
 <template>
   <section class="room-view">
-    <room-details :details="currentRoom" />
-    <button type="button" @click="removeRoom">Detele</button>
-    <input type="text" v-model="newTitleRoom" :placeholder="currentRoom.title" required>
-    <button type="button" @click="changeTitleRoom">Update title</button>
+    <div class="room-view-details">
+      <div class="room-view-left">
+        <img class="room-view-img" :src="currentRoom.coverPath" alt="">
+        <div class="room-view-info">
+          <span class="room-view-item">
+            <i class="fas fa-users fa-lg"></i>
+            {{currentRoom.number_members}}
+          </span>
+          <span class="room-view-item">
+            <i class="fas fa-heart fa-lg"></i>
+            {{currentRoom.likes}}
+          </span>
+          <button class="room-view-button-edit" type="button" @click="showModal=true">
+            <i class="fas fa-edit fa-lg"></i>
+          </button>
+        </div>
+      </div>
+      <div class="room-view-right">
+        <p class="room-view-title">
+          {{currentRoom.title}}
+        </p>
+        <audio-player :tracks="currentRoom.tracks" />
+      </div>
+    </div>
+    <modal v-if="showModal" @close="showModal=false">
+      <h3 slot="header">Settings the room</h3>
+      <input slot="body" type="text" v-model="newTitleRoom" :placeholder="currentRoom.title" required>
+      <button slot="footer" class="button-circle" type="button" @click="changeTitleRoom">
+        <i class="fas fa-pencil-alt"></i>
+      </button>
+      <button slot="footer" class="button-circle" type="button" @click="removeRoom">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </modal>
   </section>
 </template>
 
 <script>
 import {mapActions, mapState} from 'vuex'
-import RoomDetails from '../components/RoomDetails'
+import AudioPlayer from '../components/AudioPlayer'
+import Modal from '../components/Modal'
 
 export default {
   name: 'room-view',
   data() {
     return {
-      newTitleRoom: ''
+      newTitleRoom: '',
+      showModal: false
     }
   },
   components: {
-    'room-details': RoomDetails
+    'audio-player': AudioPlayer,
+    'modal': Modal,
   },
   computed: {
     ...mapState([
@@ -51,6 +84,60 @@ export default {
 
 <style lang="scss">
 .room-view {
+  position: relative;
 
+  &-details {
+    width: 100%;
+    max-width: 1000px;
+    background-color: white;
+    margin: auto;
+    border-radius: 5px;
+    display: flex;
+  }
+
+  &-left {
+    width: 270px;
+  }
+
+  &-right {
+    width: 100%;
+  }
+
+  &-title {
+    font-size: 2em;
+    color: #989898;
+    text-align: center;
+  }
+
+  &-info {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 250px;
+    height: 50px;
+    margin-left: 10px;
+  }
+
+  &-item {
+    color: #989898;
+  }
+
+  &-item .fa-users, .fa-heart {
+    padding: 0 5px;
+  }
+
+  &-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  &-button-edit {
+    background: 0;
+    border: 0;
+    color: #989898;
+    padding-bottom: 5px;
+  }
 }
 </style>

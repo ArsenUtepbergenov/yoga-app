@@ -1,6 +1,5 @@
 <template>
-  <section id="home-page" class="home-page">
-    <p>Rooms count: {{getRoomsCount}}</p>
+  <section id="home" class="home">
     <rooms-grid :rooms="rooms" />
   </section>
 </template>
@@ -10,7 +9,7 @@ import {mapActions, mapState, mapGetters} from 'vuex'
 import RoomsGrid from '../components/RoomsGrid'
 
 export default {
-  name: 'home-page',
+  name: 'home',
   components: {
     'rooms-grid': RoomsGrid
   },
@@ -34,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss">
-.home-page {
+.home {
 
 }
 </style>

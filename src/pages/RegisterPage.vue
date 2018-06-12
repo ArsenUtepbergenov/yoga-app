@@ -1,5 +1,5 @@
 <template>
-  <section id="register-page" class="register-page">
+  <section id="register" class="register">
     <form class="form register" @submit.prevent="signUp">
       <i class="fas fa-user-circle fa-3x form-icon"></i>
       <div class="form-field">
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss">
-.register-page {
+.register {
 
 }
 </style>

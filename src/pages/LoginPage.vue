@@ -1,5 +1,5 @@
 <template>
-  <section id="login-page" class="login-page">
+  <section id="login" class="login">
     <form class="form login" @submit.prevent="signIn">
       <i class="fas fa-user-circle fa-3x form-icon"></i>
       <div class="form-field">
@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss">
-.login-page {
+.login {
 
 }
 </style>

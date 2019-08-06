@@ -6,6 +6,7 @@ import router from './router/router'
 import 'normalize.css'
 import './scss/base.scss'
 
+import {WebChannel} from '@firebase/webchannel-wrapper';
 import {mapMutations} from 'vuex'
 import {auth} from './firebase'
 
@@ -14,6 +15,7 @@ new Vue({
   render: h => h(App),
   router: router,
   store: store,
+  WebChannel,
   methods: {
     ...mapMutations([
       'setCurrentUser',

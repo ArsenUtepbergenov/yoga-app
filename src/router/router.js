@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import HomePage from '../pages/HomePage.vue'
-import RoomView from '../pages/RoomView.vue'
-import RoomNew from '../pages/RoomNew.vue'
-import LoginPage from '../pages/LoginPage.vue'
-import RegisterPage from '../pages/RegisterPage.vue'
+import HomePage from '../pages/HomePage'
+import RoomView from '../pages/RoomView'
+import RoomNew from '../pages/RoomNew'
+import LoginPage from '../pages/LoginPage'
+import RegisterPage from '../pages/RegisterPage'
 
 import {auth} from '../firebase'
 

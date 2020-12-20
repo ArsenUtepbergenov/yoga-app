@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue, { h } from 'vue';
 import App from './App.vue'
 import store from './store/store'
 import router from './router/router'
@@ -12,7 +12,7 @@ import {auth} from './firebase'
 
 new Vue({
   el: '#app',
-  render: h => h(App),
+  render: () => h(App),
   router: router,
   store: store,
   WebChannel,

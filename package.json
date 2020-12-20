@@ -1,30 +1,26 @@
 {
   "name": "roomtune",
-  "description": "roomtune app",
   "version": "1.0.0",
-  "author": "ArsenUtepbergenov <arsen.utepbergenov@yandex.ru>",
-  "license": "MIT",
   "private": true,
+  "description": "roomtune app",
+  "author": "ArsenUtepbergenov <arsen.utepbergenov@yandex.ru>",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot"
   },
   "dependencies": {
     "@firebase/webchannel-wrapper": "^0.2.7",
     "firebase": "^4.6.2",
     "normalize.css": "^8.0.0",
-    "vue": "^2.6.10",
+    "vue": "^3.0.0-beta.1",
     "vue-cli": "^2.9.6",
     "vue-router": "^3.1.1",
-    "vuex": "^3.1.1",
+    "vuex": "^4.0.0-alpha.1",
     "webpack-cli": "^3.3.6"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
   "devDependencies": {
+    "@vue/cli-plugin-typescript": "^4.5.9",
+    "@vue/compiler-sfc": "^3.0.0-beta.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
@@ -34,9 +30,15 @@
     "file-loader": "^1.1.11",
     "node-sass": "^4.12.0",
     "sass-loader": "^6.0.6",
+    "vue-cli-plugin-vue-next": "~0.1.4",
     "vue-loader": "^15.7.1",
-    "vue-template-compiler": "^2.4.4",
     "webpack": "^4.39.1",
     "webpack-dev-server": "^3.7.2"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "license": "MIT"
 }

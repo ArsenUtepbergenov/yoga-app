@@ -38,8 +38,7 @@
 <script>
 export default {
   props: {
-    room: Object,
-    required: true
+    room: Object
   }
 }
 </script>

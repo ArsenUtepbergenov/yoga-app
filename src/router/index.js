@@ -1,21 +1,12 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-
-import HomePage from '../pages/HomePage'
-import RoomView from '../pages/RoomView'
-import RoomNew from '../pages/RoomNew'
-import LoginPage from '../pages/LoginPage'
-import RegisterPage from '../pages/RegisterPage'
-
+import { createRouter, createWebHistory } from 'vue-router'
 import {auth} from '../firebase'
-
-Vue.use(VueRouter);
+import Home from '../pages/HomePage.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomePage,
+    component: Home,
     meta: {
       requiresAuth: true
     }
@@ -23,7 +14,7 @@ const routes = [
   {
     path: '/rooms/new',
     name: 'room-new',
-    component: RoomNew,
+    component: () => import(/* webpackChunkName: "RoomNew" */ '../pages/RoomNew.vue'),
     meta: {
       requiresAuth: true
     }
@@ -31,7 +22,7 @@ const routes = [
   {
     path: '/rooms/:id',
     name: 'room-view',
-    component: RoomView,
+    component: () => import(/* webpackChunkName: "RoomView" */ '../pages/RoomView.vue'),
     meta: {
       requiresAuth: true
     }
@@ -39,7 +30,7 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: LoginPage,
+    component: () => import(/* webpackChunkName: "LoginPage" */ '../pages/LoginPage.vue'),
     meta: {
       requiresGuest: true
     }
@@ -47,17 +38,17 @@ const routes = [
   {
     path: '/register',
     name: 'register',
-    component: RegisterPage,
+    component: () => import(/* webpackChunkName: "RegisterPage" */ '../pages/RegisterPage.vue'),
     meta: {
       requiresGuest: true
     }
   }
-];
+]
 
-const router = new VueRouter({
-  mode: 'history',
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes
-});
+})
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -68,7 +59,7 @@ router.beforeEach((to, from, next) => {
       })
     }
     else
-      next();
+      next()
   }
   else if (to.matched.some(record => record.meta.requiresGuest)) {
     if (auth.currentUser) {
@@ -78,10 +69,10 @@ router.beforeEach((to, from, next) => {
       })
     }
     else
-      next();
+      next()
   }
   else
-    next();
-});
+    next()
+})
 
-export default router;
+export default router

@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
@@ -9,12 +9,11 @@ const config = {
   projectId: "roomtune-id",
   storageBucket: "roomtune-id.appspot.com",
   messagingSenderId: "869945729649"
-};
+}
 
-const firebaseApp = firebase.initializeApp(config);
+const firebaseApp = firebase.initializeApp(config)
 
-const db = firebaseApp.firestore();
-const auth = firebaseApp.auth();
+const db = firebaseApp.firestore()
+const auth = firebaseApp.auth()
 
-export {db};
-export {auth};
+export { db, auth }

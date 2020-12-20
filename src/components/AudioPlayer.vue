@@ -8,17 +8,13 @@ export default {
   name: 'audio-player',
   props: {
     tracks: {
-      type: Array,
-      required: true
+      type: Array
     }
   },
   computed: {
     currentTrack() {
-      return this.tracks[0];
-    },
-  },
+      return this.tracks && this.tracks.length && this.tracks[0]
+    }
+  }
 }
 </script>
-
-<style lang="scss">
-</style>

@@ -12,8 +12,7 @@ export default {
     'room-card': RoomCard
   },
   props: {
-    rooms: Array,
-    required: true
+    rooms: Array
   }
 }
 </script>

@@ -25,14 +25,20 @@
       </div>
     </div>
     <modal v-if="showModal" @close="showModal=false">
-      <h3 slot="header">Settings the room</h3>
-      <input slot="body" type="text" v-model="newTitleRoom" :placeholder="currentRoom.title" required>
-      <button slot="footer" class="button-circle" type="button" @click="changeTitleRoom">
-        <i class="fas fa-pencil-alt"></i>
-      </button>
-      <button slot="footer" class="button-circle" type="button" @click="removeRoom">
-        <i class="fas fa-trash-alt"></i>
-      </button>
+      <template #header>
+        <h3>Settings the room</h3>
+      </template>
+      <template #body>
+        <input type="text" v-model="newTitleRoom" :placeholder="currentRoom.title" required>
+      </template>
+      <template #footer>
+        <button class="button-circle" type="button" @click="changeTitleRoom">
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+        <button class="button-circle" type="button" @click="removeRoom">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </template>
     </modal>
   </section>
 </template>

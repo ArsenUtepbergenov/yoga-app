@@ -45,11 +45,11 @@
 
 <script>
 import {mapActions, mapState} from 'vuex'
-import AudioPlayer from '../components/AudioPlayer'
-import Modal from '../components/Modal'
+import AudioPlayer from '@/components/AudioPlayer'
+import Modal from '@/components/Modal'
 
 export default {
-  name: 'room-view',
+  name: 'room',
   data() {
     return {
       newTitleRoom: '',

@@ -1,3 +1,5 @@
+// The global application component
+
 <template>
   <div class="app" id="app">
     <app-header />

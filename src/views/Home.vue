@@ -1,18 +1,33 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <section id="home" class="home">
+    <rooms-grid :rooms="rooms" />
+  </section>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import {mapActions, mapState, mapGetters} from 'vuex'
+import RoomsGrid from '@/components/RoomsGrid'
 
 export default {
-  name: 'Home',
+  name: 'home',
   components: {
-    HelloWorld
+    'rooms-grid': RoomsGrid
+  },
+  computed: {
+    ...mapState([
+      'rooms'
+    ]),
+    ...mapGetters([
+      'getRoomsCount'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'fetchRooms'
+    ]),
+  },
+  created() {
+    this.fetchRooms();
   }
 }
 </script>

@@ -1,4 +1,4 @@
-import {auth} from '../firebase'
+import { auth } from '@/firebase'
 
 export default {
   login(email, password) {

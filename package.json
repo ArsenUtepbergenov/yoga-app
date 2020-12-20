@@ -1,9 +1,9 @@
 {
   "name": "roomtune",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
-  "description": "roomtune app",
-  "author": "ArsenUtepbergenov <arsen.utepbergenov@yandex.ru>",
+  "description": "The Roomtune Application",
+  "author": "Arsen Utepbergenov",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -12,7 +12,6 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "firebase": "^8.2.1",
-    "normalize.css": "^8.0.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"

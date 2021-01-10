@@ -1,0 +1,17 @@
+@mixin background-image {
+  background-size: cover;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@mixin flex-box($justify-content: center, $align-items: center) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin size($width: unset, $height: unset) {
+  width: $width;
+  height: $height;
+}

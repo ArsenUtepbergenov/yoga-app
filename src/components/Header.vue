@@ -1,21 +1,20 @@
+// The header application component
+
 <template>
   <header class="header">
-    <app-navbar />
+    <section class="container">
+      <app-navbar />
+    </section>
   </header>
 </template>
 
 <script>
-import Navbar from './Navbar'
+import appNavbar from './Navbar'
 
 export default {
+  name: 'app-header',
   components: {
-    'app-navbar': Navbar
+    appNavbar
   }
 }
 </script>
-
-<style lang="scss">
-.header {
-  background-color: var(--color-background);
-}
-</style>

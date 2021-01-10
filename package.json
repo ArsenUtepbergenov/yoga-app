@@ -1,8 +1,8 @@
 {
-  "name": "roomtune",
-  "version": "1.0.1",
+  "name": "yoga-app",
+  "version": "1.0.2",
   "private": true,
-  "description": "The Roomtune Application",
+  "description": "The yoga application",
   "author": "Arsen Utepbergenov",
   "scripts": {
     "dev": "vue-cli-service serve",

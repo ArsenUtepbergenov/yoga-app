@@ -1,9 +1,11 @@
+// The footer application component
+
 <template>
   <footer class="footer"></footer>
 </template>
 
-<style lang="scss">
-.footer {
-  background-color: var(--color-background);
+<script>
+export default {
+  name: 'app-footer'
 }
-</style>
+</script>

@@ -2,6 +2,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 img {
@@ -13,11 +14,16 @@ button {
   cursor: pointer;
 }
 
-input, textarea, a, button {
+input,
+textarea,
+a,
+button {
   outline: 0;
 }
 
-a, button, span {
+a,
+button,
+span {
   color: white;
 }
 
@@ -29,11 +35,16 @@ a:focus {
   outline: 0;
 }
 
-// global style for router links
-.router-link-active {
-  color: var(--color-router-link-active);
+.container {
+  max-width: 1368px;
+  margin: auto;
 }
 
-@import "./button";
-@import "./form";
-@import "./variables";
+// modules
+@import './variables';
+@import './mixins';
+@import './app';
+@import './navbar';
+@import './header';
+@import './main';
+@import './footer';

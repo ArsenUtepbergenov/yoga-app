@@ -2,5 +2,5 @@
   @include background-image;
   background-image: url(../assets/header-bg.jpg);
   overflow: hidden;
-  height: 800px;
+  height: var(--height-header);
 }

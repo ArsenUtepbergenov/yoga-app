@@ -1,0 +1,20 @@
+.card-description {
+  display: flex;
+  background: linear-gradient(90deg, #4c4c4c 4%, #a6a6e2 32%, #306f7b 99%);
+  border-radius: 9px;
+  padding: 20px;
+  margin: 10px auto;
+  color: white;
+
+  &-img {
+    min-width: 200px;
+  }
+
+  &-title {
+    text-transform: capitalize;
+  }
+
+  &-content {
+    margin: 0 20px;
+  }
+}

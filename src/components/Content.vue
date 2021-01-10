@@ -29,10 +29,6 @@ export default {
 
 <style lang="scss">
 .main {
-  background: url(../assets/bg-main.jpg) center no-repeat;
-  background-size: cover;
-  position: relative;
-
   &-message {
     margin-bottom: 35px;
   }

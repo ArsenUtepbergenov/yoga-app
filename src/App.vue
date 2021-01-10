@@ -26,9 +26,11 @@ export default {
 <style lang="scss">
 .app {
   display: grid;
-  grid-template-areas: "header"
-                       "main"
-                       "footer";
-  grid-template: 45px 700px 150px / 1fr;
+  grid-template-rows: 50px 1fr 70px;
+  height: 100vh;
+  
+  background: url(./assets/bg-main.jpg) center no-repeat;
+  background-size: cover;
+  position: relative;
 }
 </style>

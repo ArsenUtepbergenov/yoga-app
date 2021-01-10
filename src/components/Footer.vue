@@ -4,6 +4,6 @@
 
 <style lang="scss">
 .footer {
-  background-color: var(--color-theme);
+  background-color: var(--color-background);
 }
 </style>

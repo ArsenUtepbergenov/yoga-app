@@ -2,6 +2,7 @@
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -12,6 +13,7 @@ img {
 
 button {
   cursor: pointer;
+  border: 0;
 }
 
 input,
@@ -50,3 +52,5 @@ a:focus {
 @import './footer';
 @import './card';
 @import './description';
+@import './price';
+@import './teachers';

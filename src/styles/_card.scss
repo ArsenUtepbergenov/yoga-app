@@ -1,10 +1,9 @@
 .card-description {
   display: flex;
-  background: linear-gradient(90deg, #4c4c4c 4%, #a6a6e2 32%, #306f7b 99%);
-  border-radius: 9px;
   padding: 20px;
   margin: 10px auto;
-  color: white;
+  color: var(--color-grey);
+  box-shadow: 2px 2px 6px 1px var(--color-light-grey);
 
   &-img {
     min-width: 200px;
@@ -16,5 +15,75 @@
 
   &-content {
     margin: 0 20px;
+  }
+}
+
+.vertical-card-description-wrapper {
+  @include flex-box($justify: space-around);
+  flex-wrap: wrap;
+}
+
+.vertical-card-description {
+  width: 280px;
+  text-align: center;
+  margin: 10px;
+
+  &-image {
+    height: 260px;
+    border-radius: 100%;
+  }
+}
+
+.card-price {
+  width: 220px;
+  height: 280px;
+  font-size: 30px;
+  padding-bottom: 20px;
+  text-align: center;
+  color: var(--color-grey);
+  box-shadow: 2px 2px 6px 1px var(--color-light-grey);
+  margin: 10px;
+
+  &-title {
+    @include flex-box();
+    height: 52px;
+    padding: 10px;
+    margin-top: 0;
+    background: linear-gradient(45deg, #2b5471, #4aa8b3);
+    color: white;
+  }
+
+  &-value {
+    margin-bottom: 60px;
+  }
+
+  &-button {
+    padding: 10px 30px;
+    border-radius: 2px;
+    background: linear-gradient(45deg, #8BC34A, #4d9e6e);
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.card-teacher {
+  @include flex-box($align: flex-start);
+  @include size(560px, 270px);
+  box-shadow: 2px 2px 6px 1px var(--color-light-grey);
+
+  &-name {
+    color: #4ea0a0;
+    border-bottom: 6px solid #4ea0a0;
+  }
+
+  &-info {
+    @include flex-box($direction: column, $align: flex-start);
+    padding: 0 10px;
+    color: var(--color-light-grey);
+  }
+
+  &-image {
+    width: 65%;
+    height: 100%;
   }
 }

@@ -1,6 +1,31 @@
 .header {
-  @include background-image;
-  background-image: url(../assets/header-bg.jpg);
-  overflow: hidden;
-  height: var(--height-header);
+  min-height: var(--height-header);
+
+  .video {
+    @include absolute();
+    @include size(100%, 100%);
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.7);
+  }
+
+  &-title {
+    @include absolute(300px, 100px);
+    font-family: 'Fraunces', serif;
+    color: white;
+    font-size: 3.4em;
+    width: 600px;
+  }
+
+  &-sign-up-to-lesson-button {
+    @include absolute(600px, 100px);
+    background-color: #4d9e6e;
+    padding: 10px 20px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #53aaaa;
+    }
+  }
 }

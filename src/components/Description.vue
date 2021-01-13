@@ -6,26 +6,62 @@
     <card-description
       imgUrl="card-description-1.jpg"
       title="Здоровье"
-      text=" — это и «таблетка», и «витаминка». Как «таблетка», они помогают быстрее восстановиться после травм, укрепить позвоночник и позабыть о болях в спине, сбросить вес. Как «витаминка» йога положительно воздействует на все системы организма: сердечно-сосудистую, дыхательную, эндокринную, нервную, пищеварительную, репродуктивную и, конечно же, опорно-двигательную. Йога — это молодость и красота, сила и гибкость! На платформе I'mOK инструктор адаптирует тренировку под ваши физические возможности и цели по здоровью. Практика рекомендована будущим мамам." />
+      :text="healthText" />
     <card-description
       imgUrl="card-description-2.jpg"
       imgPosition="rtl"
       title="Красота"
-      text=" — это эликсир красоты с индивидуальной формулой. Вес приходит в норму: кто-то сбрасывает лишнее, кто-то набирает недостающее. Как это происходит? За одну интенсивную тренировку можно сжечь до 400 ккал, и в то же время улучшить тонус мышц. Тело приобретает красивый, естественный силуэт. Укрепляется осанка, за счет кровообращения подтягивается кожа. А еще выполнять асаны — это очень красиво! Инструкторы I'mOK в режиме реального времени следят за правильным выполнением асан, чтобы тренировка прошла безопасно и эффективно." />
+      :text="beautyText" />
     <card-description
       imgUrl="card-description-3.jpg"
       title="Спокойствие"
-      text="Онлайн-занятия по йоге помогают качественно расслабиться и восстановиться, вернуть состояние внутреннего баланса. Лучше всего с этими задачами справятся дыхательные упражнения и медитация. Философия йоги учит концентрации внимания на значимых вещах, а самое главное всегда оставаться здесь и сейчас. Это просто организовать с I'mOK, так как один абонемент дает право заниматься у любого преподавателя в любое время. А в расписании всегда что-то есть!" />
+      :text="calmnessText" />
+    <h2 class="description-title">Попробуйте новый формат занятий по йоге</h2>
+    <div class="vertical-card-description-wrapper">
+      <vertical-card-description
+        imgUrl="yoga.png"
+        title="Йога"
+        :text="yogaText" />
+      <vertical-card-description
+        imgUrl="yoga.jpg"
+        title="Мастера"
+        :text="teachersText" />
+      <vertical-card-description
+        imgUrl="technologies.png"
+        title="Технологии"
+        :text="technologiesText" />
+    </div>
   </div>
 </template>
 
 <script>
+import { computed } from 'vue'
 import cardDescription from './CardDescription'
+import verticalCardDescription from './VerticalCardDescription'
+import { Descriptions } from '../assets/static-text'
 
 export default {
   name: 'description',
+  setup () {
+    const healthText = computed(() => Descriptions.HEALTH)
+    const beautyText = computed(() => Descriptions.BEAUTY)
+    const calmnessText = computed(() => Descriptions.CALMNESS)
+    const yogaText = computed(() => Descriptions.YOGA)
+    const teachersText = computed(() => Descriptions.TEACHERS)
+    const technologiesText = computed(() => Descriptions.TECHNOLOGIES)
+
+    return {
+      healthText,
+      beautyText,
+      calmnessText,
+      yogaText,
+      teachersText,
+      technologiesText
+    }
+  },
   components: {
-    cardDescription
+    cardDescription,
+    verticalCardDescription
   }
 }
 </script>

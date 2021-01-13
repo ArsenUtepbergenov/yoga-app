@@ -1,20 +1,24 @@
 .navbar {
   @include flex-box(space-between);
+  flex-wrap: wrap;
   margin: 0 50px;
   padding: 10px 0;
 
   .logo {
-    @include size(114px, 108px);
+    @include size(var(--width-logo), var(--height-logo));
   }
 
   &-items {
-    @include flex-box(flex-end);
+    @include flex-box();
+    flex-wrap: wrap;
   }
 
   &-link {
+    @include flex-box();
+    letter-spacing: 1px;
     color: var(--color-navbar-link);
     font-weight: bold;
-    margin: 14px;
-    font-size: 1rem;
+    margin: 18px;
+    font-size: 20px;
   }
 }

@@ -1,0 +1,6 @@
+.teachers {
+  margin: 10px;
+  &-cards {
+    @include flex-box();
+  }
+}

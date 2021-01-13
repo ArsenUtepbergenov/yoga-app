@@ -1,0 +1,11 @@
+.price {
+  &-cards {
+    @include flex-box($justify: space-around);
+    flex-wrap: wrap;
+  }
+
+  &-title {
+    text-align: center;
+    color: var(--color-grey);
+  }
+}

@@ -42,6 +42,11 @@ a:focus {
   margin: auto;
 }
 
+.title {
+  color: var(--color-grey);
+  text-align: center;
+}
+
 // modules
 @import './variables';
 @import './mixins';

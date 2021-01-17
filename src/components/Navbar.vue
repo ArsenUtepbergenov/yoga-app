@@ -6,9 +6,9 @@
       <img src="../assets/logo.png" alt="logo" />
     </div>
     <div class="navbar-items">
-      <a href="#" class="navbar-link"><i class="fas fa-calendar-alt"></i>&nbsp;Расписание</a>
+      <a href="#timetable" class="navbar-link"><i class="fas fa-calendar-alt"></i>&nbsp;Расписание</a>
       <a href="#price" class="navbar-link"><i class="fas fa-hand-holding-usd"></i>&nbsp;Цена</a>
-      <a href="#" class="navbar-link"><i class="fas fa-envelope-open-text"></i>&nbsp;Контакты</a>
+      <a href="#teachers" class="navbar-link"><i class="fas fa-envelope-open-text"></i>&nbsp;Контакты</a>
       <router-link class="navbar-item navbar-link" to='/login'>
         <i class="fas fa-user-circle"></i>&nbsp;Вход
       </router-link>

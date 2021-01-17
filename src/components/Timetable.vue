@@ -1,7 +1,9 @@
 // The timetable section component
 
 <template>
-  <div>timetable</div>
+  <div id="timetable">
+    <h2 class="title">Расписание</h2>
+  </div>
 </template>
 
 <script>

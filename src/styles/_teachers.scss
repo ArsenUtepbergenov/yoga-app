@@ -1,6 +1,8 @@
 .teachers {
-  margin: 10px;
+  margin: 10px auto;
+
   &-cards {
-    @include flex-box();
+    @include flex-box($justify: space-around);
+    flex-wrap: wrap;
   }
 }

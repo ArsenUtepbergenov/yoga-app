@@ -2,7 +2,7 @@
 
 <template>
   <div class="description">
-    <h2 class="description-title">Занимайтесь йогой. Улучшайте качество жизни!</h2>
+    <h2 class="title">Занимайтесь йогой. Улучшайте качество жизни!</h2>
     <card-description
       imgUrl="card-description-1.jpg"
       title="Здоровье"
@@ -16,7 +16,7 @@
       imgUrl="card-description-3.jpg"
       title="Спокойствие"
       :text="calmnessText" />
-    <h2 class="description-title">Попробуйте новый формат занятий по йоге</h2>
+    <h2 class="title">Попробуйте новый формат занятий</h2>
     <div class="vertical-card-description-wrapper">
       <vertical-card-description
         imgUrl="yoga.png"

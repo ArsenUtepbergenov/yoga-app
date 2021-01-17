@@ -2,7 +2,7 @@
 
 <template>
   <div id="price" class="price container">
-    <h2 class="price-title">Стоимость онлайн-занятий по йоге</h2>
+    <h2 class="title">Стоимость онлайн-занятий</h2>
     <div class="price-cards">
       <card-price title="Разовое занятие" :price="750" />
       <card-price title="Абонемент на 4 занятия" :price="2860" />

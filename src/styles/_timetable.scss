@@ -1,0 +1,25 @@
+.timetable {
+  color: var(--color-grey);
+  margin: 10px auto;
+  max-width: 1200px;
+}
+
+.fullcalendar-wrapper {
+  color: var(--color-grey);
+
+  a, span {
+    color: black;
+  }
+
+  .fc-button-primary {
+    span {
+      color: white;
+    }
+  }
+
+  .fc-event-main {
+    a, span {
+      color: white;
+    }
+  }
+}

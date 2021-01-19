@@ -35,28 +35,30 @@
 </template>
 
 <script>
-import { computed } from 'vue'
 import cardDescription from './CardDescription'
 import verticalCardDescription from './VerticalCardDescription'
 import { Descriptions } from '../assets/static-text'
 
 export default {
   name: 'description',
-  setup () {
-    const healthText = computed(() => Descriptions.HEALTH)
-    const beautyText = computed(() => Descriptions.BEAUTY)
-    const calmnessText = computed(() => Descriptions.CALMNESS)
-    const yogaText = computed(() => Descriptions.YOGA)
-    const teachersText = computed(() => Descriptions.TEACHERS)
-    const technologiesText = computed(() => Descriptions.TECHNOLOGIES)
-
-    return {
-      healthText,
-      beautyText,
-      calmnessText,
-      yogaText,
-      teachersText,
-      technologiesText
+  computed: {
+    healthText () {
+      return Descriptions.HEALTH
+    },
+    beautyText () {
+      return Descriptions.BEAUTY
+    },
+    calmnessText () {
+      return Descriptions.CALMNESS
+    },
+    yogaText () {
+      return Descriptions.YOGA
+    },
+    teachersText () {
+      return Descriptions.TEACHERS
+    },
+    technologiesText () {
+      return Descriptions.TECHNOLOGIES
     }
   },
   components: {

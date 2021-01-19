@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import { computed } from 'vue'
-
 export default {
   name: 'card-description',
   props: {
@@ -34,11 +32,9 @@ export default {
       }
     }
   },
-  setup (props) {
-    const isImgLTR = computed(() => props.imgPosition === 'ltr')
-
-    return {
-      isImgLTR
+  computed: {
+    isImgLTR () {
+      return this.imgPosition === 'ltr'
     }
   }
 }

@@ -2,7 +2,9 @@
 
 <template>
   <footer class="footer">
-    <img src="../assets/footer-bg.png" alt="footer" />
+    <div class="footer-content">
+      <i class="far fa-copyright"></i>Сфера Yoga Hall
+    </div>
   </footer>
 </template>
 

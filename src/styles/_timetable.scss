@@ -4,6 +4,11 @@
   max-width: 1200px;
 }
 
+.text {
+  overflow: hidden;
+  white-space: normal;
+}
+
 .fullcalendar-wrapper {
   color: var(--color-grey);
 
@@ -17,9 +22,18 @@
     }
   }
 
+  .fc-daygrid-day-events {
+    span {
+      @extend .text;
+      display: block;
+    }
+  }
+
   .fc-event-main {
     a, span {
       color: white;
+      @extend .text;
+      display: block;
     }
   }
 }

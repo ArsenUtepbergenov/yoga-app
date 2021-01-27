@@ -4,6 +4,7 @@
   margin: 10px auto;
   color: var(--color-grey);
   box-shadow: 2px 2px 6px 1px var(--color-box-shadow);
+  border-radius: 6px;
 
   &-img {
     min-width: 200px;
@@ -36,7 +37,7 @@
 
 .card-price {
   width: 220px;
-  height: 256px;
+  height: 268px;
   font-size: 30px;
   padding-bottom: 20px;
   text-align: center;
@@ -44,26 +45,20 @@
   box-shadow: 2px 2px 6px 1px var(--color-box-shadow);
   margin: 10px;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 6px;
 
   &-title-wrapper {
+    @include flex-box();
     background: linear-gradient(45deg, #2b5471, #4aa8b3);
-    transform: rotate(-12deg) translateX(-13px) translateY(-29px);
-    width: 250px;
-    height: 107px;
+    height: 90px;
   }
 
   &-title {
-    @include flex-box();
-    height: 108px;
-    padding: 10px;
-    margin-top: 0;
     color: white;
-    transform: rotate(11deg);
   }
 
   &-value {
-    margin-bottom: 46px;
+    margin: 34px;
   }
 
   &-button {
@@ -82,7 +77,7 @@
   position: relative;
   overflow: hidden;
   margin: 10px auto;
-  border-radius: 3px;
+  border-radius: 6px;
 
   &-social-links {
     @include flex-box();
@@ -95,12 +90,13 @@
 
   &-social-links-wrapper {
     position: absolute;
-    width: 335px;
+    width: 368px;
     height: 80px;
     transform: rotate(-13deg) translateY(40px) translateX(5px);
     right: 0;
     bottom: 0;
     background-color: var(--color-card-teacher);
+    z-index: -1;
   }
 
   &-icon {

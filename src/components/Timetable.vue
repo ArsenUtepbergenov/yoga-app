@@ -32,6 +32,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { INITIAL_EVENTS, createEventId } from '../utils/fullcalendar'
+import ruLocale from '@fullcalendar/core/locales/ru'
 
 export default {
   name: 'timetable',
@@ -57,7 +58,8 @@ export default {
         weekends: true,
         select: this.handleDateSelect,
         eventClick: this.handleEventClick,
-        eventsSet: this.handleEvents
+        eventsSet: this.handleEvents,
+        locale: ruLocale
         /* you can update a remote database when these fire:
         eventAdd:
         eventChange:

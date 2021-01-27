@@ -5,8 +5,8 @@
     <section class="container">
       <description />
     </section>
-    <timetable />
     <price />
+    <timetable />
     <teachers />
   </main>
 </template>

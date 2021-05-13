@@ -29,27 +29,27 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    login (context, data) {
+    login (commit, data) {
       const {email, password} = data
       auth.login(email, password)
         .then(user => {
-          context.commit('setMessage', `You are logged in as ${user.email}`)
+          commit('setMessage', `You are logged in as ${user.email}`)
           router.push('/')
         })
         .catch(error => {
-          context.commit('setMessage', error.message)
+          commit('setMessage', error.message)
         })
     },
 
-    register (context, data) {
+    register (commit, data) {
       const {email, password} = data
       auth.register(email, password)
         .then(user => {
-          context.commit('setMessage', `Account created for ${user.email}`)
+          commit('setMessage', `Account created for ${user.email}`)
           router.push('/')
         })
         .catch(error => {
-          context.commit('setMessage', error.message)
+          commit('setMessage', error.message)
         })
     },
 

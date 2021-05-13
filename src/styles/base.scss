@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 * {
@@ -51,15 +51,16 @@ a:focus {
 }
 
 // modules
-@import './variables';
-@import './mixins';
-@import './app';
-@import './navbar';
-@import './header';
-@import './main';
-@import './footer';
-@import './card';
-@import './description';
-@import './price';
-@import './teachers';
-@import './timetable';
+@import "./variables";
+@import "./mixins";
+@import "./app";
+@import "./navbar";
+@import "./header";
+@import "./footer";
+@import "./card";
+@import "./description";
+@import "./price";
+@import "./teachers";
+@import "./timetable";
+@import "./sections";
+@import "./form";

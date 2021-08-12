@@ -2,3 +2,17 @@
 .app {
   height: 100vh;
 }
+
+.btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  transition: all 0.3s ease;
+
+  &-primary {
+    background-color: #4d9e6e;
+  }
+
+  &:hover {
+    background-color: #53aaaa;
+  }
+}

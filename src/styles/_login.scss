@@ -1,0 +1,13 @@
+.login {
+  @include flex-box();
+  @include size(100%, 100%);
+  @include background-image();
+  background-image: url("../assets/login-bg.jpg");
+
+  &-form-header {
+    @include background-image();
+    @include size(260px, 300px);
+    background-image: url("../assets/login-logo.png");
+    margin: 0 10px 16px;
+  }
+}

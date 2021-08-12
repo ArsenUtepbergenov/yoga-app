@@ -10,22 +10,14 @@
   }
 
   &-title {
-    @include absolute(300px, 100px);
-    font-family: 'Fraunces', serif;
+    margin: 80px 0 0 140px;
+    font-family: "Fraunces", serif;
     color: white;
     font-size: 3.4em;
     width: 600px;
   }
 
-  &-sign-up-to-lesson-button {
-    @include absolute(600px, 100px);
-    background-color: #4d9e6e;
-    padding: 10px 20px;
-    font-size: 1em;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background-color: #53aaaa;
-    }
+  &-btn {
+    margin: 30px 290px;
   }
 }

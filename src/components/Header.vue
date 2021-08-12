@@ -10,7 +10,7 @@
       <div class="header-title">
         Сфера Yoga Hall - ПЛАТФОРМА ДЛЯ ОНЛАЙН-ЗАНЯТИЙ по йоге и медитации
       </div>
-      <button class="header-sign-up-to-lesson-button">Записаться на урок</button>
+      <button class="btn btn-primary header-btn">Записаться на урок</button>
     </section>
   </header>
 </template>

@@ -1,12 +1,9 @@
-import Vue from 'vue'
 import Vuex from 'vuex'
 // api
 import auth from './auth'
 import router from '../router'
 
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
+const store = Vuex.createStore({
   state: {
     currentUser: {},
     isLoggedIn: false,

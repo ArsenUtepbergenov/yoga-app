@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { createApp } from 'vue';
 // Application component
 import App from './App.vue'
 // Vue global modules
@@ -7,8 +7,4 @@ import router from './router'
 // All global styles
 import './styles/base.scss'
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+createApp(App).use(router).use(store).mount('#app')

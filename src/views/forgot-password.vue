@@ -1,8 +1,10 @@
 <template>
   <section id="forgot-password">
+    <modal v-if="modalActive" @close-modal="closeModal" />
+    <spinner v-if="isLoading" />
     <form class="form">
       <div class="form-field">
-        <h2>Сбросить пароль</h2>
+        <h3>Сбросить пароль</h3>
       </div>
       <div class="form-field">
         <p>Введите свою почту</p>
@@ -19,12 +21,27 @@
 </template>
 
 <script>
+import Modal from '../components/UI/Modal'
+import Spinner from '../components/UI/Spinner'
+
 export default {
   name: 'forgot-password',
   data() {
     return {
-      email: null
+      email: null,
+      modalActive: false,
+      isLoading: false
     }
+  },
+  methods: {
+    closeModal() {
+      this.modalActive = !this.modalActive
+      this.email = ''
+    }
+  },
+  components: {
+    Modal,
+    Spinner
   }
 }
 </script>

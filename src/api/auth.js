@@ -1,10 +1,10 @@
 import { auth } from '@/firebase'
 
 export default {
-  login (email, password) {
+  login ({ email, password }) {
     return auth.signInWithEmailAndPassword(email, password)
   },
-  register (email, password) {
+  register ({ email, password }) {
     return auth.createUserWithEmailAndPassword(email, password)
   },
   logout () {

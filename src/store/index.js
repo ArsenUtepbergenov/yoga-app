@@ -1,6 +1,8 @@
+import { Pages } from '@/constants'
 import Vuex from 'vuex'
 // api
-import auth from './auth'
+import auth from '../api/auth'
+import users from '../api/users'
 import router from '../router'
 
 const store = Vuex.createStore({
@@ -21,15 +23,14 @@ const store = Vuex.createStore({
     },
     resetStateApp: state => {
       state.currentUser = {},
-      state.isLoggedIn = false,
-      state.message = ''
+        state.isLoggedIn = false,
+        state.message = ''
     }
   },
   actions: {
-    login (commit, data) {
-      const {email, password} = data
-      auth.login(email, password)
-        .then(user => {
+    login({ commit }, data) {
+      auth.login(data)
+        .then(({ user }) => {
           commit('setMessage', `You are logged in as ${user.email}`)
           router.push('/')
         })
@@ -38,19 +39,18 @@ const store = Vuex.createStore({
         })
     },
 
-    register (commit, data) {
-      const {email, password} = data
-      auth.register(email, password)
-        .then(user => {
-          commit('setMessage', `Account created for ${user.email}`)
-          router.push('/')
+    register({ commit }, data) {
+      auth.register(data)
+        .then(({ user }) => {
+          users.setUser({ name: data.name, email: data.email, uid: user.uid })
+          router.push({ name: Pages.HOME })
         })
         .catch(error => {
           commit('setMessage', error.message)
         })
     },
 
-    logout (commit) {
+    logout({ commit }) {
       auth.logout()
         .then(() => {
           console.log('User successfully logged out')

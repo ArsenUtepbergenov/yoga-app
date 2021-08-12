@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/home.vue'
 import { Pages } from '../constants'
+import store from '@/store';
 
 const routes = [
   {
@@ -25,6 +26,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "register" */ '@/views/register.vue'),
     meta: {
       title: 'Register'
+    },
+    beforeEnter: (to, from) => {
+      store.commit('setMessage', '')
     }
   },
   {

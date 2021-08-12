@@ -1,4 +1,19 @@
-// application
+// variables
+:root {
+  --color-navbar-link: white;
+  --color-grey: #4c4c4c;
+  --color-light-grey: #8c8c8c;
+  --color-box-shadow: #dcdcdc;
+  --color-green: #8dbf53;
+  --color-primary: #4d9e6e;
+  --color-secondary: #937298;
+  --color-light-blue: #7280d0;
+  --color-light-red: #ff837a;
+  --height-header: 100vh;
+  --width-logo: 332px;
+  --height-logo: 152px;
+}
+// base
 .app {
   height: 100vh;
 }
@@ -9,10 +24,22 @@
   transition: all 0.3s ease;
 
   &-primary {
-    background-color: #4d9e6e;
+    background-color: var(--color-primary);
+  }
+
+  &-secondary {
+    background-color: var(--color-secondary);
   }
 
   &:hover {
     background-color: #53aaaa;
   }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.text-red {
+  color: var(--color-light-red);
 }

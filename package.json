@@ -15,10 +15,10 @@
     "@fullcalendar/interaction": "^5.9.0",
     "@fullcalendar/timegrid": "^5.9.0",
     "@fullcalendar/vue3": "^5.9.0",
+    "@vue/cli": "^4.5.13",
     "core-js": "^3.6.5",
     "firebase": "^8.2.1",
     "vue": "^3.0.0-beta.1",
-    "vue-cli": "^2.9.6",
     "vue-router": "^4.0.0-alpha.6",
     "vue-template-compiler": "^2.6.12",
     "vuex": "^4.0.0-alpha.1"
@@ -39,8 +39,7 @@
     "eslint-plugin-vue": "^7.0.0-alpha.0",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
-    "typescript": "~4.1.5",
-    "vue-cli-plugin-vue-next": "~0.1.4"
+    "typescript": "~4.1.5"
   },
   "eslintConfig": {
     "root": true,

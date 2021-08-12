@@ -22,7 +22,7 @@
       </p>
       <p>
         <router-link :to="{ name: routeForgotPassword }">
-          Забыли пароль?
+          Забыли свой пароль?
         </router-link>
       </p>
     </form>

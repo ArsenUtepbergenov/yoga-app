@@ -64,7 +64,7 @@ export default {
     ...mapActions([
       'register'
     ]),
-    signUp() {
+    async signUp() {
       if (this.password === this.passwordConfirmed) {
         this.errorMsg = ''
         this.register({

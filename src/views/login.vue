@@ -29,31 +29,22 @@
   </section>
 </template>
 
-<script>
-import { mapActions } from 'vuex'
+<script lang="ts">
+import { ref, computed } from 'vue'
 import { Pages } from '../constants'
+import { useStore } from '@/store'
 
 export default {
   name: 'login',
-  data() {
+  setup () {
+    const store = useStore()
+    const email = ref('')
+    const password = ref('')
+
     return {
-      email: null,
-      password: null
-    }
-  },
-  computed: {
-    routeRegister() { return Pages.REGISTER },
-    routeForgotPassword() { return Pages.FORGOT_PASSWORD }
-  },
-  methods: {
-    ...mapActions([
-      'login',
-    ]),
-    signIn() {
-      this.login({
-        email: this.email,
-        password: this.password
-      })
+      routeRegister: computed(() => Pages.REGISTER),
+      routeForgotPassword: computed(() => Pages.FORGOT_PASSWORD),
+      login: async () => await store.dispatch('auth/login', { email, password })
     }
   }
 }

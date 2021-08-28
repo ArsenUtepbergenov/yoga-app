@@ -16,23 +16,16 @@
   </nav>
 </template>
 
-<script>
-import { mapActions, mapGetters } from 'vuex'
+<script lang="ts">
+import { useStore } from '@/store'
 
 export default {
   name: 'app-navbar',
-  computed: {
-    ...mapGetters([
-      'getCurrentUser',
-      'getStatusLogin'
-    ])
-  },
-  methods: {
-    ...mapActions([
-      'logout'
-    ]),
-    signOut () {
-      this.logout()
+  setup () {
+    const store = useStore()
+
+    return {
+      logout: () => store.dispatch('auth/logout')
     }
   }
 }

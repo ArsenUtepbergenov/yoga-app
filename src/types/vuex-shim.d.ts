@@ -1,11 +1,9 @@
 import { Store } from "vuex"
-import AppState from "@/store"
 import { ComponentCustomProperties } from "vue"
+import { RootState } from "@/models"
 
 declare module "@vue/runtime-core" {
-  interface State extends AppState {}
-
   interface ComponentCustomProperties {
-    $store: Store<State>
+    $store: Store<RootState>
   }
 }

@@ -5,6 +5,9 @@ import App from "./App.vue"
 import { auth } from "@/firebase"
 import store, { storeKey } from "@/store"
 import router from "@/router"
+// The bootstrap
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 // All global styles
 import "@/styles/base.scss"
 

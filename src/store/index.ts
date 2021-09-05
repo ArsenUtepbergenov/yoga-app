@@ -3,6 +3,7 @@ import { createStore, useStore as baseUseStore, Store } from "vuex"
 import { RootState } from "@/models"
 // modules
 import authModule from "./auth"
+import notificationModule from "./notification"
 
 // global injection key
 export const storeKey: InjectionKey<Store<RootState>> = Symbol()
@@ -21,6 +22,7 @@ const store = createStore<RootState>({
   },
   modules: {
     auth: authModule,
+    notification: notificationModule,
   },
 })
 

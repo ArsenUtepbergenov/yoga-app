@@ -3,7 +3,7 @@
 <template>
   <nav class="navbar">
     <div class="logo">
-      <img src="../assets/logo.png" alt="logo" />
+      <img src="@/assets/logo.png" alt="logo" />
     </div>
     <div class="navbar-items">
       <a href="#timetable" class="navbar-link"><i class="fas fa-calendar-alt"></i>&nbsp;Расписание</a>

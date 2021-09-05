@@ -15,8 +15,8 @@ let isInitApp = false
 auth.onAuthStateChanged(() => {
   if (!isInitApp) {
     createApp(App)
-      .use(router)
       .use(Antd)
+      .use(router)
       .use(store, storeKey)
       .mount("#app")
     isInitApp = true

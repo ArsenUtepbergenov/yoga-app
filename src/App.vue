@@ -9,15 +9,14 @@
 </template>
 
 <script>
-import appHeader from '@/components/Header'
-import appFooter from '@/components/Footer'
+import { appHeader, appFooter } from '@/components/Layout'
 import { Pages } from './constants'
 
 export default {
   name: 'application',
   data() {
     return {
-      navigation: null
+      navigation: false
     }
   },
   created() {

@@ -59,6 +59,7 @@
     },
     "rules": {
       "no-unused-vars": "off",
+      "vue/script-setup-uses-vars": "off",
       "no-debugger": "off",
       "no-empty": "off"
     }

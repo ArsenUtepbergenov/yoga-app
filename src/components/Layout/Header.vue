@@ -5,7 +5,7 @@
     <section class="container">
       <app-navbar />
     </section>
-    <video class="video" src="../assets/video.mp4" muted loop autoplay></video>
+    <video class="video" src="@/assets/video.mp4" muted loop autoplay></video>
     <section>
       <div class="header-title">
         Сфера Yoga Hall - ПЛАТФОРМА ДЛЯ ОНЛАЙН-ЗАНЯТИЙ по йоге и медитации
@@ -15,8 +15,8 @@
   </header>
 </template>
 
-<script>
-import appNavbar from './Navbar'
+<script lang="ts">
+import appNavbar from './Navbar.vue'
 
 export default {
   name: 'app-header',

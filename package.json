@@ -10,13 +10,14 @@
     "dev": "vue-cli-service serve"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^6.0.1",
     "@fullcalendar/core": "^5.9.0",
     "@fullcalendar/daygrid": "^5.9.0",
     "@fullcalendar/interaction": "^5.9.0",
     "@fullcalendar/timegrid": "^5.9.0",
     "@fullcalendar/vue3": "^5.9.0",
-    "@popperjs/core": "^2.10.1",
     "@vue/cli": "^4.5.13",
+    "ant-design-vue": "^2.2.6",
     "bootstrap": "^5.0.0-beta3",
     "core-js": "^3.17.2",
     "firebase": "^8.10.0",

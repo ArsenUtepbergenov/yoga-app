@@ -1,25 +1,23 @@
 import { InjectionKey } from "vue"
 import { createStore, useStore as baseUseStore, Store } from "vuex"
-import { AppState } from "@/models"
+import { RootState } from "@/models"
 // modules
 import authModule from "./auth"
 
 // global injection key
-export const storeKey: InjectionKey<Store<AppState>> = Symbol()
+export const storeKey: InjectionKey<Store<RootState>> = Symbol()
 
-const store = createStore<AppState>({
+const store = createStore<RootState>({
   state: {
-    currentUser: {},
     message: "",
-  } as AppState,
+  } as RootState,
   mutations: {
-    setCurrentUser: (state: AppState, user) => (state.currentUser = user),
-    setMessage: (state: AppState, payload: string) => (state.message = payload),
+    setMessage: (state: RootState, payload: string) =>
+      (state.message = payload),
   },
   actions: {},
   getters: {
-    message: (state: AppState) => state.message,
-    currentUser: (state: AppState) => state.currentUser,
+    message: (state: RootState) => state.message,
   },
   modules: {
     auth: authModule,

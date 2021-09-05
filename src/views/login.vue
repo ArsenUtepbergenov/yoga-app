@@ -1,6 +1,6 @@
 <template>
   <section id="login" class="login">
-    <form class="form" @submit.prevent="signIn">
+    <form class="form" @submit.prevent="login">
       <div class="login-form-header" />
       <div class="form-field">
         <label class="form-label-icon">
@@ -42,9 +42,11 @@ export default {
     const password = ref('')
 
     return {
+      email,
+      password,
       routeRegister: computed(() => Pages.REGISTER),
       routeForgotPassword: computed(() => Pages.FORGOT_PASSWORD),
-      login: async () => await store.dispatch('auth/login', { email, password })
+      login: async () => await store.dispatch('auth/login', { email: email.value, password: password.value })
     }
   }
 }

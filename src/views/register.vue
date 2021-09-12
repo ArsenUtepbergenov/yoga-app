@@ -32,11 +32,6 @@
           Уже имеете аккаунт?
         </router-link>
       </p>
-      <div v-show="errorMsg" class="bold text-red">{{errorMsg}}</div>
-      <div v-show="message" class="text-red">
-        <span class="bold">Server message:</span>
-        {{` ${message}`}}
-      </div>
     </form>
   </section>
 </template>
@@ -45,14 +40,13 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'register',
+  name: 'Register',
   data() {
     return {
       username: '',
       email: null,
       password: null,
       passwordConfirmed: null,
-      errorMsg: ''
     }
   },
   computed: {
@@ -72,8 +66,6 @@ export default {
           email: this.email,
           password: this.password
         })
-      } else {
-        this.errorMsg = 'The passwords are not equal'
       }
     }
   }

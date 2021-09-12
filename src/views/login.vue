@@ -31,11 +31,11 @@
 
 <script lang="ts">
 import { ref, computed } from 'vue'
-import { Pages } from '../constants'
+import { Pages } from '@/enums'
 import { useStore } from '@/store'
 
 export default {
-  name: 'login',
+  name: 'Login',
   setup () {
     const store = useStore()
     const email = ref('')

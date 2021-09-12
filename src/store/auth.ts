@@ -1,5 +1,5 @@
 import router from "../router"
-import { Pages } from "@/constants"
+import { Pages } from "@/enums"
 import { AuthActionContext, AuthState, User, FirebaseUser } from "@/models"
 // api
 import { auth, db } from "@/firebase"
@@ -21,11 +21,19 @@ const authModule = {
     ) {
       try {
         const { user } = await auth.signInWithEmailAndPassword(email, password)
-        store.commit("setMessage", `You are logged in as ${user?.email}`)
+        store.commit("notification/set", {
+          type: "info",
+          title: "Login Status",
+          message: `You are logged in as ${user?.email}`,
+        })
         commit("setLoggedIn", true)
         router.push({ name: Pages.HOME })
       } catch (error) {
-        store.commit("setMessage", error.message)
+        store.commit("notification/set", {
+          type: "error",
+          title: "Login Status",
+          message: error.message,
+        })
       }
     },
 

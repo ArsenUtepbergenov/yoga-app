@@ -10,7 +10,7 @@
 import appMain from '@/components/Main'
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
     appMain
   }

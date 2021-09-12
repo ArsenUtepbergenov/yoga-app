@@ -9,10 +9,14 @@ const notificationModule = {
     set(state: NotificationState, notifivation: Notification) {
       state.notifications = [...state.notifications, notifivation]
     },
+    reset(state: NotificationState) {
+      state.notifications = [] as Notification[]
+    },
   },
   actions: {},
   getters: {
     notifications: (state: NotificationState) => state.notifications,
+    length: (state: NotificationState) => state.notifications.length,
   },
 }
 

@@ -25,7 +25,7 @@ import Modal from '../components/UI/Modal'
 import Spinner from '../components/UI/Spinner'
 
 export default {
-  name: 'forgot-password',
+  name: 'Forgot-password',
   data() {
     return {
       email: null,

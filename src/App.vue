@@ -8,44 +8,45 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { appHeader, appFooter } from '@/components/Layout'
-import { Pages } from './constants'
+import { Pages } from '@/enums'
+import { useNotification } from './hooks'
+import { defineComponent, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-export default {
+export default defineComponent({
   name: 'application',
-  data() {
-    return {
-      navigation: false
-    }
-  },
-  created() {
-    this.checkRoute()
-  },
-  methods: {
-    checkRoute() {
-      const routeName = this.$route.name
+  setup() {
+    let navigation = ref<boolean>(false)
+    const route = useRoute()
+
+    function checkRoute() {
+      const routeName = route.name
       const isRouteWithoutNav =
         routeName === Pages.LOGIN ||
         routeName === Pages.REGISTER ||
         routeName === Pages.FORGOT_PASSWORD
 
       if (isRouteWithoutNav) {
-        this.navigation = true
+        navigation.value = true
         return
       }
 
-      this.navigation = false
+      navigation.value = false
     }
-  },
-  watch: {
-    $route() {
-      this.checkRoute()
+
+    watch(route, () => checkRoute())
+
+    useNotification()
+
+    return {
+      navigation
     }
   },
   components: {
     appHeader,
     appFooter
-  }
-}
+  },
+})
 </script>

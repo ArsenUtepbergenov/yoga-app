@@ -1,7 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@/views/home.vue'
-import { Pages } from '../constants'
-import store from '@/store';
+import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store'
+import { Pages } from '@/enums'
+// components
+import Home from '@/views/Home.vue'
 
 const routes = [
   {
@@ -15,7 +16,7 @@ const routes = [
   {
     path: '/login',
     name: Pages.LOGIN,
-    component: () => import(/* webpackChunkName: "login" */ '@/views/login.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Login.vue'),
     meta: {
       title: 'Login'
     }
@@ -23,7 +24,7 @@ const routes = [
   {
     path: '/register',
     name: Pages.REGISTER,
-    component: () => import(/* webpackChunkName: "register" */ '@/views/register.vue'),
+    component: () => import(/* webpackChunkName: "register" */ '@/views/Register.vue'),
     meta: {
       title: 'Register'
     },
@@ -34,7 +35,7 @@ const routes = [
   {
     path: '/forgot-password',
     name: Pages.FORGOT_PASSWORD,
-    component: () => import(/* webpackChunkName: "forgot-password" */ '@/views/forgot-password.vue'),
+    component: () => import(/* webpackChunkName: "forgot-password" */ '@/views/Forgot-password.vue'),
     meta: {
       title: 'Forgot Password'
     }

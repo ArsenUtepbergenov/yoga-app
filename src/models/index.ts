@@ -17,9 +17,7 @@ export type User = FirebaseUser & { name: string }
 export type UserWithRepeatedPassword = User & { repeatedPassword: string }
 
 // store states
-export type AppState = {
-  message: string
-}
+export type AppState = {}
 
 export type AuthState = {
   isLoggedIn: boolean

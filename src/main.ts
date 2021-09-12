@@ -12,7 +12,7 @@ import "@/styles/base.scss"
 
 let isInitApp = false
 
-auth.onAuthStateChanged(() => {
+auth.onAuthStateChanged((user) => {
   if (!isInitApp) {
     createApp(App)
       .use(Antd)
@@ -20,5 +20,10 @@ auth.onAuthStateChanged(() => {
       .use(store, storeKey)
       .mount("#app")
     isInitApp = true
+  }
+  if (user) {
+    store.commit("auth/setLoggedIn", true)
+  } else {
+    store.commit("auth/setLoggedIn", false)
   }
 })

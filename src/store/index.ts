@@ -9,17 +9,10 @@ import notificationModule from "./notification"
 export const storeKey: InjectionKey<Store<RootState>> = Symbol()
 
 const store = createStore<RootState>({
-  state: {
-    message: "",
-  } as RootState,
-  mutations: {
-    setMessage: (state: RootState, payload: string) =>
-      (state.message = payload),
-  },
+  state: {} as RootState,
+  mutations: {},
   actions: {},
-  getters: {
-    message: (state: RootState) => state.message,
-  },
+  getters: {},
   modules: {
     auth: authModule,
     notification: notificationModule,

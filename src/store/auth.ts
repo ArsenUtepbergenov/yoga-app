@@ -11,8 +11,8 @@ const authModule = {
     isLoggedIn: false,
   } as AuthState,
   mutations: {
-    setLoggedIn: (state: AuthState, payload: boolean) =>
-      (state.isLoggedIn = payload),
+    setLoggedIn: (state: AuthState, status: boolean) =>
+      (state.isLoggedIn = status),
   },
   actions: {
     async login(
@@ -22,16 +22,15 @@ const authModule = {
       try {
         const { user } = await auth.signInWithEmailAndPassword(email, password)
         store.commit("notification/set", {
-          type: "info",
-          title: "Login Status",
-          message: `You are logged in as ${user?.email}`,
+          type: "success",
+          title: "Успешный вход в систему",
+          message: `Вы вошли, как ${user?.email}`,
         })
-        commit("setLoggedIn", true)
         router.push({ name: Pages.HOME })
       } catch (error) {
         store.commit("notification/set", {
           type: "error",
-          title: "Login Status",
+          title: "Ошибка при попытке входа",
           message: error.message,
         })
       }
@@ -48,27 +47,40 @@ const authModule = {
         )
         const dataBase = db.collection("users").doc(user?.uid)
         await dataBase.set({ name, email, uid: user?.uid })
-        store.commit("setMessage", `You are registered as ${user?.email}`)
-        commit("setLoggedIn", true)
+        store.commit("notification/set", {
+          type: "info",
+          title: "Статус регистрации",
+          message: `Вы зарегистрировались, как ${user?.email}`,
+        })
         router.push({ name: Pages.HOME })
       } catch (error) {
-        store.commit("setMessage", error.message)
+        store.commit("notification/set", {
+          type: "error",
+          title: "Ошибка во время регистрации",
+          message: error.message,
+        })
       }
     },
 
     async logout({ commit }: AuthActionContext) {
       try {
         await auth.signOut()
-        store.commit("setMessage", `You have successfully logged out`)
-        commit("setLoggedIn", false)
-        router.push({ name: Pages.LOGIN })
+        store.commit("notification/set", {
+          type: "success",
+          title: "Успешно",
+          message: `Вы вышли из системы`,
+        })
       } catch (error) {
-        store.commit("setMessage", error.message)
+        store.commit("notification/set", {
+          type: "error",
+          title: "Ошибка при поытке выхода!",
+          message: error.message,
+        })
       }
     },
   },
   getters: {
-    statusLogin: (state: AuthState) => state.isLoggedIn,
+    isLoggedIn: (state: AuthState) => state.isLoggedIn,
   },
 }
 

@@ -6,11 +6,23 @@
       <img src="@/assets/logo.png" alt="logo" />
     </div>
     <div class="navbar-items">
-      <a href="#timetable" class="navbar-link"><i class="fas fa-calendar-alt"></i>&nbsp;Расписание</a>
-      <a href="#price" class="navbar-link"><i class="fas fa-hand-holding-usd"></i>&nbsp;Цена</a>
-      <a href="#teachers" class="navbar-link"><i class="fas fa-envelope-open-text"></i>&nbsp;Контакты</a>
-      <router-link class="navbar-item navbar-link" :to="{ name: 'login' }">
-        <i class="fas fa-user-circle"></i>&nbsp;Вход
+      <a href="#timetable" class="navbar-link"><CalendarOutlined />&nbsp;Расписание</a>
+      <a href="#price" class="navbar-link"><MoneyCollectOutlined />&nbsp;Цена</a>
+      <a href="#teachers" class="navbar-link"><ContactsOutlined />&nbsp;Контакты</a>
+      <router-link
+        v-if="!isLoggedIn"
+        class="navbar-item navbar-link"
+        :to="{ name: 'login' }"
+      >
+        <UserAddOutlined />&nbsp;Вход
+      </router-link>
+      <router-link
+        v-else
+        class="navbar-item navbar-link"
+        :to="{ name: 'home' }"
+        @click="logout"
+      >
+        <UserDeleteOutlined />&nbsp;Выход
       </router-link>
     </div>
   </nav>
@@ -18,6 +30,8 @@
 
 <script lang="ts">
 import { useStore } from '@/store'
+import { computed } from 'vue'
+import { CalendarOutlined, MoneyCollectOutlined, ContactsOutlined, UserAddOutlined, UserDeleteOutlined } from '@ant-design/icons-vue'
 
 export default {
   name: 'app-navbar',
@@ -25,8 +39,16 @@ export default {
     const store = useStore()
 
     return {
-      logout: () => store.dispatch('auth/logout')
+      logout: () => store.dispatch('auth/logout'),
+      isLoggedIn: computed(() => store.getters['auth/isLoggedIn'])
     }
-  }
+  },
+  components: {
+    CalendarOutlined,
+    MoneyCollectOutlined,
+    ContactsOutlined,
+    UserAddOutlined,
+    UserDeleteOutlined
+  },
 }
 </script>

@@ -57,10 +57,12 @@ import { UserWithRepeatedPassword } from '@/models'
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue'
 import { RuleObject, ValidateErrorEntity } from 'ant-design-vue/es/form/interface'
 import { defineComponent, reactive, UnwrapRef, computed, ref } from 'vue'
+import { useStore } from '@/store'
 
 export default defineComponent({
   setup() {
     const formRef = ref()
+    const store = useStore()
     const formState: UnwrapRef<UserWithRepeatedPassword> = reactive({
       name: '',
       email: '',
@@ -96,8 +98,11 @@ export default defineComponent({
       }
     }
 
-    const handleFinish = (values: UserWithRepeatedPassword) => {
-      console.log(values, formState)
+    const handleFinish = async (values: UserWithRepeatedPassword) => {
+      if (!isPasswordError.value) {
+        const { name, email, password } = values
+        await store.dispatch('auth/register', { name, email, password })
+      }
     }
 
     const handleFinishFailed = (errors: ValidateErrorEntity<UserWithRepeatedPassword>) => {

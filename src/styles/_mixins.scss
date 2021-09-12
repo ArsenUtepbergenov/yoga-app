@@ -1,3 +1,12 @@
+@mixin cb($color: inherit, $background: transparent) {
+  color: $color;
+  background: $background;
+}
+
+@mixin border0() {
+  border: 0;
+}
+
 @mixin background-image($size: cover, $position: center, $attachment: unset) {
   position: relative;
   background-size: $size;

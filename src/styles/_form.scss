@@ -1,25 +1,30 @@
 .form {
-  @include flex-box($direction: column);
+  display: flex;
   padding: 20px;
   border-radius: 8px;
   background: rgb(215 215 215 / 30%);
 
+  &-header {
+    @include background-image();
+    @include size(260px, 300px);
+
+    &--login {
+      background-image: url("../assets/login-logo.png");
+    }
+
+    &--register {
+      background-image: url("../assets/register-logo.png");
+    }
+  }
+
   &-field {
-    @include flex-box();
-    position: relative;
-    margin-bottom: 14px;
-  }
+    width: 280px;
 
-  &-label-icon {
-    color: #6b6b6b;
-    position: absolute;
-    left: 10px;
-  }
-
-  &-input {
-    padding: 9px 16px 11px 36px;
-    border-radius: 4px;
-    border: 0;
-    color: #3b3839;
+    .ant-input-group-addon {
+      width: 40px;
+      font-size: 18px;
+      @include cb(white, var(--color-primary));
+      @include border0;
+    }
   }
 }

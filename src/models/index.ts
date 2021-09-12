@@ -14,6 +14,7 @@ export type Notification = {
 }
 
 export type User = FirebaseUser & { name: string }
+export type UserWithRepeatedPassword = User & { repeatedPassword: string }
 
 // store states
 export type AppState = {

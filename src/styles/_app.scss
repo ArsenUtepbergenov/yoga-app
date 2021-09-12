@@ -19,9 +19,7 @@
 }
 
 .btn {
-  padding: 10px 20px;
-  font-size: 1em;
-  transition: all 0.3s ease;
+  border: 0;
 
   &-primary {
     background-color: var(--color-primary);

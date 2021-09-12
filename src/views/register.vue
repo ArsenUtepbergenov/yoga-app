@@ -1,73 +1,135 @@
 <template>
   <section id="register" class="register">
-    <form class="form register" @submit.prevent="signUp">
-      <h3>Создайте свой Yoga Hall аккаунт</h3>
-      <div class="form-field">
-        <label class="form-label-icon">
-          <i class="fas fa-user"></i>
-        </label>
-        <input class="form-input" type="text" v-model="username" placeholder="Имя..." required>
-      </div>
-      <div class="form-field">
-        <label class="form-label-icon">
-          <i class="fas fa-envelope"></i>
-        </label>
-        <input class="form-input" type="email" v-model="email" placeholder="Почта..." required>
-      </div>
-      <div class="form-field">
-        <label class="form-label-icon">
-          <i class="fas fa-key"></i>
-        </label>
-        <input class="form-input" type="password" v-model="password" placeholder="Пароль..." required>
-      </div>
-      <div class="form-field">
-        <label class="form-label-icon">
-          <i class="fas fa-key"></i>
-        </label>
-        <input class="form-input" type="password" v-model="passwordConfirmed" placeholder="Повторите пароль..." required>
-      </div>
-      <button class="btn btn-primary" type="submit">Создать</button>
-      <p>
-        <router-link :to="{ name: 'login' }">
-          Уже имеете аккаунт?
-        </router-link>
-      </p>
-    </form>
+    <div class="form">
+      <div class="form-header form-header--register" />
+      <a-form
+        ref="formRef"
+        layout="vertical"
+        :model="formState"
+        :rules="rules"
+        @finish="handleFinish"
+        @finishFailed="handleFinishFailed"
+      >
+        <a-form-item class="form-field" has-feedback name="name">
+          <a-input v-model:value="formState.name" size="large" placeholder="Имя...">
+            <template #addonBefore><UserOutlined /></template>
+          </a-input>
+        </a-form-item>
+        <a-form-item class="form-field" has-feedback name="email">
+          <a-input v-model:value="formState.email" type="email" size="large" placeholder="Почта...">
+            <template #addonBefore><MailOutlined /></template>
+          </a-input>
+        </a-form-item>
+        <a-form-item class="form-field" has-feedback name="password">
+          <a-input v-model:value="formState.password" type="password" size="large" autocomplete="off" placeholder="Пароль...">
+            <template #addonBefore><LockOutlined /></template>
+          </a-input>
+        </a-form-item>
+        <a-form-item class="form-field" has-feedback name="repeatedPassword">
+          <a-input v-model:value="formState.repeatedPassword" type="password" size="large" autocomplete="off" placeholder="Повторите пароль...">
+            <template #addonBefore><LockOutlined /></template>
+          </a-input>
+        </a-form-item>
+        <a-form-item>
+          <a-button
+            block
+            size="large"
+            type="primary"
+            html-type="submit"
+            class="btn btn-primary"
+            :disabled="disabled"
+          >
+            Создать
+          </a-button>
+        </a-form-item>
+        <a-form-item>
+          <router-link :to="{ name: 'login' }">
+            Уже имеете аккаунт?
+          </router-link>
+        </a-form-item>
+      </a-form>
+    </div>
   </section>
 </template>
 
-<script>
-import { mapGetters, mapActions } from 'vuex'
+<script lang="ts">
+import { UserWithRepeatedPassword } from '@/models'
+import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue'
+import { RuleObject, ValidateErrorEntity } from 'ant-design-vue/es/form/interface'
+import { defineComponent, reactive, UnwrapRef, computed, ref } from 'vue'
 
-export default {
-  name: 'Register',
-  data() {
-    return {
-      username: '',
-      email: null,
-      password: null,
-      passwordConfirmed: null,
-    }
-  },
-  computed: {
-    ...mapGetters({
-      message: 'getMessage'
+export default defineComponent({
+  setup() {
+    const formRef = ref()
+    const formState: UnwrapRef<UserWithRepeatedPassword> = reactive({
+      name: '',
+      email: '',
+      password: '',
+      repeatedPassword: ''
     })
-  },
-  methods: {
-    ...mapActions([
-      'register'
-    ]),
-    async signUp() {
-      if (this.password === this.passwordConfirmed) {
-        this.errorMsg = ''
-        this.register({
-          name: this.username,
-          email: this.email,
-          password: this.password
-        })
+
+    const validatePassword = async (rule: RuleObject, value: string) => {
+      try {
+        if (value === '') {
+          throw new Error('Пожалуйста, введите пароль')
+        } else {
+          if (formState.repeatedPassword !== '') {
+            formRef.value.validateFields('repeatedPassword')
+          }
+          return Promise.resolve()
+        }
+      } catch (error) {
+        return Promise.reject(error.message)
       }
     }
-  }
-}
+
+    const validatePassword2 = async (rule: RuleObject, value: string) => {
+      try {
+        if (value === '') {
+          throw new Error('Пожалуйста, введите пароль ещё раз!')
+        } else if (value !== formState.password) {
+          throw new Error('Пароли не совпадают!')
+        }
+        return Promise.resolve()
+      } catch (error) {
+        return Promise.reject(error.message)
+      }
+    }
+
+    const handleFinish = (values: UserWithRepeatedPassword) => {
+      console.log(values, formState)
+    }
+
+    const handleFinishFailed = (errors: ValidateErrorEntity<UserWithRepeatedPassword>) => {
+      console.log(errors) // TODO: needs to apply the notification module
+    }
+
+    const rules = {
+      name: [
+        { required: true, message: 'Пожалуйста, введите своё имя', trigger: 'blur' },
+        { min: 3, max: 20, message: 'Длина имени должна иметь от 3 до 20 символов', trigger: 'blur' },
+      ],
+      password: [{ required: true, validator: validatePassword, trigger: 'change' }],
+      repeatedPassword: [{ validator: validatePassword2, trigger: 'change' }],
+    }
+
+    const resetForm = () => formRef.value.resetFields()
+    const isPasswordError = computed(() => formState.password !== formState.repeatedPassword)
+
+    return {
+      formRef,
+      formState,
+      handleFinish,
+      handleFinishFailed,
+      disabled: computed(() => formState.name === '' || formState.email === '' || isPasswordError.value),
+      rules,
+      resetForm
+    }
+  },
+  components: {
+    UserOutlined,
+    LockOutlined,
+    MailOutlined
+  },
+})
 </script>

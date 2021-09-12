@@ -13,6 +13,10 @@ img {
   margin: auto;
 }
 
+a {
+  color: white;
+}
+
 .title {
   color: var(--color-grey);
   text-align: center;
@@ -31,4 +35,4 @@ img {
 @import "./timetable";
 @import "./form";
 // pages
-@import "./login";
+@import "./pages/index";

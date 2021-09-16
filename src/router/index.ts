@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
 import { Pages } from "@/enums"
+import store from "@/store"
 // components
 import Home from "@/views/Home.vue"
 import PageNotFound from "@/views/PageNotFound.vue"
@@ -50,7 +51,7 @@ const routes = [
       title: "Forgot Password",
     },
   },
-]
+] as RouteRecordRaw[]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -58,8 +59,14 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _, next) => {
+  // redirects
+  const shoudGoToLogin =
+    !store.getters["auth/isLoggedIn"] && to.name !== Pages.LOGIN
+
+  if (shoudGoToLogin) next({ name: Pages.LOGIN })
+  else next()
+  // update the title
   document.title = `${to.meta.title} | Yoga Hall`
-  next()
 })
 
 export default router

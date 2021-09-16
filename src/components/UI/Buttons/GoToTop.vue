@@ -34,5 +34,6 @@ export default defineComponent({
 	position: fixed;
 	right: 24px;
 	bottom: 30px;
+	z-index: 1;
 }
 </style>

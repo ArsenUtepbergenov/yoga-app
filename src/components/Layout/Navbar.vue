@@ -16,31 +16,62 @@
       >
         <UserAddOutlined />&nbsp;Вход
       </router-link>
-      <router-link
-        v-else
-        class="navbar-item navbar-link"
-        :to="{ name: 'home' }"
-        @click="logout"
-      >
-        <UserDeleteOutlined />&nbsp;Выход
-      </router-link>
+      <a-dropdown-button type="primary" v-else class="navbar-menu">
+        {{ email }}
+        <template #overlay>
+          <a-menu @click="handleMenuClick">
+            <a-menu-item key="PROFILE">
+              <IdcardOutlined />
+              Профиль
+            </a-menu-item>
+            <a-menu-item key="EXIT">
+              <UserDeleteOutlined />
+              Выход
+            </a-menu-item>
+          </a-menu>
+        </template>
+        <template #icon><UserOutlined /></template>
+      </a-dropdown-button>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
 import { useStore } from '@/store'
-import { defineComponent, computed } from 'vue'
-import { CalendarOutlined, MoneyCollectOutlined, ContactsOutlined, UserAddOutlined, UserDeleteOutlined } from '@ant-design/icons-vue'
+import { defineComponent, computed, VNodeChild, watch } from 'vue'
+import { IdcardOutlined, UserOutlined, CalendarOutlined, MoneyCollectOutlined, ContactsOutlined, UserAddOutlined, UserDeleteOutlined } from '@ant-design/icons-vue'
+
+const MenuKeys = {
+  PROFILE: 'Profile',
+  EXIT: 'Exit'
+}
+
+interface MenuInfo {
+  key: keyof typeof MenuKeys
+  keyPath: string[]
+  item: VNodeChild
+  domEvent: MouseEvent
+}
 
 export default defineComponent({
   name: 'app-navbar',
   setup () {
     const store = useStore()
 
+    const handleMenuClick = ({ key }: MenuInfo) => {
+      switch (MenuKeys[key]) {
+        case MenuKeys.PROFILE:
+          break
+        case MenuKeys.EXIT:
+          store.dispatch('auth/logout')
+          break
+      }
+    }
+
     return {
-      logout: () => store.dispatch('auth/logout'),
-      isLoggedIn: computed(() => store.getters['auth/isLoggedIn'])
+      isLoggedIn: computed(() => store.getters['auth/isLoggedIn']),
+      email: computed(() => store.getters['auth/userEmail']),
+      handleMenuClick,
     }
   },
   components: {
@@ -48,7 +79,27 @@ export default defineComponent({
     MoneyCollectOutlined,
     ContactsOutlined,
     UserAddOutlined,
-    UserDeleteOutlined
+    UserDeleteOutlined,
+    UserOutlined,
+    IdcardOutlined
   }
 })
 </script>
+
+<style lang="scss">
+.navbar {
+  .navbar-menu {
+    .ant-btn-primary {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      letter-spacing: 1px;
+      font-weight: bold;
+      background: transparent;
+      border: 1px;
+      font-size: 20px;
+    }
+  }
+}
+</style>

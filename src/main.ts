@@ -22,8 +22,10 @@ auth.onAuthStateChanged((user) => {
     isInitApp = true
   }
   if (user) {
+    store.commit("auth/setUser", user)
     store.commit("auth/setLoggedIn", true)
   } else {
+    store.commit("auth/setUser", null)
     store.commit("auth/setLoggedIn", false)
   }
 })

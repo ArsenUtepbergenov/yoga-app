@@ -1,16 +1,27 @@
 import router from "../router"
-import { Pages } from "@/enums"
-import { AuthActionContext, AuthState, User, FirebaseUser } from "@/models"
+import { Codes, NotificationCodes, Pages } from "@/enums"
+import {
+  AuthActionContext,
+  AuthState,
+  User,
+  FirebaseUser,
+  ReceivedUser,
+} from "@/models"
 // api
 import { auth, db } from "@/firebase"
 import store from "."
 
+const type = "notification/set"
+
 const authModule = {
   namespaced: true,
   state: {
+    user: null,
     isLoggedIn: false,
   } as AuthState,
   mutations: {
+    setUser: (state: AuthState, user: ReceivedUser | null = null) =>
+      (state.user = user),
     setLoggedIn: (state: AuthState, status: boolean) =>
       (state.isLoggedIn = status),
   },
@@ -21,18 +32,13 @@ const authModule = {
     ) {
       try {
         const { user } = await auth.signInWithEmailAndPassword(email, password)
-        store.commit("notification/set", {
-          type: "success",
-          title: "Успешный вход в систему",
-          message: `Вы вошли, как ${user?.email}`,
-        })
+        store.commit(type, NotificationCodes.get(Codes.SUCCESS_SIGNIN)(user))
         router.push({ name: Pages.HOME })
       } catch (error) {
-        store.commit("notification/set", {
-          type: "error",
-          title: "Ошибка при попытке входа",
-          message: error.message,
-        })
+        store.commit(
+          type,
+          NotificationCodes.get(Codes.ERROR_SIGNIN)(error.message)
+        )
       }
     },
 
@@ -47,40 +53,36 @@ const authModule = {
         )
         const dataBase = db.collection("users").doc(user?.uid)
         await dataBase.set({ name, email, uid: user?.uid })
-        store.commit("notification/set", {
-          type: "info",
-          title: "Статус регистрации",
-          message: `Вы зарегистрировались, как ${user?.email}`,
-        })
+        store.commit(
+          type,
+          NotificationCodes.get(Codes.STATUS_REGISTRATION)(user)
+        )
         router.push({ name: Pages.HOME })
       } catch (error) {
-        store.commit("notification/set", {
-          type: "error",
-          title: "Ошибка во время регистрации",
-          message: error.message,
-        })
+        store.commit(
+          type,
+          NotificationCodes.get(Codes.ERROR_REGISTRATION)(error.message)
+        )
       }
     },
 
     async logout({ commit }: AuthActionContext) {
       try {
         await auth.signOut()
-        store.commit("notification/set", {
-          type: "success",
-          title: "Успешно",
-          message: `Вы вышли из системы`,
-        })
+        store.commit(type, NotificationCodes.get(Codes.SUCCESS_LOGOUT)())
       } catch (error) {
-        store.commit("notification/set", {
-          type: "error",
-          title: "Ошибка при поытке выхода!",
-          message: error.message,
-        })
+        store.commit(
+          type,
+          NotificationCodes.get(Codes.ERROR_LOGOUT)(error.message)
+        )
       }
     },
   },
   getters: {
     isLoggedIn: (state: AuthState) => state.isLoggedIn,
+    user: (state: AuthState) => state.user,
+    userName: (state: AuthState) => state.user?.displayName,
+    userEmail: (state: AuthState) => state.user?.email,
   },
 }
 

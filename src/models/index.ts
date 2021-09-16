@@ -19,7 +19,13 @@ export type UserWithRepeatedPassword = User & { repeatedPassword: string }
 // store states
 export type AppState = {}
 
+export type ReceivedUser = {
+  displayName: string
+  email: string
+}
+
 export type AuthState = {
+  user: ReceivedUser | null
   isLoggedIn: boolean
 }
 
@@ -32,3 +38,5 @@ export type RootState = AppState & AuthState & NotificationState
 
 // actions
 export type AuthActionContext = ActionContext<AuthState, RootState>
+
+import "./notification"

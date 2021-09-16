@@ -58,12 +58,9 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, _, next) => {
-  // redirects
-  const shoudGoToLogin =
-    !store.getters["auth/isLoggedIn"] && to.name !== Pages.LOGIN
-
-  if (shoudGoToLogin) next({ name: Pages.LOGIN })
+router.beforeEach((to, from, next) => {
+  if (!store.getters["auth/isLoggedIn"] && to.name !== Pages.LOGIN)
+    next({ name: Pages.LOGIN })
   else next()
   // update the title
   document.title = `${to.meta.title} | Yoga Hall`

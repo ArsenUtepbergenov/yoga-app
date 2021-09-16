@@ -2,41 +2,39 @@
 
 <template>
   <div class="app">
-    <app-header v-if="!navigation" />
+    <app-header v-if="navigation" />
     <router-view />
-    <app-footer v-if="!navigation" />
+    <app-footer v-if="navigation" />
   </div>
 </template>
 
 <script lang="ts">
 import { appHeader, appFooter } from '@/components/Layout'
-import { Pages } from '@/enums'
 import { useNotification } from './hooks'
 import { defineComponent, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { PagesWithoutNav } from '@/enums'
 
 export default defineComponent({
   name: 'application',
   setup() {
-    let navigation = ref<boolean>(false)
+    const navigation = ref<boolean>(false)
     const route = useRoute()
 
     function checkRoute() {
-      const routeName = route.name
-      const isRouteWithoutNav =
-        routeName === Pages.LOGIN ||
-        routeName === Pages.REGISTER ||
-        routeName === Pages.FORGOT_PASSWORD
-
-      if (isRouteWithoutNav) {
-        navigation.value = true
+      const hasRouteNav = PagesWithoutNav.includes(route.name as string)
+      
+      console.log(hasRouteNav);
+      
+      if (hasRouteNav) {
+        navigation.value = false
         return
       }
 
-      navigation.value = false
+      navigation.value = true
     }
 
-    watch(route, () => checkRoute())
+    watch(route, () => checkRoute(), { immediate: true })
 
     useNotification()
 

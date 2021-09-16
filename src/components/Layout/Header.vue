@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { appNavbar } from './'
+import appNavbar from './Navbar.vue'
 
 export default defineComponent({
   name: "app-header",

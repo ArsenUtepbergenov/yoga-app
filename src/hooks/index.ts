@@ -1,3 +1,4 @@
 import useNotification from "./useNotification"
+import useScroll from "./useScroll"
 
-export { useNotification }
+export { useScroll, useNotification }

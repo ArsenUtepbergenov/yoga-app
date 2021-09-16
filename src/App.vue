@@ -5,10 +5,12 @@
     <app-header v-if="navigation" />
     <router-view />
     <app-footer v-if="navigation" />
+    <go-to-top-button v-if="navigation" />
   </div>
 </template>
 
 <script lang="ts">
+import { goToTopButton } from '@/components/UI/Buttons'
 import { appHeader, appFooter } from '@/components/Layout'
 import { useNotification } from './hooks'
 import { defineComponent, ref, watch } from 'vue'
@@ -40,7 +42,8 @@ export default defineComponent({
   },
   components: {
     appHeader,
-    appFooter
+    appFooter,
+    goToTopButton
   },
 })
 </script>

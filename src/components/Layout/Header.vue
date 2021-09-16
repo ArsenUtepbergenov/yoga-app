@@ -18,12 +18,13 @@
 </template>
 
 <script lang="ts">
-import appNavbar from "./Navbar.vue";
+import { defineComponent } from 'vue'
+import { appNavbar } from './'
 
-export default {
-	name: "app-header",
+export default defineComponent({
+  name: "app-header",
 	components: {
-		appNavbar,
-	},
-};
+		appNavbar
+	}
+})
 </script>

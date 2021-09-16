@@ -1,7 +1,7 @@
 // The card description component
 
 <template>
-  <div class="card-description">
+  <div :style="[oddStyles, parity === 'even' && evenStyles]">
     <div v-if="isImgLTR" class="card-description-img">
       <img :src="require(`@/assets/${imgUrl}`)" :alt="title" />
     </div>
@@ -17,25 +17,35 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { computed, defineComponent, ref } from 'vue'
+
+export default defineComponent({
   name: 'card-description',
   props: {
     imgUrl: String,
     title: String,
     text: String,
+    parity: {
+      type: String,
+      default: 'odd',
+      validator: (value: string) => ['odd', 'even'].indexOf(value) !== -1
+    },
     imgPosition: {
       type: String,
       default: 'ltr',
-      validator: function (value) {
-        return ['ltr', 'rtl'].indexOf(value) !== -1
-      }
+      validator: (value: string) => ['ltr', 'rtl'].indexOf(value) !== -1
     }
   },
-  computed: {
-    isImgLTR () {
-      return this.imgPosition === 'ltr'
+  setup(props) {
+    const oddStyles = ref({ display: 'flex', padding: '20px' })
+    const evenStyles = ref({ background: '#ECECEC' })
+
+    return {
+      evenStyles,
+      oddStyles,
+      isImgLTR: computed(() => props.imgPosition === 'ltr')
     }
   }
-}
+})
 </script>

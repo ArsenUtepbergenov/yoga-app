@@ -1,14 +1,24 @@
 // The card price component
 
 <template>
-  <a-card hoverable :title="title">
-    <p>{{price}}&nbsp;</p>
-    <a-button
-      type="primary"
-      class="btn btn-primary"
-    >
-      Купить
-    </a-button>
+  <a-card hoverable :title="title" class="price-card">
+    <a-row>
+      <a-col :span="24" class="price-card-title">
+        <a-typography-title :level="2" type="secondary">
+          {{price}}&nbsp;&#8381;
+        </a-typography-title>
+      </a-col>
+      <a-col :span="24">
+        <a-button
+          type="primary"
+          block
+          class="btn btn-secondary"
+          @click="toPaymentForm"
+        >
+          Купить
+        </a-button>
+      </a-col>
+    </a-row>
   </a-card>
 </template>
 
@@ -22,6 +32,11 @@ export default defineComponent({
     price: {
       type: Number,
       required: true
+    }
+  },
+  setup(props) {
+    return {
+      toPaymentForm: () => console.log(props.price)
     }
   }
 })

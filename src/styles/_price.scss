@@ -4,8 +4,12 @@
     flex-wrap: wrap;
   }
 
-  &-title {
+  &-card {
     text-align: center;
-    color: var(--color-grey);
+    height: 240px;
+
+    &-title {
+      margin-bottom: 30px;
+    }
   }
 }

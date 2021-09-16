@@ -4,17 +4,17 @@
   <div id="price" class="container price">
     <h2 class="title">Стоимость онлайн-занятий</h2>
     <a-row  :gutter="[0, 24]" type="flex" justify="space-around">
-      <a-col :xs="{ span: 10 }" :lg="{ span: 4 }">
-        <card-price title="Разовое занятие" :price="750" />
+      <a-col :xs="{ span: 11 }" :md="{ span: 7 }" :lg="{ span: 5 }">
+        <card-price title="Разовое занятие" :price="500" />
       </a-col>
-      <a-col :xs="{ span: 10 }" :lg="{ span: 4 }">
-        <card-price title="Абонемент на 4 занятия" :price="2860" />
+      <a-col :xs="{ span: 11 }" :md="{ span: 7 }" :lg="{ span: 5 }">
+        <card-price title="Абонемент на 4 занятия" :price="1600" />
       </a-col>
-      <a-col :xs="{ span: 10 }" :lg="{ span: 4 }">
-        <card-price title="Абонемент на 8 занятия" :price="4920" />
+      <a-col :xs="{ span: 11 }" :md="{ span: 7 }" :lg="{ span: 5 }">
+        <card-price title="Абонемент на 8 занятия" :price="3200" />
       </a-col>
-      <a-col :xs="{ span: 10 }" :lg="{ span: 4 }">
-        <card-price title="Абонемент на 16 занятия" :price="8240" />
+      <a-col :xs="{ span: 11 }" :md="{ span: 7 }" :lg="{ span: 5 }">
+        <card-price title="Абонемент на 16 занятия" :price="7400" />
       </a-col>
     </a-row>
   </div>

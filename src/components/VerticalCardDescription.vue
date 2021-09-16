@@ -1,27 +1,27 @@
 // The vertical card description component
 
 <template>
-  <div class="vertical-card-description">
-    <img
-      :src="require(`@/assets/${imgUrl}`)"
-      :alt="title"
-      class="vertical-card-description-image" />
-    <div class="vertical-card-description-content">
-      <h3>{{title}}</h3>
-      <p>
-        {{ text }}
-      </p>
-    </div>
-  </div>
+  <a-card class="vertical-card-description" :bordered="false" >
+    <template #cover>
+      <img
+        :src="require(`@/assets/${imgUrl}`)"
+        :alt="title"
+        class="vertical-card-description-image" />
+    </template>
+    <a-card-meta :title="title" />
+    {{ text }}
+  </a-card>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'vertical-card-description',
   props: {
     imgUrl: String,
     title: String,
     text: String
   }
-}
+})
 </script>

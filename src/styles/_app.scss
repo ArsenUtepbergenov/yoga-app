@@ -20,6 +20,7 @@
 
 .btn {
   border: 0;
+  color: white;
 
   &-primary {
     background-color: var(--color-primary);
@@ -40,4 +41,14 @@
 
 .text-red {
   color: var(--color-light-red);
+}
+
+.container {
+  max-width: 1368px;
+  margin: auto;
+}
+
+.title {
+  color: var(--color-grey);
+  text-align: center;
 }

@@ -22,11 +22,7 @@ export default defineComponent({
     const route = useRoute()
 
     function checkRoute() {
-      const hasRouteNav = PagesWithoutNav.includes(route.name as string)
-      
-      console.log(hasRouteNav);
-      
-      if (hasRouteNav) {
+      if (PagesWithoutNav.includes(route.name as string)) {
         navigation.value = false
         return
       }

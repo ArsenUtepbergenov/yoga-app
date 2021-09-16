@@ -30,10 +30,10 @@
 
 <script lang="ts">
 import { useStore } from '@/store'
-import { computed } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { CalendarOutlined, MoneyCollectOutlined, ContactsOutlined, UserAddOutlined, UserDeleteOutlined } from '@ant-design/icons-vue'
 
-export default {
+export default defineComponent({
   name: 'app-navbar',
   setup () {
     const store = useStore()
@@ -49,6 +49,6 @@ export default {
     ContactsOutlined,
     UserAddOutlined,
     UserDeleteOutlined
-  },
-}
+  }
+})
 </script>

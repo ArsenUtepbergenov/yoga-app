@@ -10,6 +10,7 @@
     <card-description
       imgUrl="card-description-2.jpg"
       imgPosition="rtl"
+      parity="even"
       title="Красота"
       :text="beautyText" />
     <card-description

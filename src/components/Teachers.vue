@@ -1,7 +1,7 @@
 // The teachers section component
 
 <template>
-  <div id="teachers" class="teachers container">
+  <div id="teachers" class="teachers">
     <h2 class="title">Связаться с мастерами</h2>
     <div class="teachers-cards">
       <card-teacher
@@ -18,13 +18,14 @@
   </div>
 </template>
 
-<script>
-import cardTeacher from './CardTeacher'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import cardTeacher from './CardTeacher.vue'
 
-export default {
+export default defineComponent({
   name: 'teachers',
   components: {
     cardTeacher
   }
-}
+})
 </script>

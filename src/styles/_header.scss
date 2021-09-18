@@ -19,7 +19,6 @@
 
   &-content {
     @include flex-box($align: flex-start, $direction: column);
-    margin: 0 50px;
-    padding: 10px 0;
+    margin-left: 20%;
   }
 }

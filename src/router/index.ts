@@ -59,8 +59,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (!store.getters["auth/isLoggedIn"] && to.name !== Pages.LOGIN)
-    next({ name: Pages.LOGIN })
+  const isLoginPage = to.name === Pages.LOGIN
+  const isLoddedIn = store.getters["auth/isLoggedIn"]
+  if (!isLoddedIn && !isLoginPage) next({ name: Pages.LOGIN })
   else next()
   // update the title
   document.title = `${to.meta.title} | Yoga Hall`

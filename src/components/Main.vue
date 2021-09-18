@@ -5,19 +5,26 @@
     <section class="container">
       <description />
     </section>
-    <price />
-    <timetable />
-    <teachers />
+    <section class="container">
+      <price />
+    </section>
+    <section class="container">
+      <timetable />
+    </section>
+    <section class="container">
+      <teachers />
+    </section>
   </main>
 </template>
 
-<script>
-import description from './Description'
-import timetable from './Timetable'
-import price from './Price'
-import teachers from './Teachers'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import description from './Description.vue'
+import timetable from './Timetable.vue'
+import price from './Price.vue'
+import teachers from './Teachers.vue'
 
-export default {
+export default defineComponent({
   name: 'app-main',
   components: {
     description,
@@ -25,5 +32,5 @@ export default {
     teachers,
     price
   }
-}
+})
 </script>

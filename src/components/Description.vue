@@ -35,36 +35,27 @@
   </div>
 </template>
 
-<script>
-import cardDescription from './CardDescription'
-import verticalCardDescription from './VerticalCardDescription'
+<script lang="ts">
+import { defineComponent, computed } from 'vue'
+import cardDescription from './CardDescription.vue'
+import verticalCardDescription from './VerticalCardDescription.vue'
 import { Descriptions } from '../assets/static-text'
 
-export default {
+export default defineComponent({
   name: 'description',
-  computed: {
-    healthText () {
-      return Descriptions.HEALTH
-    },
-    beautyText () {
-      return Descriptions.BEAUTY
-    },
-    calmnessText () {
-      return Descriptions.CALMNESS
-    },
-    yogaText () {
-      return Descriptions.YOGA
-    },
-    teachersText () {
-      return Descriptions.TEACHERS
-    },
-    technologiesText () {
-      return Descriptions.TECHNOLOGIES
+  setup() {
+    return {
+      healthText: computed(() => Descriptions.HEALTH),
+      beautyText: computed(() => Descriptions.BEAUTY),
+      calmnessText: computed(() => Descriptions.CALMNESS),
+      yogaText: computed(() => Descriptions.YOGA),
+      teachersText: computed(() => Descriptions.TEACHERS),
+      technologiesText: computed(() => Descriptions.TECHNOLOGIES)
     }
   },
   components: {
     cardDescription,
     verticalCardDescription
   }
-}
+})
 </script>

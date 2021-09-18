@@ -27,8 +27,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'card-teacher',
   props: {
     imgUrl: String,
@@ -39,5 +41,5 @@ export default {
       default: () => []
     }
   }
-}
+})
 </script>

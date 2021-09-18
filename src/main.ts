@@ -1,7 +1,7 @@
 import { createApp } from "vue"
 // Application component
 import Antd from "ant-design-vue"
-import App from "./App.vue"
+import application from "./App.vue"
 import "ant-design-vue/dist/antd.css"
 // Vue global modules
 import { auth } from "@/firebase"
@@ -14,7 +14,7 @@ let isInitApp = false
 
 auth.onAuthStateChanged((user) => {
   if (!isInitApp) {
-    createApp(App)
+    createApp(application)
       .use(Antd)
       .use(router)
       .use(store, storeKey)

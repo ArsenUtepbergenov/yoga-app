@@ -1,5 +1,3 @@
-// The card price component
-
 <template>
   <a-card hoverable :title="title" class="price-card">
     <a-row>

@@ -52,7 +52,7 @@ const authModule = {
           password
         )
         const dataBase = db.collection("users").doc(user?.uid)
-        await dataBase.set({ name, email, uid: user?.uid })
+        await dataBase.set({ name, email })
         store.commit(
           type,
           NotificationCodes.get(Codes.STATUS_REGISTRATION)(user)

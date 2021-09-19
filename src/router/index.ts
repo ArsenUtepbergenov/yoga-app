@@ -51,6 +51,15 @@ const routes = [
       title: "Forgot Password",
     },
   },
+  {
+    path: "/profile",
+    name: Pages.PROFILE,
+    component: () =>
+      import(/* webpackChunkName: "profile" */ "@/views/Profile.vue"),
+    meta: {
+      title: "Profile",
+    },
+  },
 ] as RouteRecordRaw[]
 
 const router = createRouter({

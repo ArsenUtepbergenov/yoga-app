@@ -1,19 +1,11 @@
 // The main content component
 
 <template>
-  <main>
-    <section class="container">
-      <description />
-    </section>
-    <section class="container">
-      <price />
-    </section>
-    <section class="container">
-      <timetable />
-    </section>
-    <section class="container">
-      <teachers />
-    </section>
+  <main class="container">
+    <description />
+    <price />
+    <timetable />
+    <teachers />
   </main>
 </template>
 

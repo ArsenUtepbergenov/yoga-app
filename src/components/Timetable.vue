@@ -1,7 +1,7 @@
 // The timetable section component
 
 <template>
-  <div id="timetable" class="timetable">
+  <section id="timetable" class="timetable">
     <h2 class="title">Расписание</h2>
     <div>
       <div>
@@ -23,7 +23,7 @@
         </FullCalendar>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

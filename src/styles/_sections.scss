@@ -1,0 +1,75 @@
+.description {
+  position: relative;
+
+  &-title {
+    text-align: center;
+    color: var(--color-grey);
+  }
+}
+
+.price {
+  &-cards {
+    @include flex-box($justify: space-around);
+    flex-wrap: wrap;
+  }
+
+  &-card {
+    text-align: center;
+    height: 240px;
+
+    &-title {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.teachers {
+  margin: 10px auto;
+
+  &-cards {
+    @include flex-box($justify: space-around);
+    flex-wrap: wrap;
+  }
+}
+
+.timetable {
+  color: var(--color-grey);
+  margin: 10px auto;
+  max-width: 1200px;
+}
+
+.text {
+  overflow: hidden;
+  white-space: normal;
+}
+
+.fullcalendar-wrapper {
+  color: var(--color-grey);
+
+  a,
+  span {
+    color: black;
+  }
+
+  .fc-button-primary {
+    span {
+      color: white;
+    }
+  }
+
+  .fc-daygrid-day-events {
+    span {
+      @extend .text;
+      display: block;
+    }
+  }
+
+  .fc-event-main {
+    a,
+    span {
+      color: white;
+      @extend .text;
+      display: block;
+    }
+  }
+}

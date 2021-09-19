@@ -1,7 +1,7 @@
 // The price section component
 
 <template>
-  <div id="price" class="price">
+  <section id="price" class="price">
     <h2 class="title">Стоимость онлайн-занятий</h2>
     <a-row  :gutter="[0, 24]" type="flex" justify="space-around">
       <a-col :xs="{ span: 11 }" :md="{ span: 7 }" :lg="{ span: 5 }">
@@ -17,7 +17,7 @@
         <card-price title="Абонемент на 16 занятия" :price="7400" />
       </a-col>
     </a-row>
-  </div>
+  </section>
 </template>
 
 <script>

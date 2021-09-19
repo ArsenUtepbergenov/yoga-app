@@ -1,7 +1,7 @@
 // The description section component
 
 <template>
-  <div class="description">
+  <section class="description">
     <h2 class="title">Занимайтесь йогой. Улучшайте качество жизни!</h2>
     <card-description
       imgUrl="card-description-1.jpg"
@@ -32,7 +32,7 @@
         title="Технологии"
         :text="technologiesText" />
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">

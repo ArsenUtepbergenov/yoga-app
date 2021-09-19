@@ -40,6 +40,8 @@
 import { useStore } from '@/store'
 import { defineComponent, computed, VNodeChild, watch } from 'vue'
 import { IdcardOutlined, UserOutlined, CalendarOutlined, MoneyCollectOutlined, ContactsOutlined, UserAddOutlined, UserDeleteOutlined } from '@ant-design/icons-vue'
+import { useRouter } from 'vue-router'
+import { Pages } from '@/enums'
 
 const MenuKeys = {
   PROFILE: 'Profile',
@@ -57,10 +59,12 @@ export default defineComponent({
   name: 'app-navbar',
   setup () {
     const store = useStore()
+    const router = useRouter()
 
     const handleMenuClick = ({ key }: MenuInfo) => {
       switch (MenuKeys[key]) {
         case MenuKeys.PROFILE:
+          router.push({ name: Pages.PROFILE })
           break
         case MenuKeys.EXIT:
           store.dispatch('auth/logout')

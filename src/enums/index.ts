@@ -6,6 +6,7 @@ export const Pages = {
   LOGIN: "login",
   REGISTER: "register",
   FORGOT_PASSWORD: "forgot-password",
+  PROFILE: "profile",
 }
 
 export const PagesWithoutNav = [

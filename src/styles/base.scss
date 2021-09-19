@@ -14,15 +14,12 @@ a {
 
 // modules
 @import "./mixins";
-@import "./app";
-@import "./navbar";
-@import "./header";
-@import "./footer";
+// common components
 @import "./card";
-@import "./description";
-@import "./price";
-@import "./teachers";
-@import "./timetable";
+@import "./sections";
 @import "./form";
 // pages
 @import "./pages/index";
+@import "./app";
+// layout elements
+@import "./layout/index";

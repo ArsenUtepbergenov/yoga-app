@@ -1,19 +1,13 @@
-// The top main navbar component
-
 <template>
   <nav class="navbar">
     <div class="logo">
-      <img src="@/assets/logo.png" alt="logo" />
+      <img src="/src/assets/logo.png" alt="logo" />
     </div>
     <div class="navbar-items">
       <a href="#timetable" class="navbar-link"><CalendarOutlined />&nbsp;Расписание</a>
       <a href="#price" class="navbar-link"><MoneyCollectOutlined />&nbsp;Цена</a>
       <a href="#teachers" class="navbar-link"><ContactsOutlined />&nbsp;Контакты</a>
-      <router-link
-        v-if="!isLoggedIn"
-        class="navbar-item navbar-link"
-        :to="{ name: 'login' }"
-      >
+      <router-link v-if="!isLoggedIn" class="navbar-item navbar-link" :to="{ name: 'login' }">
         <UserAddOutlined />&nbsp;Вход
       </router-link>
       <a-dropdown-button type="primary" v-else class="navbar-menu">
@@ -39,13 +33,21 @@
 <script lang="ts">
 import { useStore } from '@/store'
 import { defineComponent, computed, VNodeChild, watch } from 'vue'
-import { IdcardOutlined, UserOutlined, CalendarOutlined, MoneyCollectOutlined, ContactsOutlined, UserAddOutlined, UserDeleteOutlined } from '@ant-design/icons-vue'
+import {
+  IdcardOutlined,
+  UserOutlined,
+  CalendarOutlined,
+  MoneyCollectOutlined,
+  ContactsOutlined,
+  UserAddOutlined,
+  UserDeleteOutlined,
+} from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 import { Pages } from '@/enums'
 
 const MenuKeys = {
   PROFILE: 'Profile',
-  EXIT: 'Exit'
+  EXIT: 'Exit',
 }
 
 interface MenuInfo {
@@ -57,7 +59,7 @@ interface MenuInfo {
 
 export default defineComponent({
   name: 'app-navbar',
-  setup () {
+  setup() {
     const store = useStore()
     const router = useRouter()
 
@@ -85,8 +87,8 @@ export default defineComponent({
     UserAddOutlined,
     UserDeleteOutlined,
     UserOutlined,
-    IdcardOutlined
-  }
+    IdcardOutlined,
+  },
 })
 </script>
 

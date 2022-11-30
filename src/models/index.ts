@@ -1,5 +1,5 @@
-import { ActionContext } from "vuex"
-import { IconType as Type } from "ant-design-vue/lib/notification"
+import { ActionContext } from 'vuex'
+import { IconType as Type } from 'ant-design-vue/lib/notification'
 
 // base
 export type FirebaseUser = {
@@ -39,4 +39,4 @@ export type RootState = AppState & AuthState & NotificationState
 // actions
 export type AuthActionContext = ActionContext<AuthState, RootState>
 
-import "./notification"
+import './notification'

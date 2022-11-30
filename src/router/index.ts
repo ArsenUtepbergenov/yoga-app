@@ -1,75 +1,69 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
-import { Pages } from "@/enums"
-import store from "@/store"
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { Pages } from '@/enums'
+import store from '@/store'
 // components
-import Home from "@/views/Home.vue"
-import PageNotFound from "@/views/PageNotFound.vue"
+import Home from '@/views/Home.vue'
+import PageNotFound from '@/views/PageNotFound.vue'
 
 const routes = [
   {
-    path: "/:pathMatch(.*)*",
+    path: '/:pathMatch(.*)*',
     name: Pages.PAGE_NOT_FOUND,
     component: PageNotFound,
     meta: {
-      title: "Opps!",
+      title: 'Opps!',
     },
   },
   {
-    path: "/",
+    path: '/',
     name: Pages.HOME,
     component: Home,
     meta: {
-      title: "Home",
+      title: 'Home',
     },
   },
   {
-    path: "/login",
+    path: '/login',
     name: Pages.LOGIN,
-    component: () =>
-      import(/* webpackChunkName: "login" */ "@/views/Login.vue"),
+    component: () => import('@/views/Login.vue'),
     meta: {
-      title: "Login",
+      title: 'Login',
     },
   },
   {
-    path: "/register",
+    path: '/register',
     name: Pages.REGISTER,
-    component: () =>
-      import(/* webpackChunkName: "register" */ "@/views/Register.vue"),
+    component: () => import('@/views/Register.vue'),
     meta: {
-      title: "Register",
+      title: 'Register',
     },
   },
   {
-    path: "/forgot-password",
+    path: '/forgot-password',
     name: Pages.FORGOT_PASSWORD,
-    component: () =>
-      import(
-        /* webpackChunkName: "forgot-password" */ "@/views/Forgot-password.vue"
-      ),
+    component: () => import('@/views/Forgot-password.vue'),
     meta: {
-      title: "Forgot Password",
+      title: 'Forgot Password',
     },
   },
   {
-    path: "/profile",
+    path: '/profile',
     name: Pages.PROFILE,
-    component: () =>
-      import(/* webpackChunkName: "profile" */ "@/views/Profile.vue"),
+    component: () => import('@/views/Profile.vue'),
     meta: {
-      title: "Profile",
+      title: 'Profile',
     },
   },
 ] as RouteRecordRaw[]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
 
 router.beforeEach((to, from, next) => {
   const isLoginPage = to.name === Pages.LOGIN
-  const isLoddedIn = store.getters["auth/isLoggedIn"]
+  const isLoddedIn = store.getters['auth/isLoggedIn']
   if (!isLoddedIn && !isLoginPage) next({ name: Pages.LOGIN })
   else next()
   // update the title

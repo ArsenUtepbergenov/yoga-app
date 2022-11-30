@@ -1,5 +1,3 @@
-// The global application component
-
 <template>
   <div class="app">
     <app-header v-if="navigation" />
@@ -37,13 +35,13 @@ export default defineComponent({
     useNotification()
 
     return {
-      navigation
+      navigation,
     }
   },
   components: {
     appHeader,
     appFooter,
-    goToTopButton
+    goToTopButton,
   },
 })
 </script>

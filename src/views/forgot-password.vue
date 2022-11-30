@@ -10,9 +10,8 @@
         <p>Введите свою почту</p>
       </div>
       <div class="form-field">
-        <label class="form-label-icon">
-        </label>
-        <input class="form-input" type="email" v-model="email" placeholder="Почта..." required>
+        <label class="form-label-icon"> </label>
+        <input class="form-input" type="email" v-model="email" placeholder="Почта..." required />
       </div>
       <button class="btn btn-primary" type="submit">Сбросить</button>
     </form>
@@ -29,18 +28,18 @@ export default {
     return {
       email: null,
       modalActive: false,
-      isLoading: false
+      isLoading: false,
     }
   },
   methods: {
     closeModal() {
       this.modalActive = !this.modalActive
       this.email = ''
-    }
+    },
   },
   components: {
     Modal,
-    Spinner
-  }
+    Spinner,
+  },
 }
 </script>

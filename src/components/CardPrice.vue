@@ -3,16 +3,11 @@
     <a-row>
       <a-col :span="24" class="price-card-title">
         <a-typography-title :level="2" type="secondary">
-          {{price}}&nbsp;&#8381;
+          {{ price }}&nbsp;&#8381;
         </a-typography-title>
       </a-col>
       <a-col :span="24">
-        <a-button
-          type="primary"
-          block
-          class="btn btn-secondary"
-          @click="toPaymentForm"
-        >
+        <a-button type="primary" block class="btn btn-secondary" @click="toPaymentForm">
           Купить
         </a-button>
       </a-col>
@@ -29,13 +24,13 @@ export default defineComponent({
     title: String,
     price: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props) {
     return {
-      toPaymentForm: () => console.log(props.price)
+      toPaymentForm: () => console.log(props.price),
     }
-  }
+  },
 })
 </script>

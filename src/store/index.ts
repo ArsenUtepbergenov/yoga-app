@@ -1,9 +1,9 @@
-import { InjectionKey } from "vue"
-import { createStore, useStore as baseUseStore, Store } from "vuex"
-import { RootState } from "@/models"
+import { InjectionKey } from 'vue'
+import { createStore, useStore as baseUseStore, Store } from 'vuex'
+import { RootState } from '@/models'
 // modules
-import authModule from "./auth"
-import notificationModule from "./notification"
+import authModule from './auth'
+import notificationModule from './notification'
 
 // global injection key
 export const storeKey: InjectionKey<Store<RootState>> = Symbol()

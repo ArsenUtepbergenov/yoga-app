@@ -12,7 +12,7 @@ import appMain from '@/components/Main'
 export default {
   name: 'Home',
   components: {
-    appMain
-  }
+    appMain,
+  },
 }
 </script>

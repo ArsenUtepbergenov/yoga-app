@@ -1,6 +1,6 @@
 // base styles
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 img {
@@ -13,13 +13,13 @@ a {
 }
 
 // modules
-@import "./mixins";
+@import './mixins';
 // common components
-@import "./card";
-@import "./sections";
-@import "./form";
+@import './card';
+@import './sections';
+@import './form';
 // pages
-@import "./pages/index";
-@import "./app";
+@import './pages/index';
+@import './app';
 // layout elements
-@import "./layout/index";
+@import './layout/index';

@@ -1,4 +1,4 @@
-import { NotificationState, Notification } from "@/models"
+import { NotificationState, Notification } from '@/models'
 
 const notificationModule = {
   namespaced: true,

@@ -1,12 +1,7 @@
-// The vertical card description component
-
 <template>
-  <a-card class="vertical-card-description" :bordered="false" >
+  <a-card class="vertical-card-description" :bordered="false">
     <template #cover>
-      <img
-        :src="require(`@/assets/${imgUrl}`)"
-        :alt="title"
-        class="vertical-card-description-image" />
+      <img :src="`/src/assets/${imgUrl}`" :alt="title" class="vertical-card-description-image" />
     </template>
     <a-card-meta :title="title" />
     {{ text }}
@@ -21,7 +16,7 @@ export default defineComponent({
   props: {
     imgUrl: String,
     title: String,
-    text: String
-  }
+    text: String,
+  },
 })
 </script>

@@ -9,11 +9,11 @@
     @include size(260px, 300px);
 
     &--login {
-      background-image: url("../assets/login-logo.png");
+      background-image: url('../assets/login-logo.png');
     }
 
     &--register {
-      background-image: url("../assets/register-logo.png");
+      background-image: url('../assets/register-logo.png');
     }
   }
 

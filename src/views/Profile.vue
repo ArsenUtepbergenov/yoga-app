@@ -1,17 +1,13 @@
 <template>
   <section class="containe">
     <a-card>
-      <template class="ant-card-actions" #actions>
-        social links
-      </template>
+      <template class="ant-card-actions" #actions> social links </template>
       <a-card-meta title="User name" description="">
         <template #avatar>
           <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
         </template>
       </a-card-meta>
-      <p>
-        Почта: {{email}}
-      </p>
+      <p>Почта: {{ email }}</p>
     </a-card>
   </section>
 </template>
@@ -22,12 +18,12 @@ import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'profile',
-  setup () {
+  setup() {
     const store = useStore()
 
     return {
-      email: computed(() => store.getters['auth/user']?.email)
+      email: computed(() => store.getters['auth/user']?.email),
     }
-  }
+  },
 })
 </script>

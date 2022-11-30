@@ -21,12 +21,24 @@
           </a-input>
         </a-form-item>
         <a-form-item class="form-field" has-feedback name="password">
-          <a-input v-model:value="formState.password" type="password" size="large" autocomplete="off" placeholder="Пароль...">
+          <a-input
+            v-model:value="formState.password"
+            type="password"
+            size="large"
+            autocomplete="off"
+            placeholder="Пароль..."
+          >
             <template #addonBefore><LockOutlined /></template>
           </a-input>
         </a-form-item>
         <a-form-item class="form-field" has-feedback name="repeatedPassword">
-          <a-input v-model:value="formState.repeatedPassword" type="password" size="large" autocomplete="off" placeholder="Повторите пароль...">
+          <a-input
+            v-model:value="formState.repeatedPassword"
+            type="password"
+            size="large"
+            autocomplete="off"
+            placeholder="Повторите пароль..."
+          >
             <template #addonBefore><LockOutlined /></template>
           </a-input>
         </a-form-item>
@@ -43,9 +55,7 @@
           </a-button>
         </a-form-item>
         <a-form-item>
-          <router-link :to="{ name: 'login' }">
-            Уже имеете аккаунт?
-          </router-link>
+          <router-link :to="{ name: 'login' }"> Уже имеете аккаунт? </router-link>
         </a-form-item>
       </a-form>
     </div>
@@ -67,7 +77,7 @@ export default defineComponent({
       name: '',
       email: '',
       password: '',
-      repeatedPassword: ''
+      repeatedPassword: '',
     })
 
     const validatePassword = async (rule: RuleObject, value: string) => {
@@ -112,7 +122,12 @@ export default defineComponent({
     const rules = {
       name: [
         { required: true, message: 'Пожалуйста, введите своё имя', trigger: 'blur' },
-        { min: 3, max: 20, message: 'Длина имени должна иметь от 3 до 20 символов', trigger: 'blur' },
+        {
+          min: 3,
+          max: 20,
+          message: 'Длина имени должна иметь от 3 до 20 символов',
+          trigger: 'blur',
+        },
       ],
       password: [{ required: true, validator: validatePassword, trigger: 'change' }],
       repeatedPassword: [{ validator: validatePassword2, trigger: 'change' }],
@@ -126,15 +141,17 @@ export default defineComponent({
       formState,
       handleFinish,
       handleFinishFailed,
-      disabled: computed(() => formState.name === '' || formState.email === '' || isPasswordError.value),
+      disabled: computed(
+        () => formState.name === '' || formState.email === '' || isPasswordError.value,
+      ),
       rules,
-      resetForm
+      resetForm,
     }
   },
   components: {
     UserOutlined,
     LockOutlined,
-    MailOutlined
+    MailOutlined,
   },
 })
 </script>

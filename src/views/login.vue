@@ -16,7 +16,13 @@
           </a-input>
         </a-form-item>
         <a-form-item class="form-field" has-feedback name="password">
-          <a-input v-model:value="formState.password" type="password" size="large" autocomplete="off" placeholder="Пароль...">
+          <a-input
+            v-model:value="formState.password"
+            type="password"
+            size="large"
+            autocomplete="off"
+            placeholder="Пароль..."
+          >
             <template #addonBefore><LockOutlined /></template>
           </a-input>
         </a-form-item>
@@ -33,14 +39,10 @@
           </a-button>
         </a-form-item>
         <a-form-item>
-          <router-link :to="{ name: routeRegister }">
-            Ещё не зарегистрированы?
-          </router-link>
+          <router-link :to="{ name: routeRegister }"> Ещё не зарегистрированы? </router-link>
         </a-form-item>
         <a-form-item>
-          <router-link :to="{ name: routeForgotPassword }">
-            Забыли свой пароль?
-          </router-link>
+          <router-link :to="{ name: routeForgotPassword }"> Забыли свой пароль? </router-link>
         </a-form-item>
       </a-form>
     </div>
@@ -57,12 +59,12 @@ import { LockOutlined, MailOutlined } from '@ant-design/icons-vue'
 
 export default {
   name: 'Login',
-  setup () {
+  setup() {
     const formRef = ref()
     const store = useStore()
     const formState: UnwrapRef<FirebaseUser> = reactive({
       email: '',
-      password: ''
+      password: '',
     })
 
     const validatePassword = async (rule: RuleObject, value: string) => {
@@ -86,12 +88,8 @@ export default {
     }
 
     const rules = {
-      email: [
-        { required: true, message: 'Пожалуйста, введите свою почту', trigger: 'blur' }
-      ],
-      password: [
-        { required: true, validator: validatePassword, trigger: 'change' }
-      ]
+      email: [{ required: true, message: 'Пожалуйста, введите свою почту', trigger: 'blur' }],
+      password: [{ required: true, validator: validatePassword, trigger: 'change' }],
     }
 
     return {
@@ -102,12 +100,12 @@ export default {
       handleFinishFailed,
       routeRegister: computed(() => Pages.REGISTER),
       routeForgotPassword: computed(() => Pages.FORGOT_PASSWORD),
-      disabled: computed(() => formState.email === '' || formState.password === '')
+      disabled: computed(() => formState.email === '' || formState.password === ''),
     }
   },
   components: {
     LockOutlined,
-    MailOutlined
+    MailOutlined,
   },
 }
 </script>

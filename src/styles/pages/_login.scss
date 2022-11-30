@@ -2,6 +2,6 @@
   @include flex-box();
   @include size(100%, 100%);
   @include background-image();
-  background-image: url("../assets/form-bg.jpg");
+  background-image: url('../assets/form-bg.jpg');
   filter: grayscale(0.2);
 }

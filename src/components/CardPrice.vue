@@ -1,5 +1,5 @@
 <template>
-  <a-card hoverable :title="title" class="price-card">
+  <a-card :title="title" class="price-card">
     <a-row>
       <a-col :span="24" class="price-card-title">
         <a-typography-title :level="2" type="secondary">

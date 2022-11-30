@@ -6,15 +6,15 @@
       <p>{{ about }}</p>
     </div>
     <div class="card-teacher-social-links">
-      <a
+      <a-typography-link
         v-for="(link, index) in socialMediaLinks"
         :key="index"
         :href="getValue(link)"
-        class="card-teacher-icon"
         target="_blank"
+        style="color: #7280d0"
       >
         <i class="fab" :class="`fa-${getKey(link)}`" />
-      </a>
+      </a-typography-link>
     </div>
   </div>
 </template>

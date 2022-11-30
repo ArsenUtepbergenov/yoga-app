@@ -1,5 +1,3 @@
-// The card teacher component
-
 <template>
   <div class="card-teacher">
     <img class="card-teacher-image" :src="`/src/assets/${imgUrl}`" :alt="name" />
@@ -7,18 +5,16 @@
       <h3 class="card-teacher-name">{{ name }}</h3>
       <p>{{ about }}</p>
     </div>
-    <div class="card-teacher-social-links-wrapper">
-      <div class="card-teacher-social-links">
-        <a
-          v-for="(link, index) in socialMediaLinks"
-          :key="index"
-          :href="Object.values(link)"
-          class="card-teacher-icon"
-          target="_blank"
-        >
-          <i class="fab" :class="`fa-${Object.keys(link)}`" />
-        </a>
-      </div>
+    <div class="card-teacher-social-links">
+      <a
+        v-for="(link, index) in socialMediaLinks"
+        :key="index"
+        :href="getValue(link)"
+        class="card-teacher-icon"
+        target="_blank"
+      >
+        <i class="fab" :class="`fa-${getKey(link)}`" />
+      </a>
     </div>
   </div>
 </template>
@@ -33,9 +29,15 @@ export default defineComponent({
     name: String,
     about: String,
     socialMediaLinks: {
-      type: Array,
+      type: Array<Record<string, string>>,
       default: () => [],
     },
+  },
+  setup(props) {
+    return {
+      getValue: (object: Record<string, string>) => Object.values(object)[0],
+      getKey: (object: Record<string, string>) => Object.keys(object)[0],
+    }
   },
 })
 </script>

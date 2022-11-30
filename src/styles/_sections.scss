@@ -28,6 +28,7 @@
 
   &-cards {
     @include flex-box($justify: space-around);
+    gap: 20px;
     flex-wrap: wrap;
   }
 }

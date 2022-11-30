@@ -1,5 +1,5 @@
 <template>
-  <div :style="[oddStyles, parity === 'even' && evenStyles]">
+  <div class="card-description">
     <div v-if="isImgLTR" class="card-description-img">
       <img :src="`/src/assets/${imgUrl}`" :alt="title" />
     </div>
@@ -36,12 +36,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const oddStyles = ref({ display: 'flex', padding: '20px' })
-    const evenStyles = ref({ background: '#ECECEC' })
-
     return {
-      evenStyles,
-      oddStyles,
       isImgLTR: computed(() => props.imgPosition === 'ltr'),
     }
   },

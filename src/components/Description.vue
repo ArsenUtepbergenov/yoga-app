@@ -1,5 +1,5 @@
 <template>
-  <section class="description">
+  <div class="container">
     <h2 class="title">Занимайтесь йогой. Улучшайте качество жизни!</h2>
     <card-description imgUrl="card-description-1.jpg" title="Здоровье" :text="healthText" />
     <card-description
@@ -20,7 +20,7 @@
         :text="technologiesText"
       />
     </div>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">

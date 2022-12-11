@@ -1,8 +1,14 @@
 <template>
-  <main class="container">
-    <description />
-    <price />
-    <teachers />
+  <main>
+    <section id="description" class="description">
+      <description />
+    </section>
+    <section id="price" class="price">
+      <price />
+    </section>
+    <section id="teachers" class="teachers">
+      <teachers />
+    </section>
   </main>
 </template>
 

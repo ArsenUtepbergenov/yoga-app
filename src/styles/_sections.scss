@@ -1,6 +1,4 @@
 .description {
-  position: relative;
-
   &-title {
     text-align: center;
     color: var(--color-grey);
@@ -8,6 +6,9 @@
 }
 
 .price {
+  background: #ececee;
+  padding: 1rem 30px 2rem 30px;
+
   &-cards {
     @include flex-box($justify: space-around);
     flex-wrap: wrap;
@@ -24,8 +25,6 @@
 }
 
 .teachers {
-  margin: 10px auto;
-
   &-cards {
     @include flex-box($justify: space-around);
     gap: 20px;

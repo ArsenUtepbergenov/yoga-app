@@ -1,4 +1,18 @@
-// base styles
+:root {
+  --color-navbar-link: white;
+  --color-grey: #4c4c4c;
+  --color-light-grey: #8c8c8c;
+  --color-box-shadow: #ebebeb;
+  --color-green: #8dbf53;
+  --color-primary: #4d9e6e;
+  --color-secondary: #937298;
+  --color-light-blue: #7280d0;
+  --color-light-red: #ff837a;
+  --height-header: 100vh;
+  --width-logo: 332px;
+  --height-logo: 152px;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -6,6 +20,47 @@ body {
 img {
   width: 100%;
   height: 100%;
+}
+
+.app {
+  height: 100vh;
+}
+
+.btn {
+  border: 0;
+  color: white;
+
+  &-primary {
+    background-color: var(--color-primary);
+  }
+
+  &-secondary {
+    background-color: var(--color-secondary);
+  }
+
+  &:hover {
+    background-color: #53aaaa;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.text-red {
+  color: var(--color-light-red);
+}
+
+.container {
+  max-width: 1368px;
+  margin: auto;
+}
+
+.title {
+  color: var(--color-light-grey);
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 2rem;
 }
 
 // modules
@@ -16,6 +71,5 @@ img {
 @import './form';
 // pages
 @import './pages/index';
-@import './app';
 // layout elements
 @import './layout/index';

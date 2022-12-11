@@ -1,5 +1,3 @@
-// The main view page
-
 <template>
   <div id="home">
     <app-main />

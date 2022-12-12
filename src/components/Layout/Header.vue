@@ -14,10 +14,16 @@
         </a-button>
       </div>
     </div>
+    <div class="navbar-items">
+      <a href="#timetable" class="navbar-link"><CalendarOutlined />&nbsp;Расписание</a>
+      <a href="#price" class="navbar-link"><MoneyCollectOutlined />&nbsp;Цена</a>
+      <a href="#teachers" class="navbar-link"><ContactsOutlined />&nbsp;Контакты</a>
+    </div>
   </header>
 </template>
 
 <script lang="ts">
+import { CalendarOutlined, MoneyCollectOutlined, ContactsOutlined } from '@ant-design/icons-vue'
 import { defineComponent } from 'vue'
 import appNavbar from './Navbar.vue'
 
@@ -25,6 +31,9 @@ export default defineComponent({
   name: 'app-header',
   components: {
     appNavbar,
+    CalendarOutlined,
+    MoneyCollectOutlined,
+    ContactsOutlined,
   },
 })
 </script>

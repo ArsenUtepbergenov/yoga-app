@@ -31,8 +31,6 @@ function toPaymentForm() {
 }
 
 const endStr = computed(() => {
-  console.log(props.exercises, props.exercises % temp.length)
-
   switch (props.exercises) {
     case 1:
       return temp[0]

@@ -3,15 +3,15 @@
     <div class="logo">
       <img src="/src/assets/logo.png" alt="logo" />
     </div>
-    <div class="navbar-items">
-      <a href="#timetable" class="navbar-link"><CalendarOutlined />&nbsp;Расписание</a>
-      <a href="#price" class="navbar-link"><MoneyCollectOutlined />&nbsp;Цена</a>
-      <a href="#teachers" class="navbar-link"><ContactsOutlined />&nbsp;Контакты</a>
+    <div>
       <router-link v-if="!isLoggedIn" class="navbar-item navbar-link" :to="{ name: 'login' }">
         <UserAddOutlined />&nbsp;Вход
       </router-link>
-      <a-dropdown-button type="primary" v-else class="navbar-menu">
-        {{ email }}
+      <a-dropdown v-else class="navbar-menu">
+        <a class="ant-dropdown-link" style="color: white; font-size: 1.2rem" @click.prevent>
+          {{ email }}
+          <UserOutlined />
+        </a>
         <template #overlay>
           <a-menu @click="handleMenuClick">
             <a-menu-item key="PROFILE">
@@ -25,7 +25,7 @@
           </a-menu>
         </template>
         <template #icon><UserOutlined /></template>
-      </a-dropdown-button>
+      </a-dropdown>
     </div>
   </nav>
 </template>
@@ -36,9 +36,6 @@ import { defineComponent, computed, VNodeChild, watch } from 'vue'
 import {
   IdcardOutlined,
   UserOutlined,
-  CalendarOutlined,
-  MoneyCollectOutlined,
-  ContactsOutlined,
   UserAddOutlined,
   UserDeleteOutlined,
 } from '@ant-design/icons-vue'
@@ -81,9 +78,6 @@ export default defineComponent({
     }
   },
   components: {
-    CalendarOutlined,
-    MoneyCollectOutlined,
-    ContactsOutlined,
     UserAddOutlined,
     UserDeleteOutlined,
     UserOutlined,
@@ -91,21 +85,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss">
-.navbar {
-  .navbar-menu {
-    .ant-btn-primary {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      letter-spacing: 1px;
-      font-weight: bold;
-      background: transparent;
-      border: 1px;
-      font-size: 20px;
-    }
-  }
-}
-</style>

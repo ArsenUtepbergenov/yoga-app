@@ -1,36 +1,45 @@
 <template>
-  <a-card :title="title" class="price-card">
-    <a-row>
-      <a-col :span="24" class="price-card-title">
-        <a-typography-title :level="2" type="secondary">
-          {{ price }}&nbsp;&#8381;
-        </a-typography-title>
-      </a-col>
-      <a-col :span="24">
-        <a-button type="primary" block class="btn btn-secondary" @click="toPaymentForm">
-          Купить
-        </a-button>
-      </a-col>
-    </a-row>
-  </a-card>
+  <div class="card-price">
+    <div class="card-price__title">{{ title }}</div>
+    <br />
+    <h3>{{ price }}&nbsp;&#8381;</h3>
+    <p>за {{ exercises }}&nbsp;{{ endStr }}</p>
+    <a-button type="primary" class="btn btn-secondary" @click="toPaymentForm"> Купить </a-button>
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { withDefaults, defineProps, computed } from 'vue'
 
-export default defineComponent({
-  name: 'card-price',
-  props: {
-    title: String,
-    price: {
-      type: Number,
-      required: true,
-    },
+const temp = ['занятие', 'занятия', 'занятий']
+
+const props = withDefaults(
+  defineProps<{
+    price: number
+    title: string
+    exercises: number
+  }>(),
+  {
+    title: '',
+    exercises: 0,
+    price: 0,
   },
-  setup(props) {
-    return {
-      toPaymentForm: () => console.log(props.price),
-    }
-  },
+)
+
+function toPaymentForm() {
+  console.log(props.price)
+}
+
+const endStr = computed(() => {
+  switch (props.exercises) {
+    case 1:
+      return temp[0]
+    case 2:
+    case 3:
+    case 4:
+      return temp[1]
+    default:
+      return temp[2]
+  }
 })
 </script>

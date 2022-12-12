@@ -51,7 +51,7 @@
             class="btn btn-primary"
             :disabled="disabled"
           >
-            Создать
+            Регистрация
           </a-button>
         </a-form-item>
         <a-form-item>

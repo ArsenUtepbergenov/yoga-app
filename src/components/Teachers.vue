@@ -1,13 +1,7 @@
 <template>
-  <section id="teachers" class="teachers">
+  <div class="container">
     <h2 class="title">Связаться с мастерами</h2>
-    <div class="teachers-cards">
-      <card-teacher
-        imgUrl="natalia.jpg"
-        name="Наталья Маркова"
-        about="Информация - страшная сила. Страшнее только ее отсутствие"
-        :socialMediaLinks="[{ vk: 'https://vk.com/natayoga.markova' }]"
-      />
+    <div class="flex wrap">
       <card-teacher
         imgUrl="sergey.jpg"
         name="Сергей Черников"
@@ -15,7 +9,7 @@
         :socialMediaLinks="[{ vk: 'https://vk.com/bilnt2' }]"
       />
     </div>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">

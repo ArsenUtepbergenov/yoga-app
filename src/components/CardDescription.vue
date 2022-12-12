@@ -5,9 +5,10 @@
     </div>
     <div class="card-description-content">
       <h3 class="card-description-title">{{ title }}</h3>
-      <p class="card-description-text">
+      <p class="card-description-text cutoff-text">
         {{ text }}
       </p>
+      <input type="checkbox" class="expand-btn" />
     </div>
     <div v-if="!isImgLTR" class="card-description-img">
       <img :src="`/src/assets/${imgUrl}`" :alt="title" />

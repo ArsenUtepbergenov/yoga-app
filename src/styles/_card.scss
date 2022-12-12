@@ -21,12 +21,12 @@
   background-color: #ececee;
 }
 
-.vertical-card-description-wrapper {
+.vertical-card-wrapper {
   @include flex-box($justify: space-around);
   flex-wrap: wrap;
 }
 
-.vertical-card-description {
+.vertical-card {
   width: 280px;
   text-align: center;
   margin: 10px;
@@ -70,5 +70,29 @@
     width: 270px;
     height: inherit;
     grid-row: 1/4;
+  }
+}
+
+.card-price {
+  background-color: white;
+  color: var(--color-light-grey);
+  text-align: center;
+  font-size: 1.4rem;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e8e8e8;
+
+  &__title {
+    @include borderTopLR(3);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 12px 0;
+    background: var(--color-primary);
+  }
+
+  &__text {
+    font-size: 1.7rem;
+    margin-top: 24px;
   }
 }

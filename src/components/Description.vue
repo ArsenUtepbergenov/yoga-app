@@ -1,24 +1,20 @@
 <template>
   <div class="container">
-    <h2 class="title">Занимайтесь йогой. Улучшайте качество жизни!</h2>
-    <card-description imgUrl="card-description-1.jpg" title="Здоровье" :text="healthText" />
+    <h2 class="title">Занимайтесь <strong>Йогой</strong>. Улучшайте качество жизни!</h2>
+    <card-description imgUrl="cat.png" title="Здоровье" :text="healthText" />
     <card-description
-      imgUrl="card-description-2.jpg"
+      imgUrl="boy.png"
       imgPosition="rtl"
       parity="even"
       title="Красота"
       :text="beautyText"
     />
-    <card-description imgUrl="card-description-3.jpg" title="Спокойствие" :text="calmnessText" />
-    <h2 class="title">Попробуйте новый формат занятий</h2>
-    <div class="vertical-card-description-wrapper">
-      <vertical-card-description imgUrl="yoga.png" title="Йога" :text="yogaText" />
-      <vertical-card-description imgUrl="yoga.jpg" title="Мастера" :text="teachersText" />
-      <vertical-card-description
-        imgUrl="technologies.png"
-        title="Технологии"
-        :text="technologiesText"
-      />
+    <card-description imgUrl="girl-relaxing.jpg" title="Спокойствие" :text="calmnessText" />
+    <h2 class="title">Попробуйте новый формат занятий!</h2>
+    <div class="vertical-card-wrapper">
+      <vertical-card imgUrl="yoga.png" title="Йога" :text="yogaText" />
+      <vertical-card imgUrl="yoga.jpg" title="Мастера" :text="teachersText" />
+      <vertical-card imgUrl="technologies.png" title="Технологии" :text="technologiesText" />
     </div>
   </div>
 </template>
@@ -26,7 +22,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import cardDescription from './CardDescription.vue'
-import verticalCardDescription from './VerticalCardDescription.vue'
+import verticalCard from './VerticalCard.vue'
 import { Descriptions } from '@/assets/static-text'
 
 export default defineComponent({
@@ -43,7 +39,7 @@ export default defineComponent({
   },
   components: {
     cardDescription,
-    verticalCardDescription,
+    verticalCard,
   },
 })
 </script>

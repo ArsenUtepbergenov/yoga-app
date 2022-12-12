@@ -7,7 +7,7 @@
 
 .price {
   background: #ececee;
-  padding: 1rem 30px 2rem 30px;
+  padding: 1rem 30px 60px 30px;
 
   &-cards {
     @include flex-box($justify: space-around);
@@ -29,47 +29,5 @@
     @include flex-box($justify: space-around);
     gap: 20px;
     flex-wrap: wrap;
-  }
-}
-
-.timetable {
-  color: var(--color-grey);
-  margin: 10px auto;
-  max-width: 1200px;
-}
-
-.text {
-  overflow: hidden;
-  white-space: normal;
-}
-
-.fullcalendar-wrapper {
-  color: var(--color-grey);
-
-  a,
-  span {
-    color: black;
-  }
-
-  .fc-button-primary {
-    span {
-      color: white;
-    }
-  }
-
-  .fc-daygrid-day-events {
-    span {
-      @extend .text;
-      display: block;
-    }
-  }
-
-  .fc-event-main {
-    a,
-    span {
-      color: white;
-      @extend .text;
-      display: block;
-    }
   }
 }

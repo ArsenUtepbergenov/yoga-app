@@ -1,41 +1,47 @@
 <template>
-  <a-card
-    :title="title"
-    :headStyle="{ fontSize: '1.2rem', fontWeight: 'bold', color: '#937298', textAlign: 'center' }"
-  >
-    <a-card-grid style="width: 100%; text-align: center" :hoverable="false">
-      <a-typography-title :level="3" type="secondary">
-        {{ price }}&nbsp;&#8381;
-      </a-typography-title>
-      <a-typography-text type="secondary">{{ exercises }}&nbsp;</a-typography-text>
-      <a-typography-text type="secondary">занятий</a-typography-text>
-    </a-card-grid>
-    <template #actions>
-      <a-button type="primary" class="btn btn-secondary" @click="toPaymentForm"> Купить </a-button>
-    </template>
-  </a-card>
+  <div class="card-price">
+    <div class="card-price__title">{{ title }}</div>
+    <br />
+    <h3>{{ price }}&nbsp;&#8381;</h3>
+    <p>за {{ exercises }}&nbsp;{{ endStr }}</p>
+    <a-button type="primary" class="btn btn-secondary" @click="toPaymentForm"> Купить </a-button>
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { withDefaults, defineProps, computed } from 'vue'
 
-export default defineComponent({
-  name: 'card-price',
-  props: {
-    title: String,
-    price: {
-      type: Number,
-      required: true,
-    },
-    exercises: {
-      type: Number,
-      required: true,
-    },
+const temp = ['занятие', 'занятия', 'занятий']
+
+const props = withDefaults(
+  defineProps<{
+    price: number
+    title: string
+    exercises: number
+  }>(),
+  {
+    title: '',
+    exercises: 0,
+    price: 0,
   },
-  setup(props) {
-    return {
-      toPaymentForm: () => console.log(props.price),
-    }
-  },
+)
+
+function toPaymentForm() {
+  console.log(props.price)
+}
+
+const endStr = computed(() => {
+  console.log(props.exercises, props.exercises % temp.length)
+
+  switch (props.exercises) {
+    case 1:
+      return temp[0]
+    case 2:
+    case 3:
+    case 4:
+      return temp[1]
+    default:
+      return temp[2]
+  }
 })
 </script>

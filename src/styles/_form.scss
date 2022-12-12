@@ -1,19 +1,16 @@
 .form {
   display: flex;
-  padding: 20px;
-  border-radius: 8px;
-  background: rgb(215 215 215 / 30%);
+  padding: 40px 20px 10px 0;
+  background: rgb(0 0 0 / 60%);
+  border-left: 3px solid white;
 
   &-header {
     @include background-image();
     @include size(260px, 300px);
 
-    &--login {
-      background-image: url('../assets/login-logo.png');
-    }
-
+    &--login,
     &--register {
-      background-image: url('../assets/register-logo.png');
+      background-image: url('../assets/login-logo.png');
     }
   }
 
@@ -21,7 +18,7 @@
     width: 280px;
 
     .ant-input-group-addon {
-      width: 40px;
+      width: 46px;
       font-size: 18px;
       @include cb(white, var(--color-primary));
       @include border0;

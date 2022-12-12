@@ -33,7 +33,7 @@ export default defineComponent({
       default: () => [],
     },
   },
-  setup(props) {
+  setup() {
     return {
       getValue: (object: Record<string, string>) => Object.values(object)[0],
       getKey: (object: Record<string, string>) => Object.keys(object)[0],

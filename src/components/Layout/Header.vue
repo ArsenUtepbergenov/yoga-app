@@ -1,17 +1,19 @@
 <template>
   <header class="header">
-    <section class="container">
+    <div class="container">
       <app-navbar />
-    </section>
+    </div>
     <video class="video" src="/src/assets/video.mp4" muted loop autoplay></video>
-    <section class="container header-content">
-      <div class="header-title">
-        Сфера Yoga Hall - ПЛАТФОРМА ДЛЯ ОНЛАЙН-ЗАНЯТИЙ по йоге и медитации
+    <div class="container">
+      <div class="header-content">
+        <div class="header-title">
+          Сфера Yoga Hall - ПЛАТФОРМА ДЛЯ ОНЛАЙН-ЗАНЯТИЙ по йоге и медитации
+        </div>
+        <a-button type="primary" size="large" class="btn btn-primary header-btn"
+          >Записаться на урок
+        </a-button>
       </div>
-      <a-button type="primary" size="large" class="btn btn-primary header-btn"
-        >Записаться на урок
-      </a-button>
-    </section>
+    </div>
   </header>
 </template>
 

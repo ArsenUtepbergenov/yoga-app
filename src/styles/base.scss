@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
 :root {
   --color-navbar-link: white;
   --color-grey: #4c4c4c;
@@ -14,12 +16,11 @@
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto Mono', monospace;
 }
 
 img {
   width: 100%;
-  height: 100%;
 }
 
 .app {
@@ -43,17 +44,14 @@ img {
   }
 }
 
-.bold {
-  font-weight: bold;
-}
+.flex {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 
-.text-red {
-  color: var(--color-light-red);
-}
-
-.container {
-  max-width: 1368px;
-  margin: auto;
+  &.wrap {
+    flex-wrap: wrap;
+  }
 }
 
 .title {
@@ -61,6 +59,59 @@ img {
   text-align: center;
   margin: 2rem 0;
   font-size: 2rem;
+}
+
+.cutoff-text {
+  --lines: 6;
+  --line-height: 1.4;
+
+  max-height: calc(var(--line-height) * 1rem * var(--lines));
+  line-height: var(--line-height);
+
+  overflow: hidden;
+  position: relative;
+
+  &:has(+ .expand-btn:checked) {
+    max-height: unset;
+  }
+}
+
+.cutoff-text + .expand-btn {
+  color: var(--color-light-grey);
+  appearance: none;
+  border: 1px solid var(--color-light-grey);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+
+  &::before {
+    content: 'Читать';
+  }
+
+  &:checked::before {
+    content: 'Скрыть';
+  }
+
+  &:hover {
+    background-color: darken(white, 4%);
+  }
+}
+
+.cutoff-text:has(+ .expand-btn:not(:checked))::before {
+  content: '';
+  position: absolute;
+  height: calc(1rem * var(--line-height));
+  width: 100%;
+  bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, white);
+}
+
+.card-description:nth-child(odd) {
+  .cutoff-text:has(+ .expand-btn:not(:checked))::before {
+    background: linear-gradient(to bottom, transparent, #ececee);
+  }
 }
 
 // modules
@@ -73,3 +124,65 @@ img {
 @import './pages/index';
 // layout elements
 @import './layout/index';
+
+.ant-form-item-explain-error {
+  color: #e1e1e1;
+}
+
+.ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
+  border-color: transparent;
+}
+
+.container {
+  max-width: 1368px;
+  margin: auto;
+  container-type: inline-size;
+}
+
+@container (max-width: 768px) {
+  .header-content {
+    margin-left: 10%;
+  }
+}
+
+@container (max-width: 600px) {
+  .card-description,
+  .card-teacher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-teacher {
+    height: unset;
+    margin: auto 20px;
+    box-shadow: none;
+  }
+
+  .card-teacher-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+  }
+
+  .card-teacher-social-links,
+  .card-teacher-info {
+    padding: 10px 20px 0 20px;
+  }
+}
+
+@container (max-width: 425px) {
+  .header-content {
+    margin-left: unset;
+  }
+
+  .header-title {
+    font-size: 2.2rem;
+    text-align: center;
+    margin: 30px 10px;
+  }
+
+  .header-btn {
+    margin: auto;
+  }
+}

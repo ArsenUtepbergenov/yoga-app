@@ -14,10 +14,12 @@
         </a-button>
       </div>
     </div>
-    <div class="navbar-items">
-      <a href="#timetable" class="navbar-link"><CalendarOutlined />&nbsp;Расписание</a>
-      <a href="#price" class="navbar-link"><MoneyCollectOutlined />&nbsp;Цена</a>
-      <a href="#teachers" class="navbar-link"><ContactsOutlined />&nbsp;Контакты</a>
+    <div class="header-ref-links">
+      <a href="#timetable" class="header-ref-link"
+        ><CalendarOutlined />&nbsp;Расписание</a
+      >
+      <a href="#price" class="header-ref-link"><MoneyCollectOutlined />&nbsp;Цена</a>
+      <a href="#teachers" class="header-ref-link"><ContactsOutlined />&nbsp;Контакты</a>
     </div>
   </header>
 </template>
@@ -30,3 +32,42 @@ import {
 } from '@ant-design/icons-vue'
 import appNavbar from './Navbar.vue'
 </script>
+
+<style lang="scss">
+.header {
+  min-height: var(--height-header);
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 20%;
+  }
+
+  &-title {
+    font-family: 'Fraunces', serif;
+    color: white;
+    font-size: 3rem;
+    margin: 25px 0;
+    max-width: 570px;
+  }
+
+  &-ref-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    gap: 10px;
+  }
+
+  &-ref-link {
+    color: var(--color-navbar-link);
+    font-size: 1.2rem;
+    padding: 0 10px;
+  }
+}
+</style>

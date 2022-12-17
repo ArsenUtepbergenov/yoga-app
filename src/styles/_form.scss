@@ -1,10 +1,19 @@
 .form {
   &-field {
     .ant-input-group-addon {
+      color: white;
+      background-color: var(--color-primary);
       width: 46px;
       font-size: 18px;
-      @include cb(white, var(--color-primary));
-      @include border0;
+      border: 0;
+    }
+  }
+
+  &-link {
+    color: var(--color-secondary);
+
+    &:hover {
+      color: var(--color-light-blue);
     }
   }
 }

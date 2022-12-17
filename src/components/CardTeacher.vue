@@ -59,3 +59,39 @@ function getKey(index: number) {
   return linkNames[index]
 }
 </script>
+
+<style lang="scss">
+.card-teacher {
+  width: 560px;
+  height: 270px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 50px;
+  box-shadow: 2px 2px 6px 1px #f4f4f4;
+
+  &-social-links {
+    justify-self: end;
+    font-size: 2rem;
+    margin-right: 10px;
+  }
+
+  &-name {
+    color: var(--color-light-blue);
+    border-bottom: 6px solid var(--color-light-blue);
+  }
+
+  &-info {
+    color: var(--color-light-grey);
+    grid-column: 2/3;
+    grid-row: 1/3;
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+
+  &-image {
+    width: 270px;
+    height: inherit;
+    grid-row: 1/4;
+  }
+}
+</style>

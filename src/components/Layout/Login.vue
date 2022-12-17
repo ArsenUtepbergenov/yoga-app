@@ -1,49 +1,48 @@
 <template>
-  <section>
-    <div class="form">
-      <a-form
-        ref="formRef"
-        layout="vertical"
-        :model="formState"
-        :rules="rules"
-        @finish="handleFinish"
+  <a-form
+    ref="formRef"
+    layout="vertical"
+    :model="formState"
+    :rules="rules"
+    @finish="handleFinish"
+  >
+    <a-form-item class="form-field" has-feedback name="email">
+      <a-input
+        v-model:value="formState.email"
+        type="email"
+        size="large"
+        placeholder="Почта..."
       >
-        <a-form-item class="form-field" has-feedback name="email">
-          <a-input
-            v-model:value="formState.email"
-            type="email"
-            size="large"
-            placeholder="Почта..."
-          >
-            <template #addonBefore><MailOutlined /></template>
-          </a-input>
-        </a-form-item>
-        <a-form-item class="form-field" has-feedback name="password">
-          <a-input
-            v-model:value="formState.password"
-            type="password"
-            size="large"
-            autocomplete="off"
-            placeholder="Пароль..."
-          >
-            <template #addonBefore><LockOutlined /></template>
-          </a-input>
-        </a-form-item>
-        <a-form-item>
-          <a-button
-            block
-            size="large"
-            type="primary"
-            html-type="submit"
-            class="btn btn-primary"
-            :disabled="disabled"
-          >
-            Войти
-          </a-button>
-        </a-form-item>
-      </a-form>
-    </div>
-  </section>
+        <template #addonBefore><MailOutlined /></template>
+      </a-input>
+    </a-form-item>
+    <a-form-item class="form-field" has-feedback name="password">
+      <a-input
+        v-model:value="formState.password"
+        type="password"
+        size="large"
+        autocomplete="off"
+        placeholder="Пароль..."
+      >
+        <template #addonBefore><LockOutlined /></template>
+      </a-input>
+    </a-form-item>
+    <a-form-item>
+      <a-button
+        block
+        size="large"
+        type="primary"
+        html-type="submit"
+        class="btn btn-primary"
+        :disabled="disabled"
+      >
+        Войти
+      </a-button>
+    </a-form-item>
+    <a-form-item>
+      <a-button type="link" class="form-link"> Еще не имеете аккаунт? </a-button>
+    </a-form-item>
+  </a-form>
 </template>
 
 <script setup lang="ts">

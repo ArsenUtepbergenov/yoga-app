@@ -32,3 +32,31 @@ const props = defineProps({
 
 const isImgLTR = computed(() => props.imgPosition === 'ltr')
 </script>
+
+<style lang="scss">
+.card-description {
+  display: flex;
+  padding: 20px;
+  color: var(--color-grey);
+  font-size: 1rem;
+
+  &-img {
+    min-width: 200px;
+  }
+
+  &-title {
+    text-transform: capitalize;
+  }
+
+  &-content {
+    margin: 0 20px;
+  }
+
+  &:nth-child(odd) {
+    background-color: #ececee;
+    .cutoff-text:has(+ .expand-btn:not(:checked))::before {
+      background: linear-gradient(to bottom, transparent, #ececee);
+    }
+  }
+}
+</style>

@@ -22,3 +22,18 @@ withDefaults(
   },
 )
 </script>
+
+<style lang="scss">
+.vertical-card {
+  width: 280px;
+  text-align: center;
+  margin: 10px;
+  font-size: 1rem;
+  color: var(--color-light-grey);
+
+  img {
+    height: 260px;
+    border-radius: 100%;
+  }
+}
+</style>

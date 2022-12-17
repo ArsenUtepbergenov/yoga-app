@@ -1,0 +1,56 @@
+.container {
+  max-width: 1368px;
+  margin: auto;
+  container-type: inline-size;
+}
+
+@container (max-width: 768px) {
+  .header-content {
+    margin-left: 10%;
+  }
+}
+
+@container (max-width: 600px) {
+  .card-description,
+  .card-teacher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-teacher {
+    height: unset;
+    margin: auto 20px;
+    box-shadow: none;
+  }
+
+  .header-title {
+    font-size: 2.2rem;
+    margin: 30px 10px;
+  }
+
+  .card-teacher-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+  }
+
+  .card-teacher-social-links,
+  .card-teacher-info {
+    padding: 10px 20px 0 20px;
+  }
+}
+
+@container (max-width: 425px) {
+  .header-content {
+    margin-left: unset;
+  }
+
+  .header-title {
+    text-align: center;
+  }
+
+  .header-btn {
+    margin: auto;
+  }
+}

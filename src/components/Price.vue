@@ -21,3 +21,10 @@
 <script setup lang="ts">
 import cardPrice from './CardPrice.vue'
 </script>
+
+<style lang="scss">
+.price {
+  background: #ececee;
+  padding: 1rem 30px 60px 30px;
+}
+</style>

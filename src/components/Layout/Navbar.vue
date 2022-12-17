@@ -99,3 +99,19 @@ const isLoggedIn = computed(() => store.getters['auth/isLoggedIn'])
 const email = computed(() => store.getters['auth/userEmail'])
 const isModalLoginVisible = computed(() => store.getters['modal/isLoginVisible'])
 </script>
+
+<style lang="scss" scoped>
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px 50px;
+
+  &-link {
+    color: var(--color-navbar-link);
+    font-size: 1.2rem;
+    padding: 0 10px;
+  }
+}
+</style>

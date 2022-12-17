@@ -16,7 +16,7 @@
       :text="calmnessText"
     />
     <h2 class="title">Попробуйте новый формат занятий!</h2>
-    <div class="vertical-card-wrapper">
+    <a-row type="flex" justify="space-around">
       <vertical-card v-once imgUrl="yoga.png" title="Йога" :text="yogaText" />
       <vertical-card v-once imgUrl="yoga.jpg" title="Мастера" :text="teachersText" />
       <vertical-card
@@ -25,7 +25,7 @@
         title="Технологии"
         :text="technologiesText"
       />
-    </div>
+    </a-row>
   </div>
 </template>
 

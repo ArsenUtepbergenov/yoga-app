@@ -4,7 +4,9 @@
     <br />
     <h3>{{ price }}&nbsp;&#8381;</h3>
     <p>за {{ exercises }}&nbsp;{{ endStr }}</p>
-    <a-button type="primary" class="btn btn-secondary" @click="toPaymentForm"> Купить </a-button>
+    <a-button type="primary" class="btn btn-secondary" @click="toPaymentForm">
+      Купить
+    </a-button>
   </div>
 </template>
 
@@ -43,3 +45,30 @@ const endStr = computed(() => {
   }
 })
 </script>
+
+<style lang="scss">
+.card-price {
+  background-color: white;
+  color: var(--color-light-grey);
+  text-align: center;
+  font-size: 1.4rem;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e8e8e8;
+
+  &__title {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 12px 0;
+    background: var(--color-primary);
+  }
+
+  &__text {
+    font-size: 1.7rem;
+    margin-top: 24px;
+  }
+}
+</style>

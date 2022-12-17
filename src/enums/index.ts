@@ -4,18 +4,9 @@ import { FirebaseError } from 'firebase/app'
 export const Pages = {
   PAGE_NOT_FOUND: '404',
   HOME: 'home',
-  LOGIN: 'login',
-  REGISTRATION: 'registration',
   FORGOT_PASSWORD: 'forgot-password',
   PROFILE: 'profile',
 }
-
-export const PagesWithoutNav = [
-  Pages.LOGIN,
-  Pages.REGISTRATION,
-  Pages.FORGOT_PASSWORD,
-  Pages.PAGE_NOT_FOUND,
-]
 
 export enum Codes {
   SUCCESS_SIGN_IN,

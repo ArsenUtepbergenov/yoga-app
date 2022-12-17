@@ -59,9 +59,6 @@
             Регистрация
           </a-button>
         </a-form-item>
-        <a-form-item>
-          <router-link :to="{ name: 'login' }"> Уже имеете аккаунт? </router-link>
-        </a-form-item>
       </a-form>
     </div>
   </section>

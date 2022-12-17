@@ -7,7 +7,7 @@
   border: 0;
 }
 
-@mixin borderTopLR($value: 0px) {
+@mixin borderTLR($value: 0px) {
   border-top-left-radius: $value + px;
   border-top-right-radius: $value + px;
 }

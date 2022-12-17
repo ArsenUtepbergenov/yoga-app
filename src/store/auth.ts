@@ -1,17 +1,11 @@
-import router from '../router'
-import { Codes, Notifications, Pages } from '@/enums'
-import {
-  AuthActionContext,
-  AuthState,
-  User,
-  FirebaseUser,
-  ReceivedUser,
-} from '@/models'
+import { Codes } from '@/enums'
+import { AuthState, User, FirebaseUser, ReceivedUser } from '@/models'
 // api
 import { auth, db, login, registration, logout } from '@/firebase'
 import { addDoc, collection } from 'firebase/firestore'
-
-const type = 'notification/set'
+import { FirebaseError } from 'firebase/app'
+import { setNotification } from './notification'
+import { setModalLogin } from './modal'
 
 const authModule = {
   namespaced: true,
@@ -25,19 +19,17 @@ const authModule = {
     setLoggedIn: (state: AuthState, status: boolean) => (state.isLoggedIn = status),
   },
   actions: {
-    async login({ commit }: AuthActionContext, { email, password }: FirebaseUser) {
+    async login(_: unknown, { email, password }: FirebaseUser) {
       try {
         const { user } = await login(auth, email, password)
-        commit(type, Notifications.get(Codes.SUCCESS_SIGN_IN)(user), { root: true })
-        router.push({ name: Pages.HOME })
+        setNotification(Codes.SUCCESS_SIGN_IN, user as ReceivedUser)
+        setModalLogin(false)
       } catch (error) {
-        commit(type, Notifications.get(Codes.ERROR_SIGN_IN)(error), {
-          root: true,
-        })
+        setNotification(Codes.ERROR_SIGN_IN, error as FirebaseError)
       }
     },
 
-    async registration({ commit }: AuthActionContext, { name, email, password }: User) {
+    async registration(_: unknown, { name, email, password }: User) {
       try {
         const { user } = await registration(auth, email, password)
         const docRef = await addDoc(collection(db, 'users'), {
@@ -46,28 +38,18 @@ const authModule = {
           email,
         })
         console.log('Document written with ID: ', docRef.id)
-
-        commit(type, Notifications.get(Codes.STATUS_REGISTRATION)(user), {
-          root: true,
-        })
-        router.push({ name: Pages.HOME })
+        setNotification(Codes.STATUS_REGISTRATION, user as ReceivedUser)
       } catch (error) {
-        commit(type, Notifications.get(Codes.ERROR_REGISTRATION)(error), {
-          root: true,
-        })
+        setNotification(Codes.ERROR_REGISTRATION, error as FirebaseError)
       }
     },
 
-    async logout({ commit }: AuthActionContext) {
+    async logout() {
       try {
         await logout(auth)
-        commit(type, Notifications.get(Codes.SUCCESS_LOGOUT)(), {
-          root: true,
-        })
+        setNotification(Codes.SUCCESS_LOGOUT)
       } catch (error) {
-        commit(type, Notifications.get(Codes.ERROR_LOGOUT)(error.message), {
-          root: true,
-        })
+        setNotification(Codes.ERROR_LOGOUT, error as FirebaseError)
       }
     },
   },

@@ -4,13 +4,14 @@
       <img src="/src/assets/logo.png" alt="logo" />
     </div>
     <div>
-      <router-link
+      <a-button
         v-if="!isLoggedIn"
+        type="link"
         class="navbar-item navbar-link"
-        :to="{ name: 'login' }"
+        @click="showModalLogin"
       >
-        <UserAddOutlined />&nbsp;Вход
-      </router-link>
+        <login-outlined />&nbsp;Вход
+      </a-button>
       <a-dropdown v-else class="navbar-menu">
         <a
           class="ant-dropdown-link"
@@ -36,15 +37,25 @@
       </a-dropdown>
     </div>
   </nav>
+  <a-modal
+    :visible="isModalLoginVisible"
+    width="360px"
+    :footer="null"
+    title="Авторизация"
+    @cancel="hideModalLogin"
+  >
+    <login />
+  </a-modal>
 </template>
 
 <script setup lang="ts">
 import { useStore } from '@/store'
 import { computed, VNodeChild } from 'vue'
+import Login from './Login.vue'
 import {
   IdcardOutlined,
   UserOutlined,
-  UserAddOutlined,
+  LoginOutlined,
   UserDeleteOutlined,
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
@@ -76,6 +87,15 @@ function handleMenuClick({ key }: MenuInfo) {
   }
 }
 
+function showModalLogin() {
+  store.dispatch('modal/showLogin')
+}
+
+function hideModalLogin() {
+  store.dispatch('modal/hideLogin')
+}
+
 const isLoggedIn = computed(() => store.getters['auth/isLoggedIn'])
 const email = computed(() => store.getters['auth/userEmail'])
+const isModalLoginVisible = computed(() => store.getters['modal/isLoginVisible'])
 </script>

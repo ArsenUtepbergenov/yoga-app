@@ -1,14 +1,12 @@
 <template>
-  <section id="login" class="login">
+  <section>
     <div class="form">
-      <div class="form-header form-header--login" />
       <a-form
         ref="formRef"
         layout="vertical"
         :model="formState"
         :rules="rules"
         @finish="handleFinish"
-        @finishFailed="handleFinishFailed"
       >
         <a-form-item class="form-field" has-feedback name="email">
           <a-input
@@ -43,27 +41,16 @@
             Войти
           </a-button>
         </a-form-item>
-        <a-form-item>
-          <router-link :to="{ name: routeRegister }">
-            Ещё не зарегистрированы?
-          </router-link>
-        </a-form-item>
-        <a-form-item>
-          <router-link :to="{ name: routeForgotPassword }">
-            Забыли свой пароль?
-          </router-link>
-        </a-form-item>
       </a-form>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { reactive, UnwrapRef, computed, ref } from 'vue'
-import { Pages } from '@/enums'
+import { reactive, UnwrapRef, computed, ref, watch } from 'vue'
 import { useStore } from '@/store'
 import { FirebaseUser } from '@/models'
-import { RuleObject, ValidateErrorEntity } from 'ant-design-vue/lib/form/interface'
+import { RuleObject } from 'ant-design-vue/lib/form/interface'
 import { LockOutlined, MailOutlined } from '@ant-design/icons-vue'
 
 const formRef = ref()
@@ -73,10 +60,17 @@ const formState: UnwrapRef<FirebaseUser> = reactive({
   password: '',
 })
 
+watch(
+  () => store.getters['modal/isLoginVisible'],
+  value => {
+    if (!value) resetForm()
+  },
+)
+
 async function validatePassword(rule: RuleObject, value: string) {
   try {
     if (value === '') {
-      throw new Error('Пожалуйста, введите пароль c минимальной длиной 6 символов')
+      throw new Error('Минимальная длина 6 символов.')
     } else {
       return Promise.resolve()
     }
@@ -92,18 +86,16 @@ async function handleFinish(values: FirebaseUser) {
   })
 }
 
-async function handleFinishFailed(errors: ValidateErrorEntity<FirebaseUser>) {
-  console.log(errors)
+function resetForm() {
+  formRef.value.resetFields()
 }
 
 const rules = {
   email: [
-    { required: true, message: 'Пожалуйста, введите свою почту', trigger: 'blur' },
+    { required: true, message: 'Пожалуйста, введите свою почту.', trigger: 'blur' },
   ],
   password: [{ required: true, validator: validatePassword, trigger: 'change' }],
 }
 
-const routeRegister = computed(() => Pages.REGISTRATION)
-const routeForgotPassword = computed(() => Pages.FORGOT_PASSWORD)
 const disabled = computed(() => formState.email === '' || formState.password === '')
 </script>

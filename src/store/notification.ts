@@ -1,4 +1,7 @@
-import { NotificationState, Notification } from '@/models'
+import { Notifications } from '@/enums'
+import { NotificationState, Notification, ReceivedUser } from '@/models'
+import { FirebaseError } from 'firebase/app'
+import store from '.'
 
 const notificationModule = {
   namespaced: true,
@@ -21,3 +24,6 @@ const notificationModule = {
 }
 
 export default notificationModule
+
+export const setNotification = (code: number, payload?: ReceivedUser | FirebaseError) =>
+  store.commit('notification/set', Notifications.get(code)(payload))

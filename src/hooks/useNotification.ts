@@ -9,12 +9,15 @@ export default function useNotification() {
   watch(
     () => store.getters['notification/length'],
     () => {
-      const notifications = store.getters['notification/notifications'] as Notification[]
+      const notifications = store.getters[
+        'notification/notifications'
+      ] as Notification[]
 
       for (const item of notifications) {
         notification[item.type]({
           message: item.title,
           description: item.message,
+          duration: 2,
         })
       }
 

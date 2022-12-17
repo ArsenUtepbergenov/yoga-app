@@ -4,12 +4,9 @@
   --color-navbar-link: white;
   --color-grey: #4c4c4c;
   --color-light-grey: #8c8c8c;
-  --color-box-shadow: #ebebeb;
-  --color-green: #8dbf53;
   --color-primary: #4d9e6e;
   --color-secondary: #937298;
   --color-light-blue: #7280d0;
-  --color-light-red: #ff837a;
   --height-header: 100vh;
   --width-logo: 332px;
   --height-logo: 152px;
@@ -116,23 +113,16 @@ img {
 
 // modules
 @import './mixins';
-// common components
+// components
 @import './card';
 @import './sections';
 @import './form';
-// pages
-@import './pages/index';
 // layout elements
 @import './layout/index';
 
-.ant-form-item-explain-error {
-  color: #e1e1e1;
-}
-
-.ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
-  border-color: transparent;
-}
-
+.ant-btn-link:hover,
+.ant-btn-link:focus,
+.ant-btn-link:active,
 a:hover {
   color: white;
 }

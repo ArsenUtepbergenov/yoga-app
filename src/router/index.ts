@@ -1,7 +1,11 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory,
+  RouteRecordName,
+  RouteRecordRaw,
+} from 'vue-router'
 import { Pages } from '@/enums'
 import store from '@/store'
-// components
 import Home from '@/views/Home.vue'
 import PageNotFound from '@/views/PageNotFound.vue'
 
@@ -41,7 +45,7 @@ const routes = [
   {
     path: '/forgot-password',
     name: Pages.FORGOT_PASSWORD,
-    component: () => import('@/views/Forgot-password.vue'),
+    component: () => import('@/views/ForgotPassword.vue'),
     meta: {
       title: 'Forgot Password',
     },
@@ -61,12 +65,20 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
-  const isLoginPage = to.name === Pages.LOGIN
-  const isLoddedIn = store.getters['auth/isLoggedIn']
-  if (!isLoddedIn && !isLoginPage) next({ name: Pages.LOGIN })
-  else next()
-  // update the title
+const publicPages: RouteRecordName[] = [Pages.LOGIN, Pages.REGISTRATION]
+
+router.beforeEach((to, _, next) => {
+  const isPublicPage = publicPages.includes(to.name as RouteRecordName)
+  const isLoggedIn = store.getters['auth/isLoggedIn']
+
+  if (isPublicPage) {
+    next()
+  } else if (!isPublicPage && !isLoggedIn) {
+    next({ name: Pages.LOGIN })
+  } else {
+    next()
+  }
+
   document.title = `${to.meta.title} | Yoga Hall`
 })
 

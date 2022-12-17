@@ -58,7 +58,7 @@
   </section>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { reactive, UnwrapRef, computed, ref } from 'vue'
 import { Pages } from '@/enums'
 import { useStore } from '@/store'
@@ -66,60 +66,44 @@ import { FirebaseUser } from '@/models'
 import { RuleObject, ValidateErrorEntity } from 'ant-design-vue/lib/form/interface'
 import { LockOutlined, MailOutlined } from '@ant-design/icons-vue'
 
-export default {
-  name: 'Login',
-  setup() {
-    const formRef = ref()
-    const store = useStore()
-    const formState: UnwrapRef<FirebaseUser> = reactive({
-      email: '',
-      password: '',
-    })
+const formRef = ref()
+const store = useStore()
+const formState: UnwrapRef<FirebaseUser> = reactive({
+  email: '',
+  password: '',
+})
 
-    const validatePassword = async (rule: RuleObject, value: string) => {
-      try {
-        if (value === '') {
-          throw new Error('Пожалуйста, введите пароль c минимальной длиной 6 символов')
-        } else {
-          return Promise.resolve()
-        }
-      } catch (error) {
-        return Promise.reject(error.message)
-      }
+async function validatePassword(rule: RuleObject, value: string) {
+  try {
+    if (value === '') {
+      throw new Error('Пожалуйста, введите пароль c минимальной длиной 6 символов')
+    } else {
+      return Promise.resolve()
     }
-
-    const handleFinish = async (values: FirebaseUser) => {
-      await store.dispatch('auth/login', {
-        email: values.email,
-        password: values.password,
-      })
-    }
-
-    const handleFinishFailed = (errors: ValidateErrorEntity<FirebaseUser>) => {
-      console.log(errors)
-    }
-
-    const rules = {
-      email: [
-        { required: true, message: 'Пожалуйста, введите свою почту', trigger: 'blur' },
-      ],
-      password: [{ required: true, validator: validatePassword, trigger: 'change' }],
-    }
-
-    return {
-      formRef,
-      formState,
-      rules,
-      handleFinish,
-      handleFinishFailed,
-      routeRegister: computed(() => Pages.REGISTRATION),
-      routeForgotPassword: computed(() => Pages.FORGOT_PASSWORD),
-      disabled: computed(() => formState.email === '' || formState.password === ''),
-    }
-  },
-  components: {
-    LockOutlined,
-    MailOutlined,
-  },
+  } catch (error) {
+    return Promise.reject(error.message)
+  }
 }
+
+async function handleFinish(values: FirebaseUser) {
+  await store.dispatch('auth/login', {
+    email: values.email,
+    password: values.password,
+  })
+}
+
+async function handleFinishFailed(errors: ValidateErrorEntity<FirebaseUser>) {
+  console.log(errors)
+}
+
+const rules = {
+  email: [
+    { required: true, message: 'Пожалуйста, введите свою почту', trigger: 'blur' },
+  ],
+  password: [{ required: true, validator: validatePassword, trigger: 'change' }],
+}
+
+const routeRegister = computed(() => Pages.REGISTRATION)
+const routeForgotPassword = computed(() => Pages.FORGOT_PASSWORD)
+const disabled = computed(() => formState.email === '' || formState.password === '')
 </script>

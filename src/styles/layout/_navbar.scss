@@ -21,8 +21,13 @@
     color: var(--color-navbar-link);
     font-size: 1.2rem;
     padding: 0 10px;
-    &:hover {
-      background-color: rgb(0 0 0 / 30%);
+  }
+
+  &-items {
+    &-link {
+      &:hover {
+        background-color: rgb(0 0 0 / 30%);
+      }
     }
   }
 }

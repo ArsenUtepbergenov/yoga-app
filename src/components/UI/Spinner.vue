@@ -4,12 +4,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'spinner'
-}
-</script>
-
 <style lang="scss" scoped>
 .spinner {
   top: 0;

@@ -4,13 +4,6 @@
   </div>
 </template>
 
-<script>
-import appMain from '@/components/Main'
-
-export default {
-  name: 'Home',
-  components: {
-    appMain,
-  },
-}
+<script setup lang="ts">
+import appMain from '@/components/Main.vue'
 </script>

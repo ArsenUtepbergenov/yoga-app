@@ -1,20 +1,12 @@
 import { User } from '@/models'
+import { FirebaseError } from 'firebase/app'
 
 export const Pages = {
   PAGE_NOT_FOUND: '404',
   HOME: 'home',
-  LOGIN: 'login',
-  REGISTER: 'register',
   FORGOT_PASSWORD: 'forgot-password',
   PROFILE: 'profile',
 }
-
-export const PagesWithoutNav = [
-  Pages.LOGIN,
-  Pages.REGISTER,
-  Pages.FORGOT_PASSWORD,
-  Pages.PAGE_NOT_FOUND,
-]
 
 export enum Codes {
   SUCCESS_SIGN_IN,
@@ -25,46 +17,54 @@ export enum Codes {
   ERROR_LOGOUT,
 }
 
-export const NotificationCodes = new Map()
-NotificationCodes.set(Codes.SUCCESS_SIGN_IN, (user: User) => {
+const FirebaseErrorCodes = {
+  'auth/user-not-found': 'Пользователь не существует.',
+  'auth/wrong-password': 'Неверный пароль.',
+  'auth/weak-password': 'Пароль должен иметь минимум 6 символов.',
+}
+
+type indexErrorCode = keyof typeof FirebaseErrorCodes
+
+export const Notifications = new Map()
+Notifications.set(Codes.SUCCESS_SIGN_IN, (user: User) => {
   return {
     type: 'success',
     title: 'Успешный вход в систему',
-    message: `Вы вошли, как ${user?.email}`,
+    message: `Вы вошли как ${user?.email}`,
   }
 })
-NotificationCodes.set(Codes.ERROR_SIGN_IN, (message: string) => {
+Notifications.set(Codes.ERROR_SIGN_IN, (error: FirebaseError) => {
   return {
     type: 'error',
     title: 'Ошибка при попытке входа',
-    message,
+    message: FirebaseErrorCodes[error.code as indexErrorCode],
   }
 })
-NotificationCodes.set(Codes.STATUS_REGISTRATION, (user: User) => {
+Notifications.set(Codes.STATUS_REGISTRATION, (user: User) => {
   return {
     type: 'info',
     title: 'Статус регистрации',
-    message: `Вы зарегистрировались, как ${user?.email}`,
+    message: `Вы зарегистрированы как ${user?.email}`,
   }
 })
-NotificationCodes.set(Codes.ERROR_REGISTRATION, (message: string) => {
+Notifications.set(Codes.ERROR_REGISTRATION, (error: FirebaseError) => {
   return {
     type: 'error',
-    title: 'Ошибка во время регистрации',
-    message,
+    title: 'Ошибка во время регистрации.',
+    message: FirebaseErrorCodes[error.code as indexErrorCode],
   }
 })
-NotificationCodes.set(Codes.SUCCESS_LOGOUT, () => {
+Notifications.set(Codes.SUCCESS_LOGOUT, () => {
   return {
     type: 'success',
     title: 'Успешно',
-    message: `Вы вышли из системы`,
+    message: `Вы успешно вышли из системы.`,
   }
 })
-NotificationCodes.set(Codes.ERROR_LOGOUT, (message: string) => {
+Notifications.set(Codes.ERROR_LOGOUT, (message: string) => {
   return {
     type: 'error',
-    title: 'Ошибка при поытке выхода!',
+    title: 'Ошибка при попытке выхода.',
     message,
   }
 })

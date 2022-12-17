@@ -1,0 +1,60 @@
+.title {
+  color: var(--color-light-grey);
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 2rem;
+}
+
+.cutoff-text {
+  --lines: 6;
+  --line-height: 1.4;
+
+  max-height: calc(var(--line-height) * 1rem * var(--lines));
+  line-height: var(--line-height);
+
+  overflow: hidden;
+  position: relative;
+
+  &:has(+ .expand-btn:checked) {
+    max-height: unset;
+  }
+}
+
+.cutoff-text + .expand-btn {
+  color: var(--color-light-grey);
+  appearance: none;
+  border: 1px solid var(--color-light-grey);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+
+  &::before {
+    content: 'Читать';
+  }
+
+  &:checked::before {
+    content: 'Скрыть';
+  }
+
+  &:hover {
+    background-color: darken(white, 4%);
+  }
+}
+
+.cutoff-text:has(+ .expand-btn:not(:checked))::before {
+  content: '';
+  position: absolute;
+  height: calc(1rem * var(--line-height));
+  width: 100%;
+  bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, white);
+}
+
+.ant-btn-link:hover,
+.ant-btn-link:focus,
+.ant-btn-link:active,
+a:hover {
+  color: white;
+}

@@ -1,7 +1,7 @@
 <template>
-  <section id="register" class="register">
+  <section id="registration" class="registration">
     <div class="form">
-      <div class="form-header form-header--register" />
+      <div class="form-header form-header--registration" />
       <a-form
         ref="formRef"
         layout="vertical"
@@ -16,7 +16,12 @@
           </a-input>
         </a-form-item>
         <a-form-item class="form-field" has-feedback name="email">
-          <a-input v-model:value="formState.email" type="email" size="large" placeholder="Почта...">
+          <a-input
+            v-model:value="formState.email"
+            type="email"
+            size="large"
+            placeholder="Почта..."
+          >
             <template #addonBefore><MailOutlined /></template>
           </a-input>
         </a-form-item>
@@ -53,9 +58,6 @@
           >
             Регистрация
           </a-button>
-        </a-form-item>
-        <a-form-item>
-          <router-link :to="{ name: 'login' }"> Уже имеете аккаунт? </router-link>
         </a-form-item>
       </a-form>
     </div>
@@ -111,11 +113,13 @@ export default defineComponent({
     const handleFinish = async (values: UserWithRepeatedPassword) => {
       if (!isPasswordError.value) {
         const { name, email, password } = values
-        await store.dispatch('auth/register', { name, email, password })
+        await store.dispatch('auth/registration', { name, email, password })
       }
     }
 
-    const handleFinishFailed = (errors: ValidateErrorEntity<UserWithRepeatedPassword>) => {
+    const handleFinishFailed = (
+      errors: ValidateErrorEntity<UserWithRepeatedPassword>,
+    ) => {
       console.log(errors) // TODO: needs to apply the notification module
     }
 
@@ -134,7 +138,9 @@ export default defineComponent({
     }
 
     const resetForm = () => formRef.value.resetFields()
-    const isPasswordError = computed(() => formState.password !== formState.repeatedPassword)
+    const isPasswordError = computed(
+      () => formState.password !== formState.repeatedPassword,
+    )
 
     return {
       formRef,

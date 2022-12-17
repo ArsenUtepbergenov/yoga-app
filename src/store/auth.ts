@@ -1,13 +1,11 @@
-import router from '../router'
-import { Codes, NotificationCodes, Pages } from '@/enums'
-import { AuthActionContext, AuthState, User, FirebaseUser, ReceivedUser } from '@/models'
-import store from '.'
+import { Codes } from '@/enums'
+import { AuthState, User, FirebaseUser, ReceivedUser } from '@/models'
 // api
-import { auth, db } from '@/firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { auth, db, login, registration, logout } from '@/firebase'
 import { addDoc, collection } from 'firebase/firestore'
-
-const type = 'notification/set'
+import { FirebaseError } from 'firebase/app'
+import { setNotification } from './notification'
+import { setModalLogin } from './modal'
 
 const authModule = {
   namespaced: true,
@@ -16,44 +14,42 @@ const authModule = {
     isLoggedIn: false,
   } as AuthState,
   mutations: {
-    setUser: (state: AuthState, user: ReceivedUser | null = null) => (state.user = user),
+    setUser: (state: AuthState, user: ReceivedUser | null = null) =>
+      (state.user = user),
     setLoggedIn: (state: AuthState, status: boolean) => (state.isLoggedIn = status),
   },
   actions: {
-    async login({ commit }: AuthActionContext, { email, password }: FirebaseUser) {
+    async login(_: unknown, { email, password }: FirebaseUser) {
       try {
-        const { user } = await signInWithEmailAndPassword(auth, email, password)
-        store.commit(type, NotificationCodes.get(Codes.SUCCESS_SIGN_IN)(user))
-        router.push({ name: Pages.HOME })
+        const { user } = await login(auth, email, password)
+        setNotification(Codes.SUCCESS_SIGN_IN, user as ReceivedUser)
+        setModalLogin(false)
       } catch (error) {
-        store.commit(type, NotificationCodes.get(Codes.ERROR_SIGN_IN)(error.message))
+        setNotification(Codes.ERROR_SIGN_IN, error as FirebaseError)
       }
     },
 
-    async register({ commit }: AuthActionContext, { name, email, password }: User) {
+    async registration(_: unknown, { name, email, password }: User) {
       try {
-        const { user } = await createUserWithEmailAndPassword(auth, email, password)
+        const { user } = await registration(auth, email, password)
         const docRef = await addDoc(collection(db, 'users'), {
           _id: user.uid,
           name,
           email,
         })
         console.log('Document written with ID: ', docRef.id)
-
-        store.commit(type, NotificationCodes.get(Codes.STATUS_REGISTRATION)(user))
-        router.push({ name: Pages.HOME })
+        setNotification(Codes.STATUS_REGISTRATION, user as ReceivedUser)
       } catch (error) {
-        store.commit(type, NotificationCodes.get(Codes.ERROR_REGISTRATION)(error.message))
-        console.error('Error during register: ', error)
+        setNotification(Codes.ERROR_REGISTRATION, error as FirebaseError)
       }
     },
 
-    async logout({ commit }: AuthActionContext) {
+    async logout() {
       try {
-        await signOut(auth)
-        store.commit(type, NotificationCodes.get(Codes.SUCCESS_LOGOUT)())
+        await logout(auth)
+        setNotification(Codes.SUCCESS_LOGOUT)
       } catch (error) {
-        store.commit(type, NotificationCodes.get(Codes.ERROR_LOGOUT)(error.message))
+        setNotification(Codes.ERROR_LOGOUT, error as FirebaseError)
       }
     },
   },

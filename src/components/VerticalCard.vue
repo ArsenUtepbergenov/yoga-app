@@ -8,15 +8,32 @@
   </a-card>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'vertical-card',
-  props: {
-    imgUrl: String,
-    title: String,
-    text: String,
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    imgUrl: string
+    title: string
+    text: string
+  }>(),
+  {
+    imgUrl: '',
+    title: '',
+    text: '',
   },
-})
+)
 </script>
+
+<style lang="scss">
+.vertical-card {
+  width: 280px;
+  text-align: center;
+  margin: 10px;
+  font-size: 1rem;
+  color: var(--color-light-grey);
+
+  img {
+    height: 260px;
+    border-radius: 100%;
+  }
+}
+</style>

@@ -33,10 +33,15 @@ export type NotificationState = {
   notifications: Notification[]
 }
 
+export type ModalState = {
+  isLoginVisible: boolean
+}
+
 // root
-export type RootState = AppState & AuthState & NotificationState
+export type RootState = AppState & AuthState & NotificationState & ModalState
 
 // actions
 export type AuthActionContext = ActionContext<AuthState, RootState>
+export type ModalActionContext = ActionContext<ModalState, RootState>
 
 import './notification'

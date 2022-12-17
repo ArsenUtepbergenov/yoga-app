@@ -4,11 +4,20 @@
       <img src="/src/assets/logo.png" alt="logo" />
     </div>
     <div>
-      <router-link v-if="!isLoggedIn" class="navbar-item navbar-link" :to="{ name: 'login' }">
-        <UserAddOutlined />&nbsp;Вход
-      </router-link>
+      <a-button
+        v-if="!isLoggedIn"
+        type="link"
+        class="navbar-item navbar-link"
+        @click="showModalLogin"
+      >
+        <login-outlined />&nbsp;Вход
+      </a-button>
       <a-dropdown v-else class="navbar-menu">
-        <a class="ant-dropdown-link" style="color: white; font-size: 1.2rem" @click.prevent>
+        <a
+          class="ant-dropdown-link"
+          style="color: white; font-size: 1.2rem"
+          @click.prevent
+        >
           {{ email }}
           <UserOutlined />
         </a>
@@ -28,15 +37,25 @@
       </a-dropdown>
     </div>
   </nav>
+  <a-modal
+    :visible="isModalLoginVisible"
+    width="360px"
+    :footer="null"
+    title="Авторизация"
+    @cancel="hideModalLogin"
+  >
+    <login />
+  </a-modal>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useStore } from '@/store'
-import { defineComponent, computed, VNodeChild, watch } from 'vue'
+import { computed, VNodeChild } from 'vue'
+import Login from './Login.vue'
 import {
   IdcardOutlined,
   UserOutlined,
-  UserAddOutlined,
+  LoginOutlined,
   UserDeleteOutlined,
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
@@ -54,34 +73,45 @@ interface MenuInfo {
   domEvent: MouseEvent
 }
 
-export default defineComponent({
-  name: 'app-navbar',
-  setup() {
-    const store = useStore()
-    const router = useRouter()
+const store = useStore()
+const router = useRouter()
 
-    const handleMenuClick = ({ key }: MenuInfo) => {
-      switch (MenuKeys[key]) {
-        case MenuKeys.PROFILE:
-          router.push({ name: Pages.PROFILE })
-          break
-        case MenuKeys.EXIT:
-          store.dispatch('auth/logout')
-          break
-      }
-    }
+function handleMenuClick({ key }: MenuInfo) {
+  switch (MenuKeys[key]) {
+    case MenuKeys.PROFILE:
+      router.push({ name: Pages.PROFILE })
+      break
+    case MenuKeys.EXIT:
+      store.dispatch('auth/logout')
+      break
+  }
+}
 
-    return {
-      isLoggedIn: computed(() => store.getters['auth/isLoggedIn']),
-      email: computed(() => store.getters['auth/userEmail']),
-      handleMenuClick,
-    }
-  },
-  components: {
-    UserAddOutlined,
-    UserDeleteOutlined,
-    UserOutlined,
-    IdcardOutlined,
-  },
-})
+function showModalLogin() {
+  store.dispatch('modal/showLogin')
+}
+
+function hideModalLogin() {
+  store.dispatch('modal/hideLogin')
+}
+
+const isLoggedIn = computed(() => store.getters['auth/isLoggedIn'])
+const email = computed(() => store.getters['auth/userEmail'])
+const isModalLoginVisible = computed(() => store.getters['modal/isLoginVisible'])
 </script>
+
+<style lang="scss" scoped>
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px 50px;
+
+  &-link {
+    color: var(--color-navbar-link);
+    font-size: 1.2rem;
+    padding: 0 10px;
+  }
+}
+</style>

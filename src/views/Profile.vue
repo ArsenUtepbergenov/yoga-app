@@ -4,7 +4,9 @@
       <template class="ant-card-actions" #actions> social links </template>
       <a-card-meta title="User name" description="">
         <template #avatar>
-          <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+          <a-avatar
+            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+          />
         </template>
       </a-card-meta>
       <p>Почта: {{ email }}</p>
@@ -12,18 +14,10 @@
   </section>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useStore } from '@/store'
-import { computed, defineComponent } from 'vue'
+import { computed } from 'vue'
 
-export default defineComponent({
-  name: 'profile',
-  setup() {
-    const store = useStore()
-
-    return {
-      email: computed(() => store.getters['auth/user']?.email),
-    }
-  },
-})
+const store = useStore()
+const email = computed(() => store.getters['auth/user']?.email)
 </script>

@@ -1,27 +1,19 @@
 .form {
-  display: flex;
-  padding: 40px 20px 10px 0;
-  background: rgb(0 0 0 / 60%);
-  border-left: 3px solid white;
-
-  &-header {
-    @include background-image();
-    @include size(260px, 300px);
-
-    &--login,
-    &--register {
-      background-image: url('../assets/login-logo.png');
+  &-field {
+    .ant-input-group-addon {
+      color: white;
+      background-color: var(--color-primary);
+      width: 46px;
+      font-size: 18px;
+      border: 0;
     }
   }
 
-  &-field {
-    width: 280px;
+  &-link {
+    color: var(--color-secondary);
 
-    .ant-input-group-addon {
-      width: 46px;
-      font-size: 18px;
-      @include cb(white, var(--color-primary));
-      @include border0;
+    &:hover {
+      color: var(--color-light-blue);
     }
   }
 }

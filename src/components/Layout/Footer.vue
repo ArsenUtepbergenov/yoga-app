@@ -4,14 +4,23 @@
   </footer>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import { CopyrightCircleOutlined } from '@ant-design/icons-vue'
-
-export default defineComponent({
-  name: 'app-footer',
-  components: {
-    CopyrightCircleOutlined,
-  },
-})
 </script>
+
+<style lang="scss">
+.footer {
+  height: 200px;
+  background: linear-gradient(150deg, #4d9e6e, #7280d0);
+  margin-top: 40px;
+
+  &-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100%;
+    font-size: 1.6rem;
+  }
+}
+</style>

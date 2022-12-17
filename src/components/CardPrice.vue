@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { withDefaults, defineProps, computed } from 'vue'
+import { withDefaults, computed } from 'vue'
 
 const temp = ['занятие', 'занятия', 'занятий']
 

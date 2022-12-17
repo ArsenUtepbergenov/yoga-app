@@ -31,11 +31,11 @@ const routes = [
     },
   },
   {
-    path: '/register',
-    name: Pages.REGISTER,
-    component: () => import('@/views/Register.vue'),
+    path: '/registration',
+    name: Pages.REGISTRATION,
+    component: () => import('@/views/Registration.vue'),
     meta: {
-      title: 'Register',
+      title: 'Registration',
     },
   },
   {

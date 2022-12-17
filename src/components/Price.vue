@@ -18,13 +18,6 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import cardPrice from './CardPrice.vue'
-
-export default {
-  name: 'price',
-  components: {
-    cardPrice,
-  },
-}
 </script>

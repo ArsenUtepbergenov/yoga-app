@@ -16,30 +16,19 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue'
 
-export default defineComponent({
-  name: 'card-description',
-  props: {
-    imgUrl: String,
-    title: String,
-    text: String,
-    parity: {
-      type: String,
-      default: 'odd',
-      validator: (value: string) => ['odd', 'even'].indexOf(value) !== -1,
-    },
-    imgPosition: {
-      type: String,
-      default: 'ltr',
-      validator: (value: string) => ['ltr', 'rtl'].indexOf(value) !== -1,
-    },
-  },
-  setup(props) {
-    return {
-      isImgLTR: computed(() => props.imgPosition === 'ltr'),
-    }
+const props = defineProps({
+  imgUrl: String,
+  title: String,
+  text: String,
+  imgPosition: {
+    type: String,
+    default: 'ltr',
+    validator: (value: string) => ['ltr', 'rtl'].indexOf(value) !== -1,
   },
 })
+
+const isImgLTR = computed(() => props.imgPosition === 'ltr')
 </script>

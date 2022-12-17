@@ -11,7 +11,12 @@
         @finishFailed="handleFinishFailed"
       >
         <a-form-item class="form-field" has-feedback name="email">
-          <a-input v-model:value="formState.email" type="email" size="large" placeholder="Почта...">
+          <a-input
+            v-model:value="formState.email"
+            type="email"
+            size="large"
+            placeholder="Почта..."
+          >
             <template #addonBefore><MailOutlined /></template>
           </a-input>
         </a-form-item>
@@ -39,10 +44,14 @@
           </a-button>
         </a-form-item>
         <a-form-item>
-          <router-link :to="{ name: routeRegister }"> Ещё не зарегистрированы? </router-link>
+          <router-link :to="{ name: routeRegister }">
+            Ещё не зарегистрированы?
+          </router-link>
         </a-form-item>
         <a-form-item>
-          <router-link :to="{ name: routeForgotPassword }"> Забыли свой пароль? </router-link>
+          <router-link :to="{ name: routeForgotPassword }">
+            Забыли свой пароль?
+          </router-link>
         </a-form-item>
       </a-form>
     </div>
@@ -80,7 +89,10 @@ export default {
     }
 
     const handleFinish = async (values: FirebaseUser) => {
-      await store.dispatch('auth/login', { email: values.email, password: values.password })
+      await store.dispatch('auth/login', {
+        email: values.email,
+        password: values.password,
+      })
     }
 
     const handleFinishFailed = (errors: ValidateErrorEntity<FirebaseUser>) => {
@@ -88,7 +100,9 @@ export default {
     }
 
     const rules = {
-      email: [{ required: true, message: 'Пожалуйста, введите свою почту', trigger: 'blur' }],
+      email: [
+        { required: true, message: 'Пожалуйста, введите свою почту', trigger: 'blur' },
+      ],
       password: [{ required: true, validator: validatePassword, trigger: 'change' }],
     }
 
@@ -98,7 +112,7 @@ export default {
       rules,
       handleFinish,
       handleFinishFailed,
-      routeRegister: computed(() => Pages.REGISTER),
+      routeRegister: computed(() => Pages.REGISTRATION),
       routeForgotPassword: computed(() => Pages.FORGOT_PASSWORD),
       disabled: computed(() => formState.email === '' || formState.password === ''),
     }

@@ -8,7 +8,7 @@ import {
   ReceivedUser,
 } from '@/models'
 // api
-import { auth, db, login, register, logout } from '@/firebase'
+import { auth, db, login, registration, logout } from '@/firebase'
 import { addDoc, collection } from 'firebase/firestore'
 
 const type = 'notification/set'
@@ -37,9 +37,9 @@ const authModule = {
       }
     },
 
-    async register({ commit }: AuthActionContext, { name, email, password }: User) {
+    async registration({ commit }: AuthActionContext, { name, email, password }: User) {
       try {
-        const { user } = await register(auth, email, password)
+        const { user } = await registration(auth, email, password)
         const docRef = await addDoc(collection(db, 'users'), {
           _id: user.uid,
           name,

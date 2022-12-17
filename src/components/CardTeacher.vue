@@ -9,35 +9,53 @@
       <a-typography-link
         v-for="(link, index) in socialMediaLinks"
         :key="index"
-        :href="getValue(link)"
+        :href="getValue(index)"
         target="_blank"
         style="color: #7280d0"
       >
-        <i class="fab" :class="`fa-${getKey(link)}`" />
+        <i class="fab" :class="`fa-${getKey(index)}`" />
       </a-typography-link>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { onBeforeMount } from 'vue'
 
-export default defineComponent({
-  name: 'card-teacher',
-  props: {
-    imgUrl: String,
-    name: String,
-    about: String,
-    socialMediaLinks: {
-      type: Array<Record<string, string>>,
-      default: () => [],
-    },
+const props = withDefaults(
+  defineProps<{
+    imgUrl: string
+    name: string
+    about: string
+    socialMediaLinks: Record<string, string>[]
+  }>(),
+  {
+    imgUrl: '',
+    name: '',
+    about: '',
+    socialMediaLinks: () => [],
   },
-  setup() {
-    return {
-      getValue: (object: Record<string, string>) => Object.values(object)[0],
-      getKey: (object: Record<string, string>) => Object.keys(object)[0],
+)
+
+const linkNames: string[] = []
+const linkValues: string[] = []
+
+onBeforeMount(() => {
+  const links = props.socialMediaLinks
+
+  for (const link of links) {
+    for (const value in link) {
+      linkNames.push(value)
+      linkValues.push(link[value])
     }
-  },
+  }
 })
+
+function getValue(index: number) {
+  return linkValues[index]
+}
+
+function getKey(index: number) {
+  return linkNames[index]
+}
 </script>

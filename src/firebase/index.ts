@@ -21,5 +21,5 @@ const app = initializeApp(config)
 export const db = getFirestore()
 export const auth = getAuth()
 export const login = signInWithEmailAndPassword
-export const register = createUserWithEmailAndPassword
+export const registration = createUserWithEmailAndPassword
 export const logout = signOut

@@ -5,14 +5,14 @@ export const Pages = {
   PAGE_NOT_FOUND: '404',
   HOME: 'home',
   LOGIN: 'login',
-  REGISTER: 'register',
+  REGISTRATION: 'registration',
   FORGOT_PASSWORD: 'forgot-password',
   PROFILE: 'profile',
 }
 
 export const PagesWithoutNav = [
   Pages.LOGIN,
-  Pages.REGISTER,
+  Pages.REGISTRATION,
   Pages.FORGOT_PASSWORD,
   Pages.PAGE_NOT_FOUND,
 ]

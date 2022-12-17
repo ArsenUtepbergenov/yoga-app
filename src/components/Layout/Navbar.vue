@@ -4,11 +4,19 @@
       <img src="/src/assets/logo.png" alt="logo" />
     </div>
     <div>
-      <router-link v-if="!isLoggedIn" class="navbar-item navbar-link" :to="{ name: 'login' }">
+      <router-link
+        v-if="!isLoggedIn"
+        class="navbar-item navbar-link"
+        :to="{ name: 'login' }"
+      >
         <UserAddOutlined />&nbsp;Вход
       </router-link>
       <a-dropdown v-else class="navbar-menu">
-        <a class="ant-dropdown-link" style="color: white; font-size: 1.2rem" @click.prevent>
+        <a
+          class="ant-dropdown-link"
+          style="color: white; font-size: 1.2rem"
+          @click.prevent
+        >
           {{ email }}
           <UserOutlined />
         </a>
@@ -30,9 +38,9 @@
   </nav>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useStore } from '@/store'
-import { defineComponent, computed, VNodeChild, watch } from 'vue'
+import { computed, VNodeChild } from 'vue'
 import {
   IdcardOutlined,
   UserOutlined,
@@ -54,34 +62,20 @@ interface MenuInfo {
   domEvent: MouseEvent
 }
 
-export default defineComponent({
-  name: 'app-navbar',
-  setup() {
-    const store = useStore()
-    const router = useRouter()
+const store = useStore()
+const router = useRouter()
 
-    const handleMenuClick = ({ key }: MenuInfo) => {
-      switch (MenuKeys[key]) {
-        case MenuKeys.PROFILE:
-          router.push({ name: Pages.PROFILE })
-          break
-        case MenuKeys.EXIT:
-          store.dispatch('auth/logout')
-          break
-      }
-    }
+function handleMenuClick({ key }: MenuInfo) {
+  switch (MenuKeys[key]) {
+    case MenuKeys.PROFILE:
+      router.push({ name: Pages.PROFILE })
+      break
+    case MenuKeys.EXIT:
+      store.dispatch('auth/logout')
+      break
+  }
+}
 
-    return {
-      isLoggedIn: computed(() => store.getters['auth/isLoggedIn']),
-      email: computed(() => store.getters['auth/userEmail']),
-      handleMenuClick,
-    }
-  },
-  components: {
-    UserAddOutlined,
-    UserDeleteOutlined,
-    UserOutlined,
-    IdcardOutlined,
-  },
-})
+const isLoggedIn = computed(() => store.getters['auth/isLoggedIn'])
+const email = computed(() => store.getters['auth/userEmail'])
 </script>

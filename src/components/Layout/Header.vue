@@ -22,18 +22,11 @@
   </header>
 </template>
 
-<script lang="ts">
-import { CalendarOutlined, MoneyCollectOutlined, ContactsOutlined } from '@ant-design/icons-vue'
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import {
+  CalendarOutlined,
+  MoneyCollectOutlined,
+  ContactsOutlined,
+} from '@ant-design/icons-vue'
 import appNavbar from './Navbar.vue'
-
-export default defineComponent({
-  name: 'app-header',
-  components: {
-    appNavbar,
-    CalendarOutlined,
-    MoneyCollectOutlined,
-    ContactsOutlined,
-  },
-})
 </script>

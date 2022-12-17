@@ -4,14 +4,6 @@
   </footer>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import { CopyrightCircleOutlined } from '@ant-design/icons-vue'
-
-export default defineComponent({
-  name: 'app-footer',
-  components: {
-    CopyrightCircleOutlined,
-  },
-})
 </script>

@@ -4,26 +4,26 @@ import store from '.'
 const modalModule = {
   namespaced: true,
   state: {
-    isLoginVisible: false,
+    isAuthVisible: false,
   } as ModalState,
   mutations: {
-    setLogin(state: ModalState, payload: boolean) {
-      state.isLoginVisible = payload
+    setAuth(state: ModalState, payload: boolean) {
+      state.isAuthVisible = payload
     },
   },
   actions: {
-    showLogin({ commit }: ModalActionContext) {
-      commit('setLogin', true)
+    showAuth({ commit }: ModalActionContext) {
+      commit('setAuth', true)
     },
-    hideLogin({ commit }: ModalActionContext) {
-      commit('setLogin', false)
+    hideAuth({ commit }: ModalActionContext) {
+      commit('setAuth', false)
     },
   },
   getters: {
-    isLoginVisible: (state: ModalState) => state.isLoginVisible,
+    isAuthVisible: (state: ModalState) => state.isAuthVisible,
   },
 }
 
 export default modalModule
 
-export const setModalLogin = (value: boolean) => store.commit('modal/setLogin', value)
+export const setAuthModal = (value: boolean) => store.commit('modal/setAuth', value)

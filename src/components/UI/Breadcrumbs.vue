@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { HomeOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { HomeOutlined } from '@ant-design/icons-vue'
 import { ref, watch } from 'vue'
 import { RouteRecordName, useRoute } from 'vue-router'
 import { Pages } from '@/enums'

@@ -1,7 +1,9 @@
 <template>
   <div class="app">
     <app-header />
-    <breadcrumbs />
+    <section class="container">
+      <breadcrumbs />
+    </section>
     <router-view />
     <app-footer />
     <go-to-top />
@@ -11,7 +13,8 @@
 <script setup lang="ts">
 import goToTop from '@/components/UI/GoToTop.vue'
 import breadcrumbs from '@/components/UI/Breadcrumbs.vue'
-import { appHeader, appFooter } from '@/components/Layout'
+import AppHeader from '@/components/Layout/Header.vue'
+import AppFooter from '@/components/Layout/Footer.vue'
 import { useNotification } from './hooks'
 
 useNotification()

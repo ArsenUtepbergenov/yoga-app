@@ -5,17 +5,24 @@ import { auth, db, login, registration, logout } from '@/firebase'
 import { addDoc, collection } from 'firebase/firestore'
 import { FirebaseError } from 'firebase/app'
 import { setNotification } from './notification'
-import { setModalLogin } from './modal'
+import { setAuthModal } from './modal'
+import { updateProfile } from 'firebase/auth'
 
 const authModule = {
   namespaced: true,
   state: {
-    user: null,
+    user: {
+      displayName: '',
+      email: '',
+    },
     isLoggedIn: false,
   } as AuthState,
   mutations: {
-    setUser: (state: AuthState, user: ReceivedUser | null = null) =>
-      (state.user = user),
+    setUser: (state: AuthState, user: ReceivedUser) =>
+      (state.user = {
+        ...state.user,
+        ...user,
+      }),
     setLoggedIn: (state: AuthState, status: boolean) => (state.isLoggedIn = status),
   },
   actions: {
@@ -23,7 +30,7 @@ const authModule = {
       try {
         const { user } = await login(auth, email, password)
         setNotification(Codes.SUCCESS_SIGN_IN, user as ReceivedUser)
-        setModalLogin(false)
+        setAuthModal(false)
       } catch (error) {
         setNotification(Codes.ERROR_SIGN_IN, error as FirebaseError)
       }
@@ -37,8 +44,15 @@ const authModule = {
           name,
           email,
         })
+
+        await updateProfile(user, {
+          displayName: name,
+        })
+
         console.log('Document written with ID: ', docRef.id)
+
         setNotification(Codes.STATUS_REGISTRATION, user as ReceivedUser)
+        setAuthModal(false)
       } catch (error) {
         setNotification(Codes.ERROR_REGISTRATION, error as FirebaseError)
       }
@@ -56,8 +70,8 @@ const authModule = {
   getters: {
     isLoggedIn: (state: AuthState) => state.isLoggedIn,
     user: (state: AuthState) => state.user,
-    userName: (state: AuthState) => state.user?.displayName,
-    userEmail: (state: AuthState) => state.user?.email,
+    userName: (state: AuthState) => state.user.displayName,
+    userEmail: (state: AuthState) => state.user.email,
   },
 }
 

@@ -10,8 +10,7 @@
   --color-light-blue: #7280d0;
   --color-primary-hover: #53aaaa;
   --height-header: 100vh;
-  --width-logo: 332px;
-  --height-logo: 152px;
+  --width-logo: 300px;
 }
 
 body {
@@ -27,7 +26,7 @@ img {
 }
 
 .logo {
-  @include size(var(--width-logo), var(--height-logo));
+  width: var(--width-logo);
 }
 
 .video {
@@ -62,8 +61,7 @@ img {
   }
 }
 
-// components
 @import './typography';
-@import './form';
-// layout elements
+@import './antd';
+//
 @import './layout';

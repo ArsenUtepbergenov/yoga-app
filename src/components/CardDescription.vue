@@ -1,23 +1,27 @@
 <template>
   <div class="card-description">
-    <div v-if="isImgLTR" class="card-description-img">
+    <div class="card-description-img" :class="!isImgLTR ? 'rtl' : ''">
       <img :src="`/src/assets/${imgUrl}`" :alt="title" />
     </div>
     <div class="card-description-content">
       <h3 class="card-description-title">{{ title }}</h3>
-      <p class="card-description-text cutoff-text">
+      <p class="card-description-text" :class="isTablet ? 'cutoff-text' : ''">
         {{ text }}
       </p>
-      <input type="checkbox" class="expand-btn" />
-    </div>
-    <div v-if="!isImgLTR" class="card-description-img">
-      <img :src="`/src/assets/${imgUrl}`" :alt="title" />
+      <input v-if="isTablet" type="checkbox" class="expand-btn" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useBreakpoints } from '@vueuse/core'
+
+const breakpoints = useBreakpoints({
+  tablet: 899,
+})
+
+const isTablet = breakpoints.smaller('tablet')
 
 const props = defineProps({
   imgUrl: String,
@@ -42,6 +46,10 @@ const isImgLTR = computed(() => props.imgPosition === 'ltr')
 
   &-img {
     min-width: 200px;
+  }
+
+  &-img.rtl {
+    order: 2;
   }
 
   &-title {

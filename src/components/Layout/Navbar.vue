@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar mobile">
     <div class="logo">
       <img src="/src/assets/logo.png" alt="logo" />
     </div>
@@ -8,7 +8,7 @@
         v-if="!isLoggedIn"
         type="link"
         class="navbar-item navbar-link"
-        @click="showModalLogin"
+        @click="showAuthModal"
       >
         <login-outlined />&nbsp;Вход
       </a-button>
@@ -18,7 +18,9 @@
           style="color: white; font-size: 1.2rem"
           @click.prevent
         >
-          {{ email }}
+          <span style="margin-right: 10px" v-if="!isMobile">
+            {{ email }}
+          </span>
           <UserOutlined />
         </a>
         <template #overlay>
@@ -28,7 +30,7 @@
               Профиль
             </a-menu-item>
             <a-menu-item key="EXIT">
-              <UserDeleteOutlined />
+              <logout-outlined />
               Выход
             </a-menu-item>
           </a-menu>
@@ -38,43 +40,61 @@
     </div>
   </nav>
   <a-modal
-    :visible="isModalLoginVisible"
+    :visible="isAuthModalVisible"
     width="360px"
     :footer="null"
     title="Авторизация"
-    @cancel="hideModalLogin"
+    @cancel="hideAuthModal"
   >
-    <login />
+    <a-tabs v-model:activeKey="activeKey" type="card" size="large" :tabBarGutter="2">
+      <a-tab-pane key="1">
+        <template #tab>
+          <span>
+            <user-outlined />
+            Войти
+          </span>
+        </template>
+        <login />
+      </a-tab-pane>
+      <a-tab-pane key="2">
+        <template #tab>
+          <span>
+            <user-add-outlined />
+            Регистрация
+          </span>
+        </template>
+        <registration />
+      </a-tab-pane>
+    </a-tabs>
   </a-modal>
 </template>
 
 <script setup lang="ts">
 import { useStore } from '@/store'
-import { computed, VNodeChild } from 'vue'
+import { computed, ref } from 'vue'
 import Login from './Login.vue'
+import Registration from './Registration.vue'
 import {
   IdcardOutlined,
   UserOutlined,
   LoginOutlined,
-  UserDeleteOutlined,
+  LogoutOutlined,
+  UserAddOutlined,
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 import { Pages } from '@/enums'
+import { MenuInfo, MenuKeys } from './layout.types'
+import { useBreakpoints } from '@vueuse/core'
 
-const MenuKeys = {
-  PROFILE: 'Profile',
-  EXIT: 'Exit',
-}
+const breakpoints = useBreakpoints({
+  mobile: 600,
+})
 
-interface MenuInfo {
-  key: keyof typeof MenuKeys
-  keyPath: string[]
-  item: VNodeChild
-  domEvent: MouseEvent
-}
+const isMobile = breakpoints.smaller('mobile')
 
 const store = useStore()
 const router = useRouter()
+const activeKey = ref('1')
 
 function handleMenuClick({ key }: MenuInfo) {
   switch (MenuKeys[key]) {
@@ -87,28 +107,28 @@ function handleMenuClick({ key }: MenuInfo) {
   }
 }
 
-function showModalLogin() {
-  store.dispatch('modal/showLogin')
+function showAuthModal() {
+  store.dispatch('modal/showAuth')
 }
 
-function hideModalLogin() {
-  store.dispatch('modal/hideLogin')
+function hideAuthModal() {
+  store.dispatch('modal/hideAuth')
 }
 
 const isLoggedIn = computed(() => store.getters['auth/isLoggedIn'])
 const email = computed(() => store.getters['auth/userEmail'])
-const isModalLoginVisible = computed(() => store.getters['modal/isLoginVisible'])
+const isAuthModalVisible = computed(() => store.getters['modal/isAuthVisible'])
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .navbar {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  margin: 10px 50px;
+  margin: 10px 32px;
 
-  &-link {
+  .ant-btn-link {
     color: var(--color-navbar-link);
     font-size: 1.2rem;
     padding: 0 10px;

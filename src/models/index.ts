@@ -25,7 +25,7 @@ export type ReceivedUser = {
 }
 
 export type AuthState = {
-  user: ReceivedUser | null
+  user: ReceivedUser
   isLoggedIn: boolean
 }
 
@@ -34,7 +34,7 @@ export type NotificationState = {
 }
 
 export type ModalState = {
-  isLoginVisible: boolean
+  isAuthVisible: boolean
 }
 
 // root

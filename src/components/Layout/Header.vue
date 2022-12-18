@@ -15,11 +15,15 @@
       </div>
     </div>
     <div class="header-ref-links">
-      <a href="#timetable" class="header-ref-link"
-        ><CalendarOutlined />&nbsp;Расписание</a
-      >
-      <a href="#price" class="header-ref-link"><MoneyCollectOutlined />&nbsp;Цена</a>
-      <a href="#teachers" class="header-ref-link"><ContactsOutlined />&nbsp;Контакты</a>
+      <a-anchor-link href="#timetable" class="header-ref-link">
+        <template #title> <CalendarOutlined />&nbsp;Расписание</template>
+      </a-anchor-link>
+      <a-anchor-link href="#price" class="header-ref-link" @click="test">
+        <template #title><MoneyCollectOutlined />&nbsp;Цена</template>
+      </a-anchor-link>
+      <a-anchor-link href="#teachers" class="header-ref-link">
+        <template #title><ContactsOutlined />&nbsp;Контакты</template>
+      </a-anchor-link>
     </div>
   </header>
 </template>
@@ -31,6 +35,11 @@ import {
   ContactsOutlined,
 } from '@ant-design/icons-vue'
 import appNavbar from './Navbar.vue'
+
+function test(e: MouseEvent) {
+  e.preventDefault()
+  console.log()
+}
 </script>
 
 <style lang="scss">
@@ -57,17 +66,15 @@ import appNavbar from './Navbar.vue'
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    align-items: center;
     width: 100%;
     position: absolute;
     bottom: 10px;
     gap: 10px;
   }
 
-  &-ref-link {
+  .ant-anchor-link-title {
     color: var(--color-navbar-link);
     font-size: 1.2rem;
-    padding: 0 10px;
   }
 }
 </style>

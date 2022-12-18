@@ -2,9 +2,7 @@
   <section class="container">
     <div class="profile mobile">
       <div class="avatar">
-        <a-avatar :size="160">
-          <template #icon><user-outlined /></template>
-        </a-avatar>
+        <avatar />
       </div>
       <div class="info">
         <div>
@@ -24,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { UserOutlined } from '@ant-design/icons-vue'
+import Avatar from '@/components/Avatar.vue'
 import { useStore } from '@/store'
 import { computed } from 'vue'
 

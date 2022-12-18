@@ -1,3 +1,5 @@
+// overridden antd styles
+
 .form {
   &-field {
     .ant-input-group-addon {
@@ -8,12 +10,17 @@
       border: 0;
     }
   }
+}
 
-  &-link {
-    color: var(--color-secondary);
-
-    &:hover {
-      color: var(--color-light-blue);
-    }
+.ant-tabs {
+  .ant-tabs-nav {
+    margin-bottom: 24px;
   }
+}
+
+.ant-btn-link:hover,
+.ant-btn-link:focus,
+.ant-btn-link:active,
+a:hover {
+  color: white;
 }

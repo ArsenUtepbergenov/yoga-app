@@ -36,11 +36,8 @@
         class="btn btn-primary"
         :disabled="disabled"
       >
-        Войти
+        Подтвердить
       </a-button>
-    </a-form-item>
-    <a-form-item>
-      <a-button type="link" class="form-link"> Еще не имеете аккаунт? </a-button>
     </a-form-item>
   </a-form>
 </template>
@@ -60,7 +57,7 @@ const formState: UnwrapRef<FirebaseUser> = reactive({
 })
 
 watch(
-  () => store.getters['modal/isLoginVisible'],
+  () => store.getters['modal/isAuthVisible'],
   value => {
     if (!value) resetForm()
   },

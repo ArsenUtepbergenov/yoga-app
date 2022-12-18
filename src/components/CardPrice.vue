@@ -63,7 +63,7 @@ const endStr = computed(() => {
     color: white;
     text-align: center;
     padding: 12px 0;
-    background: var(--color-primary);
+    background: linear-gradient(330deg, #4d9e6e, #7280d0);
   }
 
   &__text {

@@ -11,6 +11,45 @@
 }
 
 @container (max-width: 600px) {
+  .logo {
+    width: 200px;
+  }
+
+  .navbar.mobile {
+    margin: 10px 30px 10px 0;
+    justify-content: space-between;
+  }
+
+  .profile.mobile {
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+
+    .avatar {
+      grid-row: 1/2;
+      justify-self: center;
+    }
+
+    .info {
+      grid-row: 2/3;
+    }
+
+    .courses {
+      grid-row: 3/4;
+    }
+
+    .avatar,
+    .info,
+    .courses {
+      grid-column: 1/2;
+    }
+  }
+
+  .card-description {
+    &-img.rtl {
+      order: unset;
+    }
+  }
+
   .card-description,
   .card-teacher {
     display: flex;

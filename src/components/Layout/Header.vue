@@ -18,7 +18,7 @@
       <a-anchor-link href="#timetable" class="header-ref-link">
         <template #title> <CalendarOutlined />&nbsp;Расписание</template>
       </a-anchor-link>
-      <a-anchor-link href="#price" class="header-ref-link" @click="test">
+      <a-anchor-link href="#price" class="header-ref-link">
         <template #title><MoneyCollectOutlined />&nbsp;Цена</template>
       </a-anchor-link>
       <a-anchor-link href="#teachers" class="header-ref-link">
@@ -35,11 +35,6 @@ import {
   ContactsOutlined,
 } from '@ant-design/icons-vue'
 import appNavbar from './Navbar.vue'
-
-function test(e: MouseEvent) {
-  e.preventDefault()
-  console.log()
-}
 </script>
 
 <style lang="scss">

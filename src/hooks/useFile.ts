@@ -1,5 +1,12 @@
 import { ref } from 'vue'
 import { message } from 'ant-design-vue'
+import {
+  uploadBytesResumable,
+  ref as storageRef,
+  getDownloadURL,
+} from 'firebase/storage'
+import { auth, storage } from '@/firebase'
+import store from '@/store'
 
 export default function useFile() {
   const reader = new FileReader()
@@ -31,11 +38,12 @@ export default function useFile() {
 
         reader.onload = () => {
           fileBase64.value = reader.result as string
+          uploadToFirebaseStorage(file)
           loading.value = false
         }
 
         reader.onerror = () => {
-          message.error('Upload error.')
+          message.error(`Upload: Error during reader's operation.`)
           loading.value = false
           return
         }
@@ -48,4 +56,51 @@ export default function useFile() {
     loading,
     handleChange,
   }
+}
+
+function uploadToFirebaseStorage(file: File) {
+  const metadata = {
+    contentType: file.type,
+  }
+
+  const fileName = (auth.currentUser?.uid || '') + file.name
+
+  const imagesRef = storageRef(storage, `images/${fileName}`)
+
+  const uploadTask = uploadBytesResumable(imagesRef, file, metadata)
+
+  uploadTask.on(
+    'state_changed',
+    snapshot => {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      console.log('Upload is ' + progress + '% done')
+      switch (snapshot.state) {
+        case 'paused':
+          console.log('Upload is paused')
+          break
+        case 'running':
+          console.log('Upload is running')
+          break
+      }
+    },
+    error => {
+      switch (error.code) {
+        case 'storage/unauthorized':
+          message.error(`Upload: User doesn't have permission to access the object.`)
+          break
+        case 'storage/canceled':
+          message.warning('Upload: User canceled.')
+          break
+        case 'storage/unknown':
+          message.error('Upload: Unknown error occurred.')
+          break
+      }
+    },
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
+        console.log('File available at', downloadURL)
+        store.dispatch('auth/updatePhotoURL', { url: downloadURL, fileName })
+      })
+    },
+  )
 }

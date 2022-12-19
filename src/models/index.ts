@@ -15,6 +15,7 @@ export type Notification = {
 
 export type User = FirebaseUser & { name: string }
 export type UserWithRepeatedPassword = User & { repeatedPassword: string }
+export type UserPhoto = { url: string; fileName: string }
 
 // store states
 export type AppState = {}
@@ -22,6 +23,7 @@ export type AppState = {}
 export type ReceivedUser = {
   displayName: string
   email: string
+  photoURL: string
 }
 
 export type AuthState = {

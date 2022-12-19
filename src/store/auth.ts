@@ -1,12 +1,20 @@
 import { Codes } from '@/enums'
-import { AuthState, User, FirebaseUser, ReceivedUser } from '@/models'
+import {
+  AuthState,
+  User,
+  FirebaseUser,
+  ReceivedUser,
+  AuthActionContext,
+  UserPhoto,
+} from '@/models'
 // api
-import { auth, db, login, registration, logout } from '@/firebase'
-import { addDoc, collection } from 'firebase/firestore'
+import { auth, db, login, registration, logout, storage } from '@/firebase'
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { FirebaseError } from 'firebase/app'
 import { setNotification } from './notification'
 import { setAuthModal } from './modal'
-import { updateProfile } from 'firebase/auth'
+import { updateProfile, User as AuthUser } from 'firebase/auth'
+import { ref, deleteObject } from 'firebase/storage'
 
 const authModule = {
   namespaced: true,
@@ -14,6 +22,7 @@ const authModule = {
     user: {
       displayName: '',
       email: '',
+      photoURL: '',
     },
     isLoggedIn: false,
   } as AuthState,
@@ -24,6 +33,7 @@ const authModule = {
         ...user,
       }),
     setLoggedIn: (state: AuthState, status: boolean) => (state.isLoggedIn = status),
+    setPhotoURL: (state: AuthState, url: string) => (state.user.photoURL = url),
   },
   actions: {
     async login(_: unknown, { email, password }: FirebaseUser) {
@@ -39,17 +49,18 @@ const authModule = {
     async registration(_: unknown, { name, email, password }: User) {
       try {
         const { user } = await registration(auth, email, password)
-        const docRef = await addDoc(collection(db, 'users'), {
-          _id: user.uid,
+        await setDoc(doc(db, 'users', user.uid), {
           name,
           email,
+          photoURL: '',
+          photoName: '',
         })
 
         await updateProfile(user, {
           displayName: name,
         })
 
-        console.log('Document written with ID: ', docRef.id)
+        console.log('Document written with ID: ', user.uid)
 
         setNotification(Codes.STATUS_REGISTRATION, user as ReceivedUser)
         setAuthModal(false)
@@ -66,12 +77,41 @@ const authModule = {
         setNotification(Codes.ERROR_LOGOUT, error as FirebaseError)
       }
     },
+
+    async updatePhotoURL({ commit }: AuthActionContext, { url, fileName }: UserPhoto) {
+      try {
+        const currentUser = auth.currentUser as AuthUser
+        const userRef = doc(db, 'users', currentUser.uid)
+        const userDoc = await getDoc(userRef)
+
+        if (userDoc.exists()) {
+          const { photoName } = userDoc.data()
+          if (photoName) await deleteObject(ref(storage, `images/${photoName}`))
+        } else {
+          console.log('No such document!')
+        }
+
+        await updateProfile(currentUser, {
+          photoURL: url,
+        })
+
+        await updateDoc(userRef, {
+          photoName: fileName,
+          photoURL: url,
+        })
+
+        commit('setPhotoURL', url)
+      } catch (error) {
+        console.error('User upload/update photo: ', error)
+      }
+    },
   },
   getters: {
     isLoggedIn: (state: AuthState) => state.isLoggedIn,
     user: (state: AuthState) => state.user,
     userName: (state: AuthState) => state.user.displayName,
     userEmail: (state: AuthState) => state.user.email,
+    userPhotoURL: (state: AuthState) => state.user.photoURL,
   },
 }
 

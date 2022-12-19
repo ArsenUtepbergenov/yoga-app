@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import description from './Description.vue'
-import price from './Price.vue'
-import teachers from './Teachers.vue'
+import description from '../Description.vue'
+import price from '../Price.vue'
+import teachers from '../Teachers.vue'
 </script>

@@ -30,8 +30,8 @@
 </template>
 
 <script setup lang="ts">
-import cardDescription from './CardDescription.vue'
-import verticalCard from './VerticalCard.vue'
+import cardDescription from './Cards/CardDescription.vue'
+import verticalCard from './Cards/VerticalCard.vue'
 import Descriptions from '@/assets/static-text'
 
 const { HEALTH, BEAUTY, CALMNESS, YOGA, TEACHERS, TECHNOLOGIES } = Descriptions

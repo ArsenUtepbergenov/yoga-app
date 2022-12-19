@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import Avatar from '@/components/Avatar.vue'
+import Avatar from '@/components/UI/Avatar.vue'
 import { useStore } from '@/store'
 import { computed } from 'vue'
 

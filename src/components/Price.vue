@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import cardPrice from './CardPrice.vue'
+import cardPrice from './Cards/CardPrice.vue'
 </script>
 
 <style lang="scss">

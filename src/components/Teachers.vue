@@ -13,5 +13,5 @@
 </template>
 
 <script setup lang="ts">
-import cardTeacher from './CardTeacher.vue'
+import cardTeacher from './Cards/CardTeacher.vue'
 </script>

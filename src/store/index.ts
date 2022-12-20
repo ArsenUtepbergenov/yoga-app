@@ -10,10 +10,32 @@ import modalModule from './modal'
 export const storeKey: InjectionKey<Store<RootState>> = Symbol()
 
 const store = createStore<RootState>({
-  state: {} as RootState,
-  mutations: {},
+  state: {
+    sections: {
+      timetable: null,
+      price: null,
+      teachers: null,
+    },
+  } as RootState,
+  mutations: {
+    setSections(
+      state: RootState,
+      elements: { key: keyof typeof state.sections; element: HTMLElement }[],
+    ) {
+      elements.forEach(({ key, element }) => (state.sections[key] = element))
+    },
+    setSection(
+      state: RootState,
+      { key, element }: { key: keyof typeof state.sections; element: HTMLElement },
+    ) {
+      state.sections[key] = element
+    },
+  },
   actions: {},
-  getters: {},
+  getters: {
+    getSection: (state: RootState) => (key: keyof typeof state.sections) =>
+      state.sections[key],
+  },
   modules: {
     auth: authModule,
     notification: notificationModule,

@@ -18,7 +18,13 @@ export type UserWithRepeatedPassword = User & { repeatedPassword: string }
 export type UserPhoto = { url: string; fileName: string }
 
 // store states
-export type AppState = {}
+export type AppState = {
+  sections: {
+    timetable: HTMLElement | null
+    price: HTMLElement | null
+    teachers: HTMLElement | null
+  }
+}
 
 export type ReceivedUser = {
   displayName: string

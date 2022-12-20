@@ -2,7 +2,7 @@
   <section class="container">
     <div class="profile mobile">
       <div class="avatar">
-        <avatar />
+        <avatar :url="photoURL" />
       </div>
       <div class="info">
         <div>
@@ -22,13 +22,14 @@
 </template>
 
 <script setup lang="ts">
-import Avatar from '@/components/Avatar.vue'
+import Avatar from '@/components/UI/Avatar.vue'
 import { useStore } from '@/store'
 import { computed } from 'vue'
 
 const store = useStore()
 const name = computed(() => store.getters['auth/userName'])
 const email = computed(() => store.getters['auth/userEmail'])
+const photoURL = computed(() => store.getters['auth/userPhotoURL'] || '')
 </script>
 
 <style lang="scss">

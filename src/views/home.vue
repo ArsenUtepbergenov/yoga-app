@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import appMain from '@/components/Main.vue'
+import appMain from '@/components/Layout/Main.vue'
 </script>

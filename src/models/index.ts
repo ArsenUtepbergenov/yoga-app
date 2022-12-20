@@ -13,15 +13,28 @@ export type Notification = {
   message: string
 }
 
-export type User = FirebaseUser & { name: string }
-export type UserWithRepeatedPassword = User & { repeatedPassword: string }
-
-// store states
-export type AppState = {}
-
 export type ReceivedUser = {
   displayName: string
   email: string
+  photoURL: string
+}
+
+export type ExerciseEvent = {
+  content: string
+  type: 'warning' | 'success' | 'error'
+}
+
+export type User = FirebaseUser & { name: string }
+export type UserWithRepeatedPassword = User & { repeatedPassword: string }
+export type UserPhoto = { url: string; fileName: string }
+
+// store states
+export type AppState = {
+  sections: {
+    timetable: HTMLElement | null
+    price: HTMLElement | null
+    teachers: HTMLElement | null
+  }
 }
 
 export type AuthState = {
@@ -37,11 +50,20 @@ export type ModalState = {
   isAuthVisible: boolean
 }
 
+export type EventsState = {
+  list: Map<number, ExerciseEvent[]>
+}
+
 // root
-export type RootState = AppState & AuthState & NotificationState & ModalState
+export type RootState = AppState &
+  AuthState &
+  NotificationState &
+  ModalState &
+  EventsState
 
 // actions
 export type AuthActionContext = ActionContext<AuthState, RootState>
 export type ModalActionContext = ActionContext<ModalState, RootState>
+export type EventsActionContext = ActionContext<EventsState, RootState>
 
 import './notification'

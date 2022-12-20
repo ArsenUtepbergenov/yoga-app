@@ -14,21 +14,17 @@
         </a-button>
       </div>
     </div>
-    <div class="header-ref-links">
-      <a-anchor-link href="#timetable" class="header-ref-link">
-        <template #title> <CalendarOutlined />&nbsp;Расписание</template>
-      </a-anchor-link>
-      <a-anchor-link href="#price" class="header-ref-link" @click="test">
-        <template #title><MoneyCollectOutlined />&nbsp;Цена</template>
-      </a-anchor-link>
-      <a-anchor-link href="#teachers" class="header-ref-link">
-        <template #title><ContactsOutlined />&nbsp;Контакты</template>
-      </a-anchor-link>
+    <div class="ref-links" @click="handleScrollTo">
+      <a class="ref-link" data-to="timetable"><CalendarOutlined />&nbsp;Расписание</a>
+      <a class="ref-link" data-to="price"><MoneyCollectOutlined />&nbsp;Цена</a>
+      <a class="ref-link" data-to="teachers"><ContactsOutlined />&nbsp;Контакты</a>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
+import { useScroll } from '@/hooks'
+import { useStore } from '@/store'
 import {
   CalendarOutlined,
   MoneyCollectOutlined,
@@ -36,9 +32,20 @@ import {
 } from '@ant-design/icons-vue'
 import appNavbar from './Navbar.vue'
 
-function test(e: MouseEvent) {
-  e.preventDefault()
-  console.log()
+const scroll = useScroll()
+const store = useStore()
+
+function handleScrollTo(event: Event) {
+  const target = event.target as HTMLElement
+  let toElement = null
+
+  if (target.tagName === 'A' && target.classList.contains('ref-link')) {
+    if ('to' in target.dataset) {
+      toElement = store.getters['getSection'](target.dataset.to)
+    }
+  }
+
+  scroll.to(toElement)
 }
 </script>
 
@@ -62,17 +69,17 @@ function test(e: MouseEvent) {
     max-width: 570px;
   }
 
-  &-ref-links {
+  .ref-links {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
     position: absolute;
     bottom: 10px;
-    gap: 10px;
+    gap: 20px;
   }
 
-  .ant-anchor-link-title {
+  .ref-link {
     color: var(--color-navbar-link);
     font-size: 1.2rem;
   }

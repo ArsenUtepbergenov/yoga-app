@@ -1,7 +1,13 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory,
+  RouteRecordName,
+  RouteRecordRaw,
+} from 'vue-router'
 import { Pages } from '@/enums'
 import Home from '@/views/Home.vue'
 import PageNotFound from '@/views/PageNotFound.vue'
+import store from '@/store'
 
 const routes = [
   {
@@ -43,9 +49,18 @@ const router = createRouter({
   routes,
 })
 
+const privatePages: RouteRecordName[] = [Pages.PROFILE]
+
 router.beforeEach((to, _, next) => {
-  document.title = `${to.meta.title} | Yoga Hall`
-  next()
+  const isPrivatePage = privatePages.includes(to.name as RouteRecordName)
+  const isLoggedIn = store.getters['auth/isLoggedIn']
+
+  if (isPrivatePage && !isLoggedIn) {
+    next({ name: Pages.HOME })
+  } else {
+    document.title = `${to.meta.title} | Yoga Hall`
+    next()
+  }
 })
 
 export default router

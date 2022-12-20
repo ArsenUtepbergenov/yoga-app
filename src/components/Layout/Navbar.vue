@@ -72,8 +72,8 @@
 <script setup lang="ts">
 import { useStore } from '@/store'
 import { computed, ref } from 'vue'
-import Login from './Login.vue'
-import Registration from './Registration.vue'
+import Login from '../Login.vue'
+import Registration from '../Registration.vue'
 import {
   IdcardOutlined,
   UserOutlined,
@@ -103,6 +103,7 @@ function handleMenuClick({ key }: MenuInfo) {
       break
     case MenuKeys.EXIT:
       store.dispatch('auth/logout')
+      router.push({ name: Pages.HOME })
       break
   }
 }

@@ -21,6 +21,7 @@ const FirebaseErrorCodes = {
   'auth/user-not-found': 'Пользователь не существует.',
   'auth/wrong-password': 'Неверный пароль.',
   'auth/weak-password': 'Пароль должен иметь минимум 6 символов.',
+  'auth/email-already-in-use': 'Пользователь уже существует.',
 }
 
 type indexErrorCode = keyof typeof FirebaseErrorCodes

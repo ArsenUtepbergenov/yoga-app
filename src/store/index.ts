@@ -5,6 +5,7 @@ import { RootState } from '@/models'
 import authModule from './auth'
 import notificationModule from './notification'
 import modalModule from './modal'
+import eventsModule from './events'
 
 // global injection key
 export const storeKey: InjectionKey<Store<RootState>> = Symbol()
@@ -40,6 +41,7 @@ const store = createStore<RootState>({
     auth: authModule,
     notification: notificationModule,
     modal: modalModule,
+    events: eventsModule,
   },
 })
 

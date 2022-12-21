@@ -35,6 +35,7 @@
 
 <script setup lang="ts">
 import useScroll from '@/hooks/useScroll'
+import store from '@/store'
 import { MailOutlined } from '@ant-design/icons-vue'
 import { onMounted, ref, UnwrapRef, reactive, computed } from 'vue'
 
@@ -53,8 +54,8 @@ const rules = {
   ],
 }
 
-async function handleFinish(values: State) {
-  console.log(values)
+function handleFinish(values: State) {
+  store.dispatch('auth/resetPassword', values.resetEmail)
 }
 
 onMounted(() => scroll.to(forgotPasswordRef.value as HTMLElement))

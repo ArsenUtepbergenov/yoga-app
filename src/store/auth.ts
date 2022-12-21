@@ -13,7 +13,7 @@ import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { FirebaseError } from 'firebase/app'
 import { setNotification } from './notification'
 import { setAuthModal } from './modal'
-import { updateProfile, User as AuthUser } from 'firebase/auth'
+import { sendPasswordResetEmail, updateProfile, User as AuthUser } from 'firebase/auth'
 import { ref, deleteObject } from 'firebase/storage'
 
 const authModule = {
@@ -36,6 +36,14 @@ const authModule = {
     setPhotoURL: (state: AuthState, url: string) => (state.user.photoURL = url),
   },
   actions: {
+    async resetPassword(_: unknown, email: string) {
+      try {
+        await sendPasswordResetEmail(auth, email)
+      } catch (error) {
+        setNotification(Codes.ERROR_RESET_PASSWORD, error as FirebaseError)
+      }
+    },
+
     async login(_: unknown, { email, password }: FirebaseUser) {
       try {
         const { user } = await login(auth, email, password)

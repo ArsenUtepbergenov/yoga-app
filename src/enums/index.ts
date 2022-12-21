@@ -15,6 +15,7 @@ export enum Codes {
   ERROR_REGISTRATION,
   SUCCESS_LOGOUT,
   ERROR_LOGOUT,
+  ERROR_RESET_PASSWORD,
 }
 
 const FirebaseErrorCodes = {
@@ -67,5 +68,12 @@ Notifications.set(Codes.ERROR_LOGOUT, (message: string) => {
     type: 'error',
     title: 'Ошибка при попытке выхода.',
     message,
+  }
+})
+Notifications.set(Codes.ERROR_RESET_PASSWORD, (error: FirebaseError) => {
+  return {
+    type: 'error',
+    title: 'Ошибка во время сброса пароля.',
+    message: FirebaseErrorCodes[error.code as indexErrorCode],
   }
 })

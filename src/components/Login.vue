@@ -39,6 +39,11 @@
         Подтвердить
       </a-button>
     </a-form-item>
+    <a-form-item>
+      <a-button type="link" class="forgot-password-link" @click="toForgotPassword">
+        <strong>Забыли пароль?</strong>
+      </a-button>
+    </a-form-item>
   </a-form>
 </template>
 
@@ -48,7 +53,11 @@ import { useStore } from '@/store'
 import { FirebaseUser } from '@/models'
 import { RuleObject } from 'ant-design-vue/lib/form/interface'
 import { LockOutlined, MailOutlined } from '@ant-design/icons-vue'
+import { Pages } from '@/enums'
+import { useRouter } from 'vue-router'
+import { setAuthModal } from '@/store/modal'
 
+const router = useRouter()
 const formRef = ref()
 const store = useStore()
 const formState: UnwrapRef<FirebaseUser> = reactive({
@@ -62,6 +71,11 @@ watch(
     if (!value) resetForm()
   },
 )
+
+function toForgotPassword() {
+  setAuthModal(false)
+  router.push({ name: Pages.FORGOT_PASSWORD })
+}
 
 async function validatePassword(rule: RuleObject, value: string) {
   try {
@@ -80,6 +94,7 @@ async function handleFinish(values: FirebaseUser) {
     email: values.email,
     password: values.password,
   })
+  if (router.currentRoute.value.name !== Pages.HOME) router.push({ name: Pages.HOME })
 }
 
 function resetForm() {
@@ -95,3 +110,11 @@ const rules = {
 
 const disabled = computed(() => formState.email === '' || formState.password === '')
 </script>
+
+<style lang="scss" scoped>
+.forgot-password-link {
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+</style>

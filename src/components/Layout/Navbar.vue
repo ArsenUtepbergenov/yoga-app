@@ -19,7 +19,7 @@
           @click.prevent
         >
           <span style="margin-right: 10px" v-if="!isMobile">
-            {{ email }}
+            {{ name }}
           </span>
           <UserOutlined />
         </a>
@@ -117,7 +117,7 @@ function hideAuthModal() {
 }
 
 const isLoggedIn = computed(() => store.getters['auth/isLoggedIn'])
-const email = computed(() => store.getters['auth/userEmail'])
+const name = computed(() => store.getters['auth/userName'])
 const isAuthModalVisible = computed(() => store.getters['modal/isAuthVisible'])
 </script>
 

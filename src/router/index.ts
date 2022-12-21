@@ -30,6 +30,10 @@ const routes = [
     path: '/forgot-password',
     name: Pages.FORGOT_PASSWORD,
     component: () => import('@/views/ForgotPassword.vue'),
+    beforeEnter: (to, from, next) => {
+      if (!store.getters['auth/isLoggedIn']) next()
+      else next({ name: Pages.HOME })
+    },
     meta: {
       title: 'Forgot Password',
     },

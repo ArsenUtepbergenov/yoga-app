@@ -23,6 +23,7 @@ import { Pages } from '@/enums'
 const home = Pages.HOME
 const routes = {
   [home]: 'Дом',
+  'forgot-password': 'Сбросить пароль',
   profile: 'Профиль',
   registration: 'Регистрация',
   login: 'Авторизация',

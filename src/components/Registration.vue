@@ -64,7 +64,10 @@ import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons-vue'
 import { RuleObject } from 'ant-design-vue/es/form/interface'
 import { reactive, UnwrapRef, computed, ref, watch } from 'vue'
 import { useStore } from '@/store'
+import { useRouter } from 'vue-router'
+import { Pages } from '@/enums'
 
+const router = useRouter()
 const formRef = ref()
 const store = useStore()
 const formState: UnwrapRef<UserWithRepeatedPassword> = reactive({
@@ -114,6 +117,8 @@ async function handleFinish(values: UserWithRepeatedPassword) {
     const { name, email, password } = values
     await store.dispatch('auth/registration', { name, email, password })
   }
+
+  if (router.currentRoute.value.name !== Pages.HOME) router.push({ name: Pages.HOME })
 }
 
 const rules = {

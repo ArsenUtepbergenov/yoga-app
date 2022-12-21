@@ -31,6 +31,7 @@ export type UserPhoto = { url: string; fileName: string }
 // store states
 export type AppState = {
   sections: {
+    forgotPassword: HTMLElement | null
     timetable: HTMLElement | null
     price: HTMLElement | null
     teachers: HTMLElement | null

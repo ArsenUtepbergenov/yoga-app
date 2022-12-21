@@ -13,6 +13,7 @@ export const storeKey: InjectionKey<Store<RootState>> = Symbol()
 const store = createStore<RootState>({
   state: {
     sections: {
+      forgotPassword: null,
       timetable: null,
       price: null,
       teachers: null,

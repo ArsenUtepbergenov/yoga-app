@@ -10,7 +10,7 @@
           Сфера Yoga Hall - ПЛАТФОРМА ДЛЯ ОНЛАЙН-ЗАНЯТИЙ по йоге и медитации
         </div>
         <a-button type="primary" size="large" class="btn btn-primary header-btn"
-          >Записаться на урок
+          >Записаться на занятие
         </a-button>
       </div>
     </div>

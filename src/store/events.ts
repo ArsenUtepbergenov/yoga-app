@@ -7,10 +7,15 @@ const eventsModule = {
   namespaced: true,
   state: {
     list: new Map(),
+    newList: [],
   } as EventsState,
   mutations: {
-    setEvents(state: EventsState, payload: Map<number, ExerciseEvent[]>) {
+    setList(state: EventsState, payload: Map<number, ExerciseEvent[]>) {
       state.list = payload
+    },
+    setNewList(state: EventsState, payload: ExerciseEvent[]) {
+      state.newList = [...state.newList, ...payload]
+      console.log(state.newList)
     },
   },
   actions: {
@@ -35,11 +40,13 @@ const eventsModule = {
           {
             type,
             content: `с ${from} - до ${to}`,
+            from,
+            to,
           },
         ])
       })
 
-      commit('setEvents', list)
+      commit('setList', list)
     },
   },
   getters: {

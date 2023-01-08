@@ -46,6 +46,14 @@ const routes = [
       title: 'Profile',
     },
   },
+  {
+    path: '/settings',
+    name: Pages.SETTINGS,
+    component: () => import('@/views/Settings.vue'),
+    meta: {
+      title: 'Settings',
+    },
+  },
 ] as RouteRecordRaw[]
 
 const router = createRouter({
@@ -53,7 +61,7 @@ const router = createRouter({
   routes,
 })
 
-const privatePages: RouteRecordName[] = [Pages.PROFILE]
+const privatePages: RouteRecordName[] = [Pages.PROFILE, Pages.SETTINGS]
 
 router.beforeEach((to, _, next) => {
   const isPrivatePage = privatePages.includes(to.name as RouteRecordName)

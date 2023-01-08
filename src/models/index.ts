@@ -20,6 +20,8 @@ export type ReceivedUser = {
 }
 
 export type ExerciseEvent = {
+  from: string
+  to: string
   content: string
   type: 'warning' | 'success' | 'error'
 }
@@ -53,6 +55,7 @@ export type ModalState = {
 
 export type EventsState = {
   list: Map<number, ExerciseEvent[]>
+  newList: ExerciseEvent[]
 }
 
 // root

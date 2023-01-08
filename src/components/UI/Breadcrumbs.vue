@@ -4,7 +4,7 @@
       <a-breadcrumb-item>
         <router-link :to="{ name: home }">
           <home-outlined />
-          {{ routes.home }}
+          {{ BreadcrumbsItems.home }}
         </router-link>
       </a-breadcrumb-item>
       <a-breadcrumb-item v-if="currentRoute">
@@ -17,19 +17,12 @@
 <script setup lang="ts">
 import { HomeOutlined } from '@ant-design/icons-vue'
 import { ref, watch } from 'vue'
-import { RouteRecordName, useRoute } from 'vue-router'
-import { Pages } from '@/enums'
+import { RouteRecordName, RouterLink, useRoute } from 'vue-router'
+import { BreadcrumbsItems, Pages } from '@/enums'
 
 const home = Pages.HOME
-const routes = {
-  [home]: 'Дом',
-  'forgot-password': 'Сбросить пароль',
-  profile: 'Профиль',
-  registration: 'Регистрация',
-  login: 'Авторизация',
-}
 
-type routeName = keyof typeof routes
+type routeName = keyof typeof BreadcrumbsItems
 
 const route = useRoute()
 const currentRoute = ref<RouteRecordName>('')
@@ -41,7 +34,7 @@ watch(route, ({ name }) => {
   }
 
   if (currentRoute.value !== name)
-    currentRoute.value = routes[name as routeName] as RouteRecordName
+    currentRoute.value = BreadcrumbsItems[name as routeName] as RouteRecordName
 })
 </script>
 

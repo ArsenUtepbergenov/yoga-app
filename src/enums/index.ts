@@ -6,6 +6,16 @@ export const Pages = {
   HOME: 'home',
   FORGOT_PASSWORD: 'forgot-password',
   PROFILE: 'profile',
+  SETTINGS: 'settings',
+}
+
+export const BreadcrumbsItems = {
+  [Pages.HOME]: 'Дом',
+  'forgot-password': 'Сбросить пароль',
+  profile: 'Профиль',
+  registration: 'Регистрация',
+  login: 'Авторизация',
+  settings: 'Настройки',
 }
 
 export enum Codes {

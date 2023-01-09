@@ -1,5 +1,21 @@
 type Time = { seconds: number }
 
+export function range(start: number, end: number) {
+  const result = []
+
+  for (let i = start; i < end; i++) {
+    result.push(i)
+  }
+
+  return result
+}
+
+export function getFullDate(value: Time) {
+  const date = new Date(value.seconds * 1000)
+
+  return date.toLocaleDateString('ru-RU')
+}
+
 export function getTime(value: Time) {
   const date = new Date(value.seconds * 1000)
 

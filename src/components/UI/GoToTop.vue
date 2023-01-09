@@ -15,10 +15,12 @@
 import { ArrowUpOutlined } from '@ant-design/icons-vue'
 import { useScroll } from '@/hooks'
 
+const props = defineProps<{ element: HTMLElement }>()
+
 const scroll = useScroll()
 
 function goToTop() {
-  scroll.goToTop()
+  scroll.to(props.element)
 }
 </script>
 

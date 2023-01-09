@@ -2,6 +2,7 @@ import { VNodeChild } from 'vue'
 
 export const MenuKeys = {
   PROFILE: 'Profile',
+  SETTINGS: 'Settings',
   EXIT: 'Exit',
 }
 

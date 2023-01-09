@@ -1,5 +1,6 @@
 import { ActionContext } from 'vuex'
 import { IconType as Type } from 'ant-design-vue/lib/notification'
+import { Dayjs } from 'dayjs'
 
 // base
 export type FirebaseUser = {
@@ -19,6 +20,21 @@ export type ReceivedUser = {
   photoURL: string
 }
 
+export type EventDate = {
+  _id: string
+  value: string
+  from: string
+  to: string
+}
+
+export type NewExerciseEvent = {
+  id: number
+  from: string
+  to: string
+  fromValue: Dayjs
+  toValue: Dayjs
+}
+
 export type ExerciseEvent = {
   content: string
   type: 'warning' | 'success' | 'error'
@@ -36,6 +52,7 @@ export type AppState = {
     price: HTMLElement | null
     teachers: HTMLElement | null
   }
+  anchorLinksVisible: boolean
 }
 
 export type AuthState = {
@@ -52,7 +69,9 @@ export type ModalState = {
 }
 
 export type EventsState = {
+  dates: EventDate[]
   list: Map<number, ExerciseEvent[]>
+  newList: NewExerciseEvent[]
 }
 
 // root

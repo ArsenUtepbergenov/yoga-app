@@ -52,6 +52,7 @@ export type AppState = {
     price: HTMLElement | null
     teachers: HTMLElement | null
   }
+  anchorLinksVisible: boolean
 }
 
 export type AuthState = {

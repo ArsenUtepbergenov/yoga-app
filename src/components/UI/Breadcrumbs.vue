@@ -1,6 +1,6 @@
 <template>
   <div class="breadcrumb">
-    <a-breadcrumb>
+    <a-breadcrumb separator=">">
       <a-breadcrumb-item>
         <router-link :to="{ name: home }">
           <home-outlined />

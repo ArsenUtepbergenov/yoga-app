@@ -18,8 +18,12 @@ const store = createStore<RootState>({
       price: null,
       teachers: null,
     },
+    anchorLinksVisible: false,
   } as RootState,
   mutations: {
+    setAnchorLinksVisible(state: RootState, payload: boolean) {
+      state.anchorLinksVisible = payload
+    },
     setSections(
       state: RootState,
       elements: { key: keyof typeof state.sections; element: HTMLElement }[],
@@ -37,6 +41,7 @@ const store = createStore<RootState>({
   getters: {
     getSection: (state: RootState) => (key: keyof typeof state.sections) =>
       state.sections[key],
+    anchorLinksVisible: (state: RootState) => state.anchorLinksVisible,
   },
   modules: {
     auth: authModule,

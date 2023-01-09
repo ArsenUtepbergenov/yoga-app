@@ -14,7 +14,7 @@
         </a-button>
       </div>
     </div>
-    <div class="ref-links" @click="handleScrollTo">
+    <div v-if="refLinksVisible" class="ref-links" @click="handleScrollTo">
       <a class="ref-link" data-to="timetable"><CalendarOutlined />&nbsp;Расписание</a>
       <a class="ref-link" data-to="price"><MoneyCollectOutlined />&nbsp;Цена</a>
       <a class="ref-link" data-to="teachers"><ContactsOutlined />&nbsp;Контакты</a>
@@ -23,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useScroll } from '@/hooks'
 import { useStore } from '@/store'
 import {
@@ -34,6 +35,8 @@ import appNavbar from './Navbar.vue'
 
 const scroll = useScroll()
 const store = useStore()
+
+const refLinksVisible = computed(() => store.getters['anchorLinksVisible'])
 
 function handleScrollTo(event: Event) {
   const target = event.target as HTMLElement

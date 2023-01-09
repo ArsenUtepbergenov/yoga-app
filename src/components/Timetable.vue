@@ -34,12 +34,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 import { useStore } from '@/store'
 import { useBreakpoints } from '@vueuse/core'
-import { useRouter } from 'vue-router'
-import { Pages } from '@/enums'
 import locale from 'ant-design-vue/es/date-picker/locale/ru_RU'
 
 const breakpoints = useBreakpoints({
@@ -50,22 +48,9 @@ const isTablet = breakpoints.smaller('tablet')
 
 const selectedValue = ref(dayjs(''))
 const store = useStore()
-const route = useRouter()
 const date = ref<Dayjs>()
 
 const list = computed(() => store.getters['events/list'])
-
-watch(
-  () => route.currentRoute,
-  value => {
-    if (value.value.name === Pages.HOME) fetch()
-  },
-  { immediate: true },
-)
-
-async function fetch() {
-  await store.dispatch('events/fetch')
-}
 
 function handleSelect(value: Dayjs) {
   selectedValue.value = value

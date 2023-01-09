@@ -2,11 +2,12 @@
   <a-config-provider :locale="locale">
     <a-range-picker
       size="large"
+      :value="value"
       :disabled-date="disabledDate"
       :disabled-time="disabledRangeTime"
       :show-time="{
         hideDisabledOptions: true,
-        defaultValue: [dayjs('08:00', 'HH:mm'), dayjs('09:00', 'HH:mm')],
+        defaultValue: [dayjs('09:00', 'HH:mm'), dayjs('10:00', 'HH:mm')],
       }"
       :locale="locale"
       format="DD-MM-YYYY HH:mm"
@@ -16,24 +17,39 @@
 </template>
 
 <script setup lang="ts">
+import { watch, ref } from 'vue'
 import { useStore } from '@/store'
 import { range } from '@/utils/time'
 import dayjs, { Dayjs } from 'dayjs'
 import 'dayjs/locale/ru'
 import locale from 'ant-design-vue/es/date-picker/locale/ru_RU'
+import { NewExerciseEvent } from '@/models'
 dayjs.locale('ru')
 
+const props = defineProps<{ id: number }>()
+const value = ref<[Dayjs, Dayjs]>()
 const store = useStore()
 
-function handleChange(value: [Dayjs, Dayjs]) {
-  store.commit('events/setNewList', [
-    {
-      from: value[0]?.format() || '',
-      to: value[1]?.format() || '',
-      type: 'success',
-      content: '',
-    },
-  ])
+watch(
+  () => store.getters['events/newList'],
+  list => {
+    if (list) {
+      const item = list.find((i: NewExerciseEvent) => i.id === props.id)
+
+      if (item) value.value = [item.fromValue, item.toValue]
+    }
+  },
+  { deep: true, immediate: true },
+)
+
+function handleChange([from, to]: [Dayjs, Dayjs]) {
+  store.commit('events/setNewListItem', {
+    id: props.id,
+    from: from.format() || '',
+    to: to.format() || '',
+    fromValue: from,
+    toValue: to,
+  })
 }
 
 function disabledDate(current: Dayjs) {
@@ -43,11 +59,11 @@ function disabledDate(current: Dayjs) {
 function disabledRangeTime(_: Dayjs, type: 'start' | 'end') {
   if (type === 'start') {
     return {
-      disabledHours: () => [...range(0, 8), ...range(22, 24)],
+      disabledHours: () => [...range(0, 9), ...range(22, 24)],
     }
   }
   return {
-    disabledHours: () => [...range(0, 8), ...range(23, 24)],
+    disabledHours: () => [...range(0, 9), ...range(23, 24)],
   }
 }
 </script>

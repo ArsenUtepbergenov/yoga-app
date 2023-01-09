@@ -29,6 +29,10 @@
               <IdcardOutlined />
               Профиль
             </a-menu-item>
+            <a-menu-item key="SETTINGS">
+              <setting-outlined />
+              Настройки
+            </a-menu-item>
             <a-menu-item key="EXIT">
               <logout-outlined />
               Выход
@@ -80,6 +84,7 @@ import {
   LoginOutlined,
   LogoutOutlined,
   UserAddOutlined,
+  SettingOutlined,
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 import { Pages } from '@/enums'
@@ -100,6 +105,9 @@ function handleMenuClick({ key }: MenuInfo) {
   switch (MenuKeys[key]) {
     case MenuKeys.PROFILE:
       router.push({ name: Pages.PROFILE })
+      break
+    case MenuKeys.SETTINGS:
+      router.push({ name: Pages.SETTINGS })
       break
     case MenuKeys.EXIT:
       store.dispatch('auth/logout')

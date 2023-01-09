@@ -26,6 +26,8 @@ export enum Codes {
   SUCCESS_LOGOUT,
   ERROR_LOGOUT,
   ERROR_RESET_PASSWORD,
+  SUCCESS_CREATE_EVENTS,
+  ERROR_CREATE_EVENTS,
 }
 
 const FirebaseErrorCodes = {
@@ -38,24 +40,38 @@ const FirebaseErrorCodes = {
 type indexErrorCode = keyof typeof FirebaseErrorCodes
 
 export const Notifications = new Map()
+Notifications.set(Codes.SUCCESS_CREATE_EVENTS, () => {
+  return {
+    type: 'success',
+    title: 'События успешно созданы.',
+    message: ``,
+  }
+})
+Notifications.set(Codes.ERROR_CREATE_EVENTS, () => {
+  return {
+    type: 'error',
+    title: 'Ошибка во время создания событий.',
+    message: ``,
+  }
+})
 Notifications.set(Codes.SUCCESS_SIGN_IN, (user: User) => {
   return {
     type: 'success',
-    title: 'Успешный вход в систему',
+    title: 'Успешный вход в систему.',
     message: `Вы вошли как ${user?.email}`,
   }
 })
 Notifications.set(Codes.ERROR_SIGN_IN, (error: FirebaseError) => {
   return {
     type: 'error',
-    title: 'Ошибка при попытке входа',
+    title: 'Ошибка при попытке входа.',
     message: FirebaseErrorCodes[error.code as indexErrorCode],
   }
 })
 Notifications.set(Codes.STATUS_REGISTRATION, (user: User) => {
   return {
     type: 'info',
-    title: 'Статус регистрации',
+    title: 'Статус регистрации.',
     message: `Вы зарегистрированы как ${user?.email}`,
   }
 })
@@ -69,7 +85,7 @@ Notifications.set(Codes.ERROR_REGISTRATION, (error: FirebaseError) => {
 Notifications.set(Codes.SUCCESS_LOGOUT, () => {
   return {
     type: 'success',
-    title: 'Успешно',
+    title: 'Успешно.',
     message: `Вы успешно вышли из системы.`,
   }
 })

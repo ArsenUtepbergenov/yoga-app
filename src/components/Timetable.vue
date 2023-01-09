@@ -4,7 +4,7 @@
     <template v-if="isTablet">
       <ul class="events tablet">
         <li v-for="item in getListData(selectedValue)" :key="item.content">
-          <a-badge :status="item.type" :text="item.content" />
+          <a-badge :text="item.content" />
         </li>
       </ul>
     </template>
@@ -14,7 +14,7 @@
           <ul class="events">
             <li v-for="item in getListData(current)" :key="item.content">
               <span v-if="isTablet" class="blank"></span>
-              <a-badge v-else :status="item.type" :text="item.content" />
+              <a-badge v-else :text="item.content" />
             </li>
           </ul>
         </template>
@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue'
+import { ref, computed } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 import { useStore } from '@/store'
 import { useBreakpoints } from '@vueuse/core'
@@ -43,12 +43,6 @@ const isTablet = breakpoints.smaller('tablet')
 const selectedValue = ref(dayjs(''))
 const store = useStore()
 const date = ref<Dayjs>()
-
-onMounted(() => fetch())
-
-async function fetch() {
-  await store.dispatch('events/fetch')
-}
 
 const list = computed(() => store.getters['events/list'])
 

@@ -9,7 +9,12 @@
       </ul>
     </template>
     <div class="tablet">
-      <a-calendar v-model:value="date" :fullscreen="!isTablet" @select="handleSelect">
+      <a-calendar
+        v-model:value="date"
+        :fullscreen="!isTablet"
+        :locale="locale"
+        @select="handleSelect"
+      >
         <template #dateCellRender="{ current }">
           <ul class="events">
             <li v-for="item in getListData(current)" :key="item.content">
@@ -29,10 +34,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
 import { useStore } from '@/store'
 import { useBreakpoints } from '@vueuse/core'
+import { useRouter } from 'vue-router'
+import { Pages } from '@/enums'
+import locale from 'ant-design-vue/es/date-picker/locale/ru_RU'
 
 const breakpoints = useBreakpoints({
   tablet: 899,
@@ -42,9 +50,22 @@ const isTablet = breakpoints.smaller('tablet')
 
 const selectedValue = ref(dayjs(''))
 const store = useStore()
+const route = useRouter()
 const date = ref<Dayjs>()
 
 const list = computed(() => store.getters['events/list'])
+
+watch(
+  () => route.currentRoute,
+  value => {
+    if (value.value.name === Pages.HOME) fetch()
+  },
+  { immediate: true },
+)
+
+async function fetch() {
+  await store.dispatch('events/fetch')
+}
 
 function handleSelect(value: Dayjs) {
   selectedValue.value = value
@@ -87,11 +108,10 @@ function getNumberEventsByMonth(value: Dayjs) {
   position: absolute;
   top: 0;
   left: 0;
-  background: rgb(24 144 255 / 70%);
   height: 10px;
   min-width: 24px;
   height: 24px;
   line-height: 24px;
-  opacity: 0.3;
+  border: 2px dashed rgba(24, 144, 255);
 }
 </style>

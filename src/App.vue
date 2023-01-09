@@ -16,16 +16,9 @@ import breadcrumbs from '@/components/UI/Breadcrumbs.vue'
 import AppHeader from '@/components/Layout/Header.vue'
 import AppFooter from '@/components/Layout/Footer.vue'
 import { useNotification } from './hooks'
-import { onMounted } from 'vue'
-import { useStore } from '@/store'
-
-const store = useStore()
+import 'dayjs/locale/ru'
+import dayjs from 'dayjs'
+dayjs.locale('ru')
 
 useNotification()
-
-onMounted(() => fetch())
-
-async function fetch() {
-  await store.dispatch('events/fetch')
-}
 </script>

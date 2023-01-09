@@ -28,6 +28,8 @@ export enum Codes {
   ERROR_RESET_PASSWORD,
   SUCCESS_CREATE_EVENTS,
   ERROR_CREATE_EVENTS,
+  SUCCESS_DELETE_EVENTS,
+  ERROR_DELETE_EVENTS,
 }
 
 const FirebaseErrorCodes = {
@@ -40,6 +42,20 @@ const FirebaseErrorCodes = {
 type indexErrorCode = keyof typeof FirebaseErrorCodes
 
 export const Notifications = new Map()
+Notifications.set(Codes.SUCCESS_DELETE_EVENTS, () => {
+  return {
+    type: 'success',
+    title: 'Событие успешно удалено.',
+    message: ``,
+  }
+})
+Notifications.set(Codes.ERROR_DELETE_EVENTS, () => {
+  return {
+    type: 'error',
+    title: 'Событие не удалось удалить.',
+    message: ``,
+  }
+})
 Notifications.set(Codes.SUCCESS_CREATE_EVENTS, () => {
   return {
     type: 'success',

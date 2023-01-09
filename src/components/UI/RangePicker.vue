@@ -21,10 +21,8 @@ import { watch, ref } from 'vue'
 import { useStore } from '@/store'
 import { range } from '@/utils/time'
 import dayjs, { Dayjs } from 'dayjs'
-import 'dayjs/locale/ru'
-import locale from 'ant-design-vue/es/date-picker/locale/ru_RU'
 import { NewExerciseEvent } from '@/models'
-dayjs.locale('ru')
+import locale from 'ant-design-vue/es/date-picker/locale/ru_RU'
 
 const props = defineProps<{ id: number }>()
 const value = ref<[Dayjs, Dayjs]>()

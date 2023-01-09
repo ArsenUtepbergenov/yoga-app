@@ -1,7 +1,7 @@
 import { EventDate, NewExerciseEvent } from '@/models'
 import { db } from '@/firebase'
 import { EventsState, ExerciseEvent, EventsActionContext } from '@/models'
-import { createEvent } from '@/services/events-service'
+import { createEvents } from '@/services/events-service'
 import { checkTime, getDate, getFullDate, getTime } from '@/utils/time'
 import { collection, getDocs } from 'firebase/firestore'
 
@@ -29,15 +29,19 @@ const eventsModule = {
     removeFromNewList(state: EventsState, id: number) {
       state.newList = state.newList.filter(i => i.id !== id)
     },
+    removeFromDates(state: EventsState, id: string) {
+      state.dates = state.dates.filter(i => i._id !== id)
+    },
   },
   actions: {
-    async create({ state }: EventsActionContext) {
+    create({ state }: EventsActionContext) {
       if (!state.newList.length) return
 
-      state.newList.forEach(e => createEvent(e))
+      const items = state.newList.filter(i => i.from && i.to)
+
+      createEvents(items)
     },
     async fetch({ commit }: EventsActionContext) {
-      const dates: EventDate[] = []
       const list = new Map<number, ExerciseEvent[]>()
       const querySnapshot = await getDocs(collection(db, 'events'))
 
@@ -53,12 +57,6 @@ const eventsModule = {
           type = 'error'
         }
 
-        dates.push({
-          value: getFullDate(d.from),
-          from,
-          to,
-        })
-
         list.set(date, [
           ...(list.get(date) || []),
           {
@@ -69,6 +67,28 @@ const eventsModule = {
       })
 
       commit('setList', list)
+    },
+    async fetchDates({ commit }: EventsActionContext) {
+      const dates: EventDate[] = []
+      const querySnapshot = await getDocs(collection(db, 'events'))
+
+      querySnapshot.forEach(doc => {
+        const d = doc.data()
+        const from = getTime(d.from)
+        let to = getTime(d.to)
+
+        if (!checkTime(d.from, d.to)) {
+          to = from
+        }
+
+        dates.push({
+          _id: doc.id,
+          value: getFullDate(d.from),
+          from,
+          to,
+        })
+      })
+
       commit('setDates', dates)
     },
   },

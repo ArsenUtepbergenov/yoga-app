@@ -21,6 +21,7 @@ export type ReceivedUser = {
 }
 
 export type EventDate = {
+  _id: string
   value: string
   from: string
   to: string

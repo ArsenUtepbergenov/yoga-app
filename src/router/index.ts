@@ -5,7 +5,7 @@ import {
   RouteRecordRaw,
 } from 'vue-router'
 import { Pages } from '@/enums'
-import Home from '@/views/Home.vue'
+import Home from '@/views/HomePage.vue'
 import PageNotFound from '@/views/PageNotFound.vue'
 import store from '@/store'
 
@@ -52,6 +52,14 @@ const routes = [
     component: () => import('@/views/Settings.vue'),
     meta: {
       title: 'Settings',
+    },
+  },
+  {
+    path: '/stream',
+    name: Pages.STREAM,
+    component: () => import('@/views/Stream.vue'),
+    meta: {
+      title: 'Live stream',
     },
   },
 ] as RouteRecordRaw[]

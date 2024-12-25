@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2 class="title">Связаться с мастерами</h2>
+    <h2 class="title">Мастера</h2>
     <a-row :gutter="[24, 24]" type="flex" justify="center">
       <card-teacher
         imgUrl="sergey.jpg"

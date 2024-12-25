@@ -7,6 +7,7 @@ export const Pages = {
   FORGOT_PASSWORD: 'forgot-password',
   PROFILE: 'profile',
   SETTINGS: 'settings',
+  STREAM: 'stream',
 }
 
 export const BreadcrumbsItems = {

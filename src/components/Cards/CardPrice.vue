@@ -2,18 +2,19 @@
   <div class="card-price">
     <div class="card-price__title">{{ title }}</div>
     <br />
-    <h3>{{ price }}&nbsp;&#8381;</h3>
-    <p>за {{ exercises }}&nbsp;{{ endStr }}</p>
-    <a-button type="primary" class="btn btn-secondary" @click="toPaymentForm">
-      Купить
-    </a-button>
+    <div class="card-price__content">
+      <h2>{{ price }}&nbsp;&#8381;</h2>
+      <small>Срок действия - месяц с первого посещения</small>
+      <br />
+      <a-button type="primary" class="btn btn-secondary" @click="pay">
+        Купить
+      </a-button>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { withDefaults, computed } from 'vue'
-
-const temp = ['занятие', 'занятия', 'занятий']
+import { withDefaults } from 'vue'
 
 const props = withDefaults(
   defineProps<{
@@ -28,22 +29,11 @@ const props = withDefaults(
   },
 )
 
-function toPaymentForm() {
-  console.log(props.price)
-}
+const emit = defineEmits(['pay'])
 
-const endStr = computed(() => {
-  switch (props.exercises) {
-    case 1:
-      return temp[0]
-    case 2:
-    case 3:
-    case 4:
-      return temp[1]
-    default:
-      return temp[2]
-  }
-})
+function pay() {
+  emit('pay', props.price)
+}
 </script>
 
 <style lang="scss">
@@ -51,9 +41,19 @@ const endStr = computed(() => {
   background-color: white;
   color: var(--color-light-grey);
   text-align: center;
-  font-size: 1.4rem;
-  padding-bottom: 20px;
-  border-bottom: 2px solid #e8e8e8;
+  width: 240px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 6px 1px #dfdfdf;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 0 16px 20px 16px;
+    flex-grow: 1;
+  }
 
   &__title {
     border-top-left-radius: 3px;
@@ -64,11 +64,6 @@ const endStr = computed(() => {
     text-align: center;
     padding: 12px 0;
     background: linear-gradient(330deg, #4d9e6e, #7280d0);
-  }
-
-  &__text {
-    font-size: 1.7rem;
-    margin-top: 24px;
   }
 }
 </style>

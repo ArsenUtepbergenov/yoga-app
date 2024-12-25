@@ -51,8 +51,10 @@ export type AppState = {
     timetable: HTMLElement | null
     price: HTMLElement | null
     teachers: HTMLElement | null
+    contact: HTMLElement | null
   }
   anchorLinksVisible: boolean
+  tariffPrice: number
 }
 
 export type AuthState = {

@@ -12,6 +12,9 @@
     <section ref="teachersRef" class="teachers">
       <teachers />
     </section>
+    <section ref="contactRef" class="contact">
+      <contact />
+    </section>
   </main>
 </template>
 
@@ -20,6 +23,7 @@ import description from '../Description.vue'
 import price from '../Price.vue'
 import teachers from '../Teachers.vue'
 import timetable from '../Timetable.vue'
+import contact from '../Contact.vue'
 import { useStore } from '@/store'
 import { onMounted, ref } from 'vue'
 
@@ -27,6 +31,7 @@ const store = useStore()
 const priceRef = ref<HTMLElement>()
 const teachersRef = ref<HTMLElement>()
 const timetableRef = ref<HTMLElement>()
+const contactRef = ref<HTMLElement>()
 
 onMounted(() => {
   store.commit('setSections', [
@@ -41,6 +46,10 @@ onMounted(() => {
     {
       key: 'teachers',
       element: teachersRef.value,
+    },
+    {
+      key: 'contact',
+      element: contactRef.value,
     },
   ])
 })

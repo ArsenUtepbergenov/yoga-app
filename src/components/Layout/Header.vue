@@ -17,7 +17,8 @@
     <div v-if="refLinksVisible" class="ref-links" @click="handleScrollTo">
       <a class="ref-link" data-to="timetable"><CalendarOutlined />&nbsp;Расписание</a>
       <a class="ref-link" data-to="price"><MoneyCollectOutlined />&nbsp;Цена</a>
-      <a class="ref-link" data-to="teachers"><ContactsOutlined />&nbsp;Контакты</a>
+      <a class="ref-link" data-to="teachers"><ContactsOutlined />&nbsp;Мастера</a>
+      <a class="ref-link" data-to="contact"><MailOutlined />&nbsp;Контакты</a>
     </div>
   </header>
 </template>
@@ -30,6 +31,7 @@ import {
   CalendarOutlined,
   MoneyCollectOutlined,
   ContactsOutlined,
+  MailOutlined,
 } from '@ant-design/icons-vue'
 import appNavbar from './Navbar.vue'
 

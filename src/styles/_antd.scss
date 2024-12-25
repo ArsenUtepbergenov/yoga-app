@@ -3,7 +3,7 @@
 .form {
   &-field {
     .ant-input-group-addon {
-      color: white;
+      color: white !important;
       background-color: var(--color-primary);
       width: 46px;
       font-size: 18px;
